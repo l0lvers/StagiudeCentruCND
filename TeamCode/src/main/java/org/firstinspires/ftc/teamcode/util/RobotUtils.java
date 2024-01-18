@@ -8,8 +8,8 @@ import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 
 public class RobotUtils {
     private SampleMecanumDrive drive;
-    private DcMotor uppies1; //=slider
-    private DcMotor uppies2;
+    private DcMotor uppies1; //=slider1
+    private DcMotor uppies2;//=slider2
     private DcMotor intake1;
     private DcMotor intake2;
     private Servo cuva1;
