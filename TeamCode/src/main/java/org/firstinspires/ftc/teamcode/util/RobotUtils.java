@@ -16,6 +16,8 @@ public class RobotUtils {
     private Servo cuva2;
     private Servo opritoare;
 
+    int uppiepos = 2000;
+
     public RobotUtils(HardwareMap hardwareMap) {
         drive = new SampleMecanumDrive(hardwareMap);
 
@@ -26,7 +28,12 @@ public class RobotUtils {
         cuva1 = hardwareMap.get(Servo.class, "cuva1");
         cuva2 = hardwareMap.get(Servo.class, "cuva2");
         opritoare = hardwareMap.get(Servo.class, "opritoare");
+        uppies1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        uppies2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        uppies1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        uppies2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
+
     public void intake() {
         intake1.setPower(0.5);
         intake2.setPower(0.5);
@@ -38,5 +45,18 @@ public class RobotUtils {
     public void setPosOpritoare() {
         opritoare.setPosition(0);
     }
+    public void downies(){
+        uppies1.setTargetPosition(10);
+        uppies2.setTargetPosition(10);
+        uppies1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        uppies2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    }
+    public void uppies(){
+        uppies1.setTargetPosition(uppiepos);
+        uppies2.setTargetPosition(uppiepos);
+        uppies1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        uppies2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    }
+
 
 }

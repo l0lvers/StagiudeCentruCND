@@ -94,6 +94,10 @@ public class Drive extends LinearOpMode {
                     }
 
             }
+            if(gamepad1.cross){robot.intake();}
+            if(gamepad1.circle){robot.setPosCuva0();}
+            if (gamepad1.cross){robot.downies();}
+            if(gamepad1.square){robot.setPosOpritoare();}
 
             drive.update();
 
