@@ -52,10 +52,6 @@ public class Drive extends LinearOpMode {
         drive = new SampleMecanumDrive(hardwareMap);
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-
-
-
-
         waitForStart();
 
 
@@ -74,7 +70,6 @@ public class Drive extends LinearOpMode {
                     );
 
                     if (gamepad1.right_trigger>0.3) {
-
                         chasisState = ChasisState.TURBO;
                     }
                     if (gamepad1.left_trigger>0.3) {
@@ -111,7 +106,7 @@ public class Drive extends LinearOpMode {
 
             }
             if(gamepad1.cross){robot.intake();}
-            if(gamepad1.circle){robot.setPosCuva0();}
+            if(gamepad1.circle){robot.setPosCuva0(); robot.setBratPos0();}
             if (gamepad1.cross){robot.downies();}
             if(gamepad1.square){robot.setPosOpritoare();}
 
