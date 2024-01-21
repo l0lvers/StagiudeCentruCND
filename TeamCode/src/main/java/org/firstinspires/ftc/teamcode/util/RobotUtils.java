@@ -1,58 +1,72 @@
 package org.firstinspires.ftc.teamcode.util;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.PwmControl;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.ServoImplEx;
 
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 
+@Config
 public class RobotUtils {
 
     //------------------------------OBIECTE-------------------------------------
     private SampleMecanumDrive drive;
-    private DcMotor sliderLeft; //=slider1
-    private DcMotor sliderRight;//=slider2
-    private DcMotor intakeLeft;
-    private DcMotor intakeRight;
+    private DcMotorEx sliderLeft; //=slider1
+    private DcMotorEx sliderRight;//=slider2
+    private DcMotorEx intakeLeft;
+    private DcMotorEx intakeRight;
     private Servo cuvaLeft;
     private Servo cuvaRight;
-    private Servo bratCuvaLeft;
-    private Servo bratCuvaRight;
+    private ServoImplEx bratCuvaLeft;
+    private ServoImplEx bratCuvaRight;
     private Servo opritoare;
     private Servo droneLauncher;
     //-----------------------------VARIABILE------------------------
 
-    int sliderInitPos=0;
-    int sliderLowPos=0;
-    int sliderMidPos=0;
-    int sliderHighPos=0;
-    double sliderPow=0;
-    double intakePow=0;
-    double cuvaScorePos = 0;
-    double bCuvaScorePos = 0;
-    double cuvaInitPos = 0;
-    double bCuvaInitPos=0;
-    double opritoareOpenPos=0;
-    double opritoareClosePos=0;
-
-    double dronaLaunchPos=0;
-    double dronaInitPos=0;
+    public static int sliderInitPos=0;
+    public static int sliderLowPos=0;
+    public static int sliderMidPos=0;
+    public static int sliderHighPos=0;
+    public static double sliderPow=0;
+    public static double intakePow=0;
+    public static double cuvaScorePos = 0;
+    public static double bCuvaScorePos = 0;
+    public static double cuvaInitPos = 0;
+    public static double bCuvaInitPos=0;
+    public static double opritoareOpenPos=0;
+    public static double opritoareClosePos=0;
+    public static double dronaLaunchPos=0;
+    public static double dronaInitPos=0;
 
 
     public RobotUtils(HardwareMap hardwareMap) {
         //gasire elemente din cod in viata reala
         drive = new SampleMecanumDrive(hardwareMap);
 
-        sliderLeft = hardwareMap.get(DcMotor.class, "sliderLeft");
-        sliderRight = hardwareMap.get(DcMotor.class, "sliderRight");
-        intakeLeft = hardwareMap.get(DcMotor.class, "intakeLeft");
-        intakeRight = hardwareMap.get(DcMotor.class, "intakeRight");
+        sliderLeft = hardwareMap.get(DcMotorEx.class, "sliderLeft");
+        sliderRight = hardwareMap.get(DcMotorEx.class, "sliderRight");
+        intakeLeft = hardwareMap.get(DcMotorEx.class, "intakeLeft");
+        intakeRight = hardwareMap.get(DcMotorEx.class, "intakeRight");
         cuvaLeft = hardwareMap.get(Servo.class, "cuvaLeft");
         cuvaRight = hardwareMap.get(Servo.class, "cuvaRight");
         opritoare = hardwareMap.get(Servo.class, "opritoare");
-        bratCuvaLeft = hardwareMap.get(Servo.class, "bratCuvaLeft");
-        bratCuvaRight = hardwareMap.get(Servo.class, "bratCuvaRight");
+        bratCuvaLeft = hardwareMap.get(ServoImplEx.class, "bratCuvaLeft");
+        bratCuvaRight = hardwareMap.get(ServoImplEx.class, "bratCuvaRight");
         droneLauncher = hardwareMap.get(Servo.class, "droneLauncher");
+
+        bratCuvaLeft.setPwmEnable();
+        bratCuvaRight.setPwmEnable();
+
+        bratCuvaRight.setPwmRange(new PwmControl.PwmRange(500, 2500));
+        bratCuvaLeft.setPwmRange(new PwmControl.PwmRange(500, 2500));
+
+        sliderLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        sliderRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
     }
 
     //----------------------------SLIDERE---------------------------
@@ -63,21 +77,25 @@ public class RobotUtils {
     }
     public void PutSliderToPosition(int position, double power) //generalizare pentru pozitia sliderelor
     {
-        sliderLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        sliderRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        sliderLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        sliderRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        sliderLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        sliderRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        double absPower = Math.abs(power);
+
+        sliderLeft.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
+        sliderRight.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
+
+        sliderLeft.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+        sliderRight.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+
         int curentPosition = sliderRight.getCurrentPosition();
 
+        SetSliderPos(position);
+
         if (curentPosition > position){
-            sliderLeft.setPower(power);
-            sliderRight.setPower(-power);
+            sliderLeft.setPower(absPower);
+            sliderRight.setPower(-absPower);
         }
         else if(curentPosition < position){
-            sliderLeft.setPower(-power);
-            sliderRight.setPower(power);
+            sliderLeft.setPower(-absPower);
+            sliderRight.setPower(absPower);
         }//explicatie pt prostii ca mine la ifuri si elseuri:
          //daca positia curenta e mai mare decat cea dorita mere mai jos altfel mere mai sus
          //am vzt asta la adi si mi s-a parut genial asa ca dc nu
