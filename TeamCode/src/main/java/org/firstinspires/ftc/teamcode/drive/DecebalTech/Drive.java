@@ -1,11 +1,14 @@
 package org.firstinspires.ftc.teamcode.drive.DecebalTech;
 
+import android.transition.Slide;
+
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.util.IncludedFirmwareFileInfo;
 
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.util.RobotUtils;
@@ -23,10 +26,14 @@ public class Drive extends LinearOpMode {
         TURBO,
         PRECISION
     }
+    enum SliderState{
+        AUTO,
+        MANUAL
+    }
 
     private RobotUtils robot;
     private ChasisState chasisState = ChasisState.DRIVE;
-
+    private SliderState sliderState = SliderState.MANUAL;
     private SampleMecanumDrive drive;
 
 
@@ -85,18 +92,66 @@ public class Drive extends LinearOpMode {
                             )
                     );
 
-                    if (gamepad1.left_trigger == 0) {
+            }
+            if (gamepad1.left_trigger == 0) {
 
-                        chasisState = ChasisState.DRIVE;
+                chasisState = ChasisState.DRIVE;
+            }
+            if(gamepad1.triangle) robot.DroneLaunch();
+            if(gamepad1.dpad_up) robot.DroneInit();
+            if(gamepad1.square) robot.IntakeOn();
+            if(gamepad1.circle) robot.IntakeStop();
+            if(gamepad1.cross) robot.IntakeReverse();
+
+            switch (sliderState){
+                case AUTO:
+                    if(gamepad2.dpad_down) robot.PutSliderLow();
+                    if(gamepad2.dpad_right) robot.PutSlidersInit();
+                    if(gamepad2.dpad_left) robot.PutSliderMid();
+                    if(gamepad2.dpad_up) robot.PutSliderHigh();
+                    if(gamepad2.left_bumper){
+                        robot.sliderRight.setPower(0);
+                        robot.sliderLeft.setPower(0);
+                        robot.sliderRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                        robot.sliderLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                        sliderState = SliderState.MANUAL;
                     }
-                    if(gamepad1.triangle) robot.DroneLaunch();
-                    if(gamepad1.dpad_up) robot.DroneInit();
-                    if (gamepad1.square) robot.IntakeOn();
-                    if(gamepad1.circle) robot.IntakeStop();
-                    if(gamepad1.cross) robot.IntakeReverse();   
+                    if(robot.sliderLeft.getCurrentPosition()>0 && robot.sliderLeft.getCurrentPosition()<1550) {
+                        robot.PosCuvaInit();
+                    }
+                    if(robot.sliderLeft.getCurrentPosition()>1550 && robot.sliderLeft.getCurrentPosition()<3000) {
+                        robot.PosCuvaScore();
+                    }
+                    break;
+
+                case MANUAL:
+                    if(gamepad2.right_trigger > 0.5)
+                    {
+                        robot.sliderLeft.setPower(0.3);
+                        robot.sliderRight.setPower(-0.3);
+                    }
+                    else if(gamepad2.left_trigger >0.5)
+                    {
+                        robot.sliderLeft.setPower(-0.3);
+                        robot.sliderRight.setPower(0.3);
+                    }
+                    else {robot.sliderLeft.setPower(0); robot.sliderRight.setPower(0);}
+                    if(gamepad2.right_bumper)
+                    {
+                        robot.sliderRight.setPower(0);
+                        robot.sliderLeft.setPower(0);
+                        robot.sliderRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                        robot.sliderLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                        robot.sliderRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                        robot.sliderLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                        sliderState = SliderState.AUTO;
+                    }
 
             }
-
+            if(gamepad2.triangle) robot.OpritoareClose();
+            if(gamepad2.square) robot.OpritoareOpen();
+            if(gamepad2.cross) robot.PosCuvaScore();
+            if (gamepad2.circle) robot.PosCuvaInit();
 
 
             drive.update();

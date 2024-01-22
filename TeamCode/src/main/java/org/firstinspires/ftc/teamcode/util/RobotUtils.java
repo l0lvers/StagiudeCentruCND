@@ -14,17 +14,17 @@ import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 public class RobotUtils {
 
     //------------------------------OBIECTE-------------------------------------
-    private SampleMecanumDrive drive;
-    private DcMotorEx sliderLeft; //=slider1
-    private DcMotorEx sliderRight;//=slider2
-    private DcMotorEx intakeLeft;
-    private DcMotorEx intakeRight;
-    private Servo cuvaLeft;
-    private Servo cuvaRight;
-    private ServoImplEx bratCuvaLeft;
-    private ServoImplEx bratCuvaRight;
-    private Servo opritoare;
-    private Servo droneLauncher;
+    public SampleMecanumDrive drive;
+    public DcMotorEx sliderLeft; //=slider1
+    public DcMotorEx sliderRight;//=slider2
+    public DcMotorEx intakeLeft;
+    public DcMotorEx intakeRight;
+    public Servo cuvaLeft;
+    public Servo cuvaRight;
+    public ServoImplEx bratCuvaLeft;
+    public ServoImplEx bratCuvaRight;
+    public Servo opritoare;
+    public Servo droneLauncher;
     //-----------------------------VARIABILE------------------------
 
     public static int sliderInitPos=0;
