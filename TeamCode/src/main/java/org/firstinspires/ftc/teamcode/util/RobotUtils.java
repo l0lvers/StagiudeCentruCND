@@ -15,8 +15,8 @@ public class RobotUtils {
 
     //------------------------------OBIECTE-------------------------------------
     public SampleMecanumDrive drive;
-    public DcMotorEx sliderLeft; //=slider1
-    public DcMotorEx sliderRight;//=slider2
+    public DcMotorEx sliderLeft;
+    public DcMotorEx sliderRight;
     public DcMotorEx intakeLeft;
     public DcMotorEx intakeRight;
     public Servo cuvaLeft;
