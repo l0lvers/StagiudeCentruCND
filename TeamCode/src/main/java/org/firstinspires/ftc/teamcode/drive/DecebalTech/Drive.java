@@ -44,22 +44,23 @@ public class Drive extends LinearOpMode {
 
         while (opModeIsActive() && !isStopRequested()) {
 
-            switch (chasisState){
+            switch (chasisState) {
                 case DRIVE:
                     drive.setWeightedDrivePower(
                             new Pose2d(
-                                    -gamepad1.left_stick_y/1.5,
-                                    -gamepad1.left_stick_x/1.5,
-                                    -gamepad1.right_stick_x/1.5
+                                    -gamepad1.left_stick_y / 1.5,
+                                    -gamepad1.left_stick_x / 1.5,
+                                    -gamepad1.right_stick_x / 1.5
                             )
                     );
 
-                    if (gamepad1.right_trigger>0.3) {
+                    if (gamepad1.right_trigger > 0.3) {
                         chasisState = ChasisState.TURBO;
                     }
-                    if (gamepad1.left_trigger>0.3) {
+                    if (gamepad1.left_trigger > 0.3) {
 
-                        chasisState = ChasisState.PRECISION;                    }
+                        chasisState = ChasisState.PRECISION;
+                    }
                     break;
                 case TURBO:
                     drive.setWeightedDrivePower(
@@ -70,7 +71,7 @@ public class Drive extends LinearOpMode {
                             )
                     );
 
-                    if (gamepad1.right_trigger==0) {
+                    if (gamepad1.right_trigger == 0) {
 
                         chasisState = ChasisState.DRIVE;
                     }
@@ -78,18 +79,25 @@ public class Drive extends LinearOpMode {
                 case PRECISION:
                     drive.setWeightedDrivePower(
                             new Pose2d(
-                                    -gamepad1.left_stick_y/3,
-                                    -gamepad1.left_stick_x/3,
-                                    -gamepad1.right_stick_x/3
+                                    -gamepad1.left_stick_y / 3,
+                                    -gamepad1.left_stick_x / 3,
+                                    -gamepad1.right_stick_x / 3
                             )
                     );
 
-                    if (gamepad1.left_trigger==0) {
+                    if (gamepad1.left_trigger == 0) {
 
                         chasisState = ChasisState.DRIVE;
                     }
+                    if(gamepad1.triangle) robot.DroneLaunch();
+                    if(gamepad1.dpad_up) robot.DroneInit();
+                    if (gamepad1.square) robot.IntakeOn();
+                    if(gamepad1.circle) robot.IntakeStop();
+                    if(gamepad1.cross) robot.IntakeReverse();
 
             }
+
+
 
             drive.update();
 
