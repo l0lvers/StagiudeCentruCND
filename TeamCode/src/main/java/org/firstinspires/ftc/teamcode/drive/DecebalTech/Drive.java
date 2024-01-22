@@ -93,7 +93,7 @@ public class Drive extends LinearOpMode {
                     if(gamepad1.dpad_up) robot.DroneInit();
                     if (gamepad1.square) robot.IntakeOn();
                     if(gamepad1.circle) robot.IntakeStop();
-                    if(gamepad1.cross) robot.IntakeReverse();
+                    if(gamepad1.cross) robot.IntakeReverse();   
 
             }
 
