@@ -35,8 +35,8 @@ public class debugging extends LinearOpMode {
 
             telemetry.addData("Slider Stanga: ", robot.sliderLeft.getCurrentPosition());
             telemetry.addData("Slider Dreapta: ", robot.sliderRight.getCurrentPosition());
-            telemetry.addData("Cuva Stanga: ", robot.cuvaLeft.getPosition());
-            telemetry.addData("Cuva Right: ", robot.cuvaRight.getPosition());
+            //telemetry.addData("Cuva Stanga: ", robot.cuvaLeft.getPosition());
+            //telemetry.addData("Cuva Right: ", robot.cuvaRight.getPosition());
             telemetry.addData("Opritoare: ", robot.opritoare.getPosition());
             telemetry.addData("Drone", robot.droneLauncher.getPosition());
             telemetry.addData("Brat Cuva Stanga: ", robot.bratCuvaLeft.getPosition());

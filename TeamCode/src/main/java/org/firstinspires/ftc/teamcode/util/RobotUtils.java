@@ -19,8 +19,8 @@ public class RobotUtils {
     public DcMotorEx sliderRight;
     public DcMotorEx intakeLeft;
     public DcMotorEx intakeRight;
-    public Servo cuvaLeft;
-    public Servo cuvaRight;
+    //public Servo cuvaLeft;
+    //public Servo cuvaRight;
     public ServoImplEx bratCuvaLeft;
     public ServoImplEx bratCuvaRight;
     public Servo opritoare;
@@ -51,8 +51,8 @@ public class RobotUtils {
         sliderRight = hardwareMap.get(DcMotorEx.class, "sliderRight");
         intakeLeft = hardwareMap.get(DcMotorEx.class, "intakeLeft");
         intakeRight = hardwareMap.get(DcMotorEx.class, "intakeRight");
-        cuvaLeft = hardwareMap.get(Servo.class, "cuvaLeft");
-        cuvaRight = hardwareMap.get(Servo.class, "cuvaRight");
+        //cuvaLeft = hardwareMap.get(Servo.class, "cuvaLeft");
+        //cuvaRight = hardwareMap.get(Servo.class, "cuvaRight");
         opritoare = hardwareMap.get(Servo.class, "opritoare");
         bratCuvaLeft = hardwareMap.get(ServoImplEx.class, "bratCuvaLeft");
         bratCuvaRight = hardwareMap.get(ServoImplEx.class, "bratCuvaRight");
@@ -122,16 +122,16 @@ public class RobotUtils {
 
     public void PosCuvaInit() //pune cuva in pos initiala, aproap paralela cu terenu
     {
-        cuvaLeft.setPosition(cuvaInitPos);
-        cuvaRight.setPosition(cuvaInitPos);
+        //cuvaLeft.setPosition(cuvaInitPos);
+        //cuvaRight.setPosition(cuvaInitPos);
         bratCuvaLeft.setPosition(bCuvaInitPos);
         bratCuvaRight.setPosition(bCuvaInitPos);
     }
 
     public void PosCuvaScore() //pune cuva in pozitia de scoring, aproape paralela cu tabla
     {
-        cuvaLeft.setPosition(cuvaScorePos);
-        cuvaRight.setPosition(cuvaScorePos);
+        //cuvaLeft.setPosition(cuvaScorePos);
+        //cuvaRight.setPosition(cuvaScorePos);
         bratCuvaLeft.setPosition(bCuvaScorePos);
         bratCuvaRight.setPosition(bCuvaScorePos);
     }
