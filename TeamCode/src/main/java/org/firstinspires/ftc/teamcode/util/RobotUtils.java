@@ -32,7 +32,7 @@ public class RobotUtils {
     public static int sliderMidPos=0;
     public static int sliderHighPos=0;
     public static double sliderPow=0;
-    public static double intakePow=0;
+    public static double intakePow=0.5;
     public static double cuvaScorePos = 0;
     public static double bCuvaScorePos = 0;
     public static double cuvaInitPos = 0;

@@ -42,6 +42,7 @@ public class Drive extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
 
         drive = new SampleMecanumDrive(hardwareMap);
+        robot = new RobotUtils(hardwareMap);
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         waitForStart();
