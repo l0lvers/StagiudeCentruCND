@@ -27,20 +27,21 @@ public class RobotUtils {
     public Servo droneLauncher;
     //-----------------------------VARIABILE------------------------
 
-    public static int sliderInitPos=0;
-    public static int sliderLowPos=0;
-    public static int sliderMidPos=0;
-    public static int sliderHighPos=0;
-    public static double sliderPow=0;
-    public static double intakePow=0.5;
+    public static int sliderInitPos=-3;
+    public static int sliderLowPos=-1200;
+    public static int sliderMidPos=-1750;
+    public static int sliderHighPos=-2250;
+    public static double sliderPow=0.7;
+    public static double intakePow=1;
     public static double cuvaScorePos = 0;
-    public static double bCuvaScorePos = 0;
+    public static double bCuvaScorePos = 0.7;
     public static double cuvaInitPos = 0;
-    public static double bCuvaInitPos=0;
-    public static double opritoareOpenPos=0;
-    public static double opritoareClosePos=0;
-    public static double dronaLaunchPos=0;
-    public static double dronaInitPos=0;
+    public static double bCuvaInitPos=0.897;
+    public static double opritoareOpenPos=0.3;
+    public static double opritoareClosePos=0.5
+            ;
+    public static double dronaLaunchPos=0.02;
+    public static double dronaInitPos=0.17;
 
 
     public RobotUtils(HardwareMap hardwareMap) {
@@ -90,12 +91,12 @@ public class RobotUtils {
         SetSliderPos(position);
 
         if (curentPosition > position){
-            sliderLeft.setPower(absPower);
-            sliderRight.setPower(-absPower);
-        }
-        else if(curentPosition < position){
             sliderLeft.setPower(-absPower);
             sliderRight.setPower(absPower);
+        }
+        else if(curentPosition < position){
+            sliderLeft.setPower(absPower);
+            sliderRight.setPower(-absPower);
         }//explicatie pt prostii ca mine la ifuri si elseuri:
          //daca positia curenta e mai mare decat cea dorita mere mai jos altfel mere mai sus
          //am vzt asta la adi si mi s-a parut genial asa ca dc nu

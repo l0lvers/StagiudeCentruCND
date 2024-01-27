@@ -45,9 +45,12 @@ public class Drive extends LinearOpMode {
         robot = new RobotUtils(hardwareMap);
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
+
         waitForStart();
 
-
+        robot.PosCuvaInit();
+        robot.PutSlidersInit();
+        
         if (isStopRequested()) return;
 
         while (opModeIsActive() && !isStopRequested()) {
@@ -92,17 +95,26 @@ public class Drive extends LinearOpMode {
                                     -gamepad1.right_stick_x / 3
                             )
                     );
+                    if (gamepad1.left_trigger == 0) {
+
+                        chasisState = ChasisState.DRIVE;
+                    }
+                    break;
 
             }
             if (gamepad1.left_trigger == 0) {
 
                 chasisState = ChasisState.DRIVE;
             }
-            if(gamepad1.triangle) robot.DroneLaunch();
+            if(gamepad1.dpad_left) robot.DroneLaunch();
             if(gamepad1.dpad_up) robot.DroneInit();
-            if(gamepad1.square) robot.IntakeOn();
-            if(gamepad1.circle) robot.IntakeStop();
-            if(gamepad1.cross) robot.IntakeReverse();
+            if(gamepad1.triangle) robot.OpritoareClose();
+            if(gamepad1.square) robot.OpritoareOpen();
+            if(gamepad1.cross) robot.PosCuvaScore();
+            if (gamepad1.circle) robot.PosCuvaInit();
+            if(gamepad2.square) robot.IntakeOn();
+            if(gamepad2.circle) robot.IntakeStop();
+            if(gamepad2.cross) robot.IntakeReverse();
 
             switch (sliderState){
                 case AUTO:
@@ -117,12 +129,13 @@ public class Drive extends LinearOpMode {
                         robot.sliderLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                         sliderState = SliderState.MANUAL;
                     }
-                    if(robot.sliderLeft.getCurrentPosition()>0 && robot.sliderLeft.getCurrentPosition()<1550) {
-                        robot.PosCuvaInit();
-                    }
-                    if(robot.sliderLeft.getCurrentPosition()>1550 && robot.sliderLeft.getCurrentPosition()<3000) {
-                        robot.PosCuvaScore();
-                    }
+
+//                    if(robot.sliderLeft.getCurrentPosition()>0 && robot.sliderLeft.getCurrentPosition()<1550) {
+//                        robot.PosCuvaInit();
+//                    }
+//                    if(robot.sliderLeft.getCurrentPosition()>1550 && robot.sliderLeft.getCurrentPosition()<3000) {
+//                        robot.PosCuvaScore();
+//                    }
                     break;
 
                 case MANUAL:
@@ -149,11 +162,10 @@ public class Drive extends LinearOpMode {
                     }
 
             }
-            if(gamepad2.triangle) robot.OpritoareClose();
-            if(gamepad2.square) robot.OpritoareOpen();
-            if(gamepad2.cross) robot.PosCuvaScore();
-            if (gamepad2.circle) robot.PosCuvaInit();
 
+            telemetry.addData("mod sasiu: ", chasisState.toString());
+            telemetry.addData("mod slidere: ", sliderState.toString());
+            telemetry.update();
 
             drive.update();
 
