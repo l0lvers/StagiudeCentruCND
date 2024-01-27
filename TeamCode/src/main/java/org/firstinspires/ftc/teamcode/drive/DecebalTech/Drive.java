@@ -50,7 +50,7 @@ public class Drive extends LinearOpMode {
 
         robot.PosCuvaInit();
         robot.PutSlidersInit();
-        
+
         if (isStopRequested()) return;
 
         while (opModeIsActive() && !isStopRequested()) {
@@ -106,15 +106,15 @@ public class Drive extends LinearOpMode {
 
                 chasisState = ChasisState.DRIVE;
             }
-            if(gamepad1.dpad_left) robot.DroneLaunch();
-            if(gamepad1.dpad_up) robot.DroneInit();
-            if(gamepad1.triangle) robot.OpritoareClose();
-            if(gamepad1.square) robot.OpritoareOpen();
-            if(gamepad1.cross) robot.PosCuvaScore();
-            if (gamepad1.circle) robot.PosCuvaInit();
-            if(gamepad2.square) robot.IntakeOn();
-            if(gamepad2.circle) robot.IntakeStop();
-            if(gamepad2.cross) robot.IntakeReverse();
+            if(gamepad1.dpad_up) robot.DroneLaunch();
+            if(gamepad1.dpad_down) robot.DroneInit();
+            if(gamepad1.square) robot.IntakeReverse();
+            if(gamepad1.circle) robot.IntakeStop();
+            if(gamepad1.cross) robot.IntakeOn();
+            if(gamepad2.triangle) robot.OpritoareClose();
+            if(gamepad2.square) robot.OpritoareOpen();
+            if(gamepad2.cross) robot.PosCuvaScore();
+            if(gamepad2.circle) robot.PosCuvaInit();
 
             switch (sliderState){
                 case AUTO:
@@ -129,13 +129,6 @@ public class Drive extends LinearOpMode {
                         robot.sliderLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                         sliderState = SliderState.MANUAL;
                     }
-
-//                    if(robot.sliderLeft.getCurrentPosition()>0 && robot.sliderLeft.getCurrentPosition()<1550) {
-//                        robot.PosCuvaInit();
-//                    }
-//                    if(robot.sliderLeft.getCurrentPosition()>1550 && robot.sliderLeft.getCurrentPosition()<3000) {
-//                        robot.PosCuvaScore();
-//                    }
                     break;
 
                 case MANUAL:

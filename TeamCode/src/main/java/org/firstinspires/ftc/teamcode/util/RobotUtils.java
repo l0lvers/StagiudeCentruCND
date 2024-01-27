@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.util;
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PwmControl;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -67,6 +68,7 @@ public class RobotUtils {
 
         sliderLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         sliderRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        intakeLeft.setDirection(DcMotorSimple.Direction.REVERSE);
 
     }
 
@@ -148,13 +150,13 @@ public class RobotUtils {
     //-----------------------------------INTAKE------------------------------------
     public void IntakeOn() //porneste intakeu
     {
-        intakeLeft.setPower(intakePow);
-        intakeRight.setPower(-intakePow);
+        intakeLeft.setPower(-intakePow);
+        intakeRight.setPower(intakePow);
     }
     public void IntakeReverse() //scuipa in caz de orice
     {
         intakeLeft.setPower(intakePow);
-        intakeRight.setPower(intakePow);
+        intakeRight.setPower(-intakePow);
     }
     public void IntakeStop() // opreste intakeu
     {
