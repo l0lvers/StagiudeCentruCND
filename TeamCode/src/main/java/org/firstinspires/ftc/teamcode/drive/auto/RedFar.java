@@ -62,9 +62,13 @@ public class RedFar extends LinearOpMode {
 
             }
         });
-        Pose2d startPos = new Pose2d(-36, 61, Math.toRadians(90));
+        Pose2d startPos = new Pose2d(-36, -61, Math.toRadians(90));
         drive.setPoseEstimate(startPos);
         // de aici incepi sa scrii trajectory sequences
+        TrajectorySequence pune_preload_dreapta = drive.trajectorySequenceBuilder(startPos)
+                .lineToLinearHeading(new Pose2d(-46, -39, Math.toRadians(-90)))
+                .build();
+
 
 
         while (!isStarted() && !isStopRequested()) {
