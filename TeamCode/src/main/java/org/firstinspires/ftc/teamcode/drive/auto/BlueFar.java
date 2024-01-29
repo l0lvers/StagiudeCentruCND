@@ -26,7 +26,7 @@ public class BlueFar extends LinearOpMode {
     boolean bCameraOpened = false;
     private SampleMecanumDrive drive;
 
-    enum Zone{
+    enum Zone {
         RIGHT,
         LEFT,
         CENTER
@@ -36,7 +36,7 @@ public class BlueFar extends LinearOpMode {
     Zone zoneFinal = Zone.CENTER;
 
     @Override
-    public void runOpMode() throws InterruptedException{
+    public void runOpMode() throws InterruptedException {
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
 
@@ -61,13 +61,29 @@ public class BlueFar extends LinearOpMode {
 
             }
         });
-        Pose2d startPos = new Pose2d(-36,61,Math.toRadians(90));
+        Pose2d startPos = new Pose2d(-36, 61, Math.toRadians(90));
         drive.setPoseEstimate(startPos);
 
-telemetry.addData("Zone", zone.toString());
-telemetry.update();
-drive.update();
+        while (!isStarted() && !isStopRequested()) {
+
+            double zoneleft = detectionPipeline.getZoneLuminosity(4);
+            double zonemid = Math.min(Math.min(Math.min(detectionPipeline.getZoneLuminosity(64)
+                                    , detectionPipeline.getZoneLuminosity(54))
+                            , detectionPipeline.getZoneLuminosity(74))
+                    , detectionPipeline.getZoneLuminosity(44));
+
+
+            if (zoneleft < zonemid && zoneleft < 80) zone = Zone.LEFT;
+            else if (zonemid < zoneleft && zonemid < 80) zone = Zone.CENTER;
+            else zone = Zone.RIGHT;
+
+
+            telemetry.addData("zone = ", zone.toString());
+            telemetry.addData("luminosity zone left", zoneleft);
+            telemetry.addData("luminosity zone mid", zonemid);
+            telemetry.update();
         }
     }
+}
 
 
