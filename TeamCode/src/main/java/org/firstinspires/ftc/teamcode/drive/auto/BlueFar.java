@@ -64,7 +64,9 @@ public class BlueFar extends LinearOpMode {
         Pose2d startPos = new Pose2d(-36,61,Math.toRadians(90));
         drive.setPoseEstimate(startPos);
 
-
+telemetry.addData("Zone", Zone.toString);
+telemetry.update();
+drive.update();
         }
     }
 
