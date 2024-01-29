@@ -17,10 +17,10 @@ import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 
-@Autonomous(name = "BlueFar", group="Autonom")
+@Autonomous(name = "RedClose", group="Autonom")
 @Config
 
-public class BlueFar extends LinearOpMode {
+public class RedClose extends LinearOpMode {
     private RobotUtils robot;
     OpenCvCamera webcam;
     DetectionPipelineMatei detectionPipeline;
@@ -65,6 +65,7 @@ public class BlueFar extends LinearOpMode {
         Pose2d startPos = new Pose2d(-36, 61, Math.toRadians(90));
         drive.setPoseEstimate(startPos);
         // de aici incepi sa scrii trajectory sequences
+
 
         while (!isStarted() && !isStopRequested()) {
 
