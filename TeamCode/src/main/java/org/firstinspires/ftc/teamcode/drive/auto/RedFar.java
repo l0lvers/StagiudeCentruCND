@@ -66,14 +66,33 @@ public class RedFar extends LinearOpMode {
         Pose2d startPos = new Pose2d(-36, -61, Math.toRadians(90));
         drive.setPoseEstimate(startPos);
         // de aici incepi sa scrii trajectory sequences
-        TrajectorySequence pune_preload_dreapta = drive.trajectorySequenceBuilder(startPos)
+        TrajectorySequence pune_preload_dreaptaR = drive.trajectorySequenceBuilder(startPos)
                 .lineToLinearHeading(new Pose2d(-46, -39, Math.toRadians(-90)))
                 .build();
-        TrajectorySequence align3 = drive.trajectorySequenceBuilder(pune_preload_dreapta.end())
+
+        TrajectorySequence score_pos1R = drive.trajectorySequenceBuilder(pune_preload_dreaptaR.end())
                 .lineToLinearHeading(new Pose2d(-46, -45,Math.toRadians(-90)))
                 .splineToSplineHeading(new Pose2d(-23,-61, Math.toRadians(0)), Math.toRadians(0))
                 .splineToSplineHeading(new Pose2d(47,-28, Math.toRadians(0)),Math.toRadians(0))
+                .build();
 
+        TrajectorySequence stackR = drive.trajectorySequenceBuilder(score_pos1R.end())
+                .lineToLinearHeading(new Pose2d(-32,-37,Math.toRadians(0)))
+                .splineToSplineHeading(new Pose2d(-50,-35.5, Math.toRadians(0)), Math.toRadians(-10))
+                .lineToLinearHeading(new Pose2d(-60, -35.5, Math.toRadians(0)))
+                .build();
+
+        TrajectorySequence score_pos2R =drive.trajectorySequenceBuilder(stackR.end())
+                .lineToLinearHeading(new Pose2d(-50,-35.5, Math.toRadians(0)))
+                .splineToSplineHeading(new Pose2d(-23,-60, Math.toRadians(0)), Math.toRadians(-15))
+                .lineToLinearHeading(new Pose2d(0,-60,Math.toRadians(0)))
+                .splineToSplineHeading(new Pose2d(47,-33, Math.toRadians(0)),Math.toRadians(15))
+                .build();
+
+        TrajectorySequence parkR =drive.trajectorySequenceBuilder(score_pos2R.end())
+                .lineToLinearHeading(new Pose2d(40,-12,Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(60, -12,Math.toRadians(0)))
+                .build();
 
 
 
@@ -96,16 +115,23 @@ public class RedFar extends LinearOpMode {
             telemetry.addData("luminosity zone mid", zonemid);
             telemetry.update();
         }
-        bCameraOpened = false;
-        if(nu_stiu_sa_codez2) {
-            zoneFinal = zone;
-            nu_stiu_sa_codez2 = false;
-        }
-
+           /*  bCameraOpened = false;
+            if(nu_stiu_sa_codez2) {
+              zoneFinal = zone;
+              nu_stiu_sa_codez2 = false;
+          }
+*/
             switch(zoneFinal){
                 case RIGHT:
-                        drive.followTrajectorySequence(pune_preload_dreapta);
+                    drive.followTrajectorySequence(pune_preload_dreaptaR);
                     sleep(300);
+                    drive.followTrajectorySequence(score_pos1R);
+                    sleep(3000);
+                    drive.followTrajectorySequence(stackR);
+                    sleep(3000);
+                    drive.followTrajectorySequence(score_pos2R);
+                    sleep(3000);
+                    drive.followTrajectorySequence(parkR);
 
              break;
                 case LEFT:
