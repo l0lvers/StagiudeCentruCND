@@ -66,6 +66,7 @@ public class BlueFar extends LinearOpMode {
         drive.setPoseEstimate(startPos);
         // de aici incepi sa scrii trajectory sequences
 
+
         while (!isStarted() && !isStopRequested()) {
 
             double zoneleft = detectionPipeline.getZoneLuminosity(4);
