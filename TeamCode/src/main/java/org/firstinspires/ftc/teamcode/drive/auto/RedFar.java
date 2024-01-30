@@ -68,18 +68,37 @@ public class RedFar extends LinearOpMode {
         // de aici incepi sa scrii trajectory sequences
         TrajectorySequence pune_preload_dreaptaR = drive.trajectorySequenceBuilder(startPos)
                 .lineToLinearHeading(new Pose2d(-46, -39, Math.toRadians(-90)))
+
+
                 .build();
 
         TrajectorySequence score_pos1R = drive.trajectorySequenceBuilder(pune_preload_dreaptaR.end())
                 .lineToLinearHeading(new Pose2d(-46, -45,Math.toRadians(-90)))
                 .splineToSplineHeading(new Pose2d(-23,-61, Math.toRadians(0)), Math.toRadians(0))
                 .splineToSplineHeading(new Pose2d(47,-28, Math.toRadians(0)),Math.toRadians(0))
+                .addTemporalMarker(0.2,()-> {
+                    robot.go_sliders_mid_auto();
+
+                })
+                .addTemporalMarker(0.2,()-> {
+                    robot.PosCuvaScore();
+                })
                 .build();
 
         TrajectorySequence stackR = drive.trajectorySequenceBuilder(score_pos1R.end())
+                .lineToLinearHeading(new Pose2d(43,-32,Math.toRadians(0)))
+                .addTemporalMarker(0.2,()-> {
+                    robot.PosCuvaInit();
+
+                })
+                .addTemporalMarker(0.2,()-> {
+                    robot.go_slider_low_auto();
+
+                })
                 .lineToLinearHeading(new Pose2d(-32,-37,Math.toRadians(0)))
                 .splineToSplineHeading(new Pose2d(-50,-35.5, Math.toRadians(0)), Math.toRadians(-10))
                 .lineToLinearHeading(new Pose2d(-60, -35.5, Math.toRadians(0)))
+
                 .build();
 
         TrajectorySequence score_pos2R =drive.trajectorySequenceBuilder(stackR.end())
@@ -126,11 +145,11 @@ public class RedFar extends LinearOpMode {
                     drive.followTrajectorySequence(pune_preload_dreaptaR);
                     sleep(300);
                     drive.followTrajectorySequence(score_pos1R);
-                    sleep(3000);
+                    sleep(300);
                     drive.followTrajectorySequence(stackR);
-                    sleep(3000);
+                    sleep(500);
                     drive.followTrajectorySequence(score_pos2R);
-                    sleep(3000);
+                    sleep(1000);
                     drive.followTrajectorySequence(parkR);
 
              break;

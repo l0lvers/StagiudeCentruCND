@@ -31,8 +31,10 @@ public class RobotUtils {
     public static int sliderInitPos=-3;
     public static int sliderLowPos=-1200;
     public static int sliderMidPos=-1750;
+    public static int slider_mid_pos_auto=1750;
     public static int sliderHighPos=-2250;
     public static double sliderPow=0.7;
+    public static int slider_low_pos_auto=1200;
     public static double intakePow=1;
     public static double cuvaScorePos = 0;
     public static double bCuvaScorePos = 0.7;
@@ -43,7 +45,7 @@ public class RobotUtils {
             ;
     public static double dronaLaunchPos=0.02;
     public static double dronaInitPos=0.17;
-
+    public static double slider_power=0.8;
 
     public RobotUtils(HardwareMap hardwareMap) {
         //gasire elemente din cod in viata reala
@@ -119,6 +121,12 @@ public class RobotUtils {
     public void PutSliderHigh() //pune sliderele la pozitie mare
     {
         PutSliderToPosition(sliderHighPos, sliderPow);
+    }
+    public void go_sliders_mid_auto(){
+        PutSliderToPosition(slider_mid_pos_auto,slider_power);
+    }
+    public void go_slider_low_auto(){
+        PutSliderToPosition(slider_low_pos_auto,slider_power);
     }
 
     //---------------------------------CUVA SI SCORING-----------------------------
