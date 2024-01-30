@@ -26,6 +26,7 @@ public class RedFar extends LinearOpMode {
     DetectionPipelineMatei detectionPipeline;
     boolean bCameraOpened = false;
     private SampleMecanumDrive drive;
+    private  boolean nu_stiu_sa_codez2 = true;
 
     enum Zone {
         RIGHT,
@@ -68,6 +69,11 @@ public class RedFar extends LinearOpMode {
         TrajectorySequence pune_preload_dreapta = drive.trajectorySequenceBuilder(startPos)
                 .lineToLinearHeading(new Pose2d(-46, -39, Math.toRadians(-90)))
                 .build();
+        TrajectorySequence align3 = drive.trajectorySequenceBuilder(pune_preload_dreapta.end())
+                .lineToLinearHeading(new Pose2d(-46, -45,Math.toRadians(-90)))
+                .splineToSplineHeading(new Pose2d(-23,-61, Math.toRadians(0)), Math.toRadians(0))
+                .splineToSplineHeading(new Pose2d(47,-28, Math.toRadians(0)),Math.toRadians(0))
+
 
 
 
@@ -90,7 +96,21 @@ public class RedFar extends LinearOpMode {
             telemetry.addData("luminosity zone mid", zonemid);
             telemetry.update();
         }
+        bCameraOpened = false;
+        if(nu_stiu_sa_codez2) {
+            zoneFinal = zone;
+            nu_stiu_sa_codez2 = false;
+        }
+
+            switch(zoneFinal){
+                case RIGHT:
+                        drive.followTrajectorySequence(pune_preload_dreapta);
+                    sleep(300);
+
+             break;
+                case LEFT:
+
+            }
+          if (!opModeIsActive()) return;
     }
 }
-
-
