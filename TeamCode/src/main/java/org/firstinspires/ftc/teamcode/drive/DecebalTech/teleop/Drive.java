@@ -111,8 +111,8 @@ public class Drive extends LinearOpMode {
             if(gamepad1.square) robot.IntakeReverse();
             if(gamepad1.circle) robot.IntakeStop();
             if(gamepad1.cross) robot.IntakeOn();
-            if(gamepad2.triangle) robot.OpritoareClose();
-            if(gamepad2.square) robot.OpritoareOpen();
+           // if(gamepad2.triangle) robot.OpritoareClose();
+            //if(gamepad2.square) robot.OpritoareOpen();
             if(gamepad2.cross) robot.PosCuvaScore();
             if(gamepad2.circle) robot.PosCuvaInit();
 
