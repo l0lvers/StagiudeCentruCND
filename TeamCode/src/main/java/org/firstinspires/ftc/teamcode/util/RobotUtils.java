@@ -150,7 +150,7 @@ public class RobotUtils {
     }
     public void opritoateOut()
     {
-        opritoare.setPosition(opritoareClosePos);
+        opritoare.setPosition(opritoateOutPos);
     }
 
     //-----------------------------------INTAKE------------------------------------
