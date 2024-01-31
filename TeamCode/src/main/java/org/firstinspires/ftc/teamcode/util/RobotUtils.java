@@ -123,17 +123,9 @@ public class RobotUtils {
     {
         PutSliderToPosition(sliderHighPos, sliderPow);
     }
-    public void go_sliders_mid_auto(){
-        PutSliderToPosition(slider_mid_pos_auto,slider_power);
-    }
 
-    public void go_slider_low_auto(){
-        PutSliderToPosition(slider_low_pos_auto,slider_power);
-    }
 
-    public void go_slider_init_auto() {
-        PutSliderToPosition(slider_init_pos_auto, slider_power);
-    }
+  //  public void go_slider_init_auto() { PutSliderToPosition(slider_init_pos_auto, slider_power);}
     //---------------------------------CUVA SI SCORING-----------------------------
 
     public void PosCuvaInit() //pune cuva in pos initiala, aproap paralela cu terenu
