@@ -64,9 +64,7 @@ public class BlueFar extends LinearOpMode {
         });
         Pose2d startPos = new Pose2d(-36, 61, Math.toRadians(0));
         drive.setPoseEstimate(startPos);
-<<<<<<< Updated upstream
         // de aici incepi sa scrii trajectory equences
-=======
         TrajectorySequence pune_preload_stanga = drive.trajectorySequenceBuilder(startPos)
                 .lineToLinearHeading(new Pose2d(-24,35,Math.toRadians(0)))
                 .waitSeconds(0.2)
@@ -94,10 +92,7 @@ public class BlueFar extends LinearOpMode {
                 drive.followTrajectorySequence();
                 break;
         }
-//46 35
-        //-36 25
-        // de aici incepi sa scrii trajectory sequences
->>>>>>> Stashed changes
+
 
 
         while (!isStarted() && !isStopRequested()) {
