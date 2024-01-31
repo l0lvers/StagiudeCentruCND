@@ -73,6 +73,7 @@ public class RedFar extends LinearOpMode {
 
         TrajectorySequence pune_preload_stangaL = drive.trajectorySequenceBuilder(startPos)
                 .lineToLinearHeading(new Pose2d(-46, -39, Math.toRadians(-90)))
+                .build();
 
         TrajectorySequence pune_preload_center = drive.trajectorySequenceBuilder(startPos)
                 .lineToLinearHeading(new Pose2d(-36,-35,Math.toRadians(-90)))
