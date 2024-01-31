@@ -136,23 +136,30 @@ public class RedFar extends LinearOpMode {
             telemetry.addData("luminosity zone mid", zonemid);
             telemetry.update();
         }
-           /*  bCameraOpened = false;
+            /*  bCameraOpened = false;
             if(nu_stiu_sa_codez2) {
               zoneFinal = zone;
               nu_stiu_sa_codez2 = false;
           }
 */
+              switch (zonaFinal) {
+                  case RIGHT:
+                      drive.followTrajectorySequence(pune_preload_dreaptaR);
+                      sleep(300);
+                      drive.followTrajectorySequence(score_pos1R);
+                      sleep(300);
+                      drive.followTrajectorySequence(stackR);
+                      sleep(500);
+                      drive.followTrajectorySequence(score_pos2R);
+                      sleep(1000);
+                      drive.followTrajectorySequence(parkR);
+                      break;
+                  case LEFT:
+                      break;
 
-                drive.followTrajectorySequence(pune_preload_dreaptaR);
-                sleep(300);
-                drive.followTrajectorySequence(score_pos1R);
-                sleep(300);
-                drive.followTrajectorySequence(stackR);
-                sleep(500);
-                drive.followTrajectorySequence(score_pos2R);
-                sleep(1000);
-                drive.followTrajectorySequence(parkR);
-
+                  case CENTER:
+                      break;
+              }
 
 
     }
