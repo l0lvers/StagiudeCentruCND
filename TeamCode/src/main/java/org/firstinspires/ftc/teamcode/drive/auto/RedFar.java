@@ -69,7 +69,6 @@ public class RedFar extends LinearOpMode {
         TrajectorySequence pune_preload_dreaptaR = drive.trajectorySequenceBuilder(startPos)
                 .lineToLinearHeading(new Pose2d(-46, -39, Math.toRadians(-90)))
 
-
                 .build();
 
         TrajectorySequence score_pos1R = drive.trajectorySequenceBuilder(pune_preload_dreaptaR.end())
@@ -142,7 +141,7 @@ public class RedFar extends LinearOpMode {
               nu_stiu_sa_codez2 = false;
           }
 */
-              switch (zonaFinal) {
+              switch (zoneFinal) {
                   case RIGHT:
                       drive.followTrajectorySequence(pune_preload_dreaptaR);
                       sleep(300);
@@ -154,10 +153,31 @@ public class RedFar extends LinearOpMode {
                       sleep(1000);
                       drive.followTrajectorySequence(parkR);
                       break;
+
                   case LEFT:
+                      drive.followTrajectorySequence(pune_preload_dreaptaR);
+                      sleep(300);
+                      drive.followTrajectorySequence(score_pos1R);
+                      sleep(300);
+                      drive.followTrajectorySequence(stackR);
+                      sleep(500);
+                      drive.followTrajectorySequence(score_pos2R);
+                      sleep(1000);
+                      drive.followTrajectorySequence(parkR);
                       break;
 
+
+
                   case CENTER:
+                      drive.followTrajectorySequence(pune_preload_dreaptaR);
+                      sleep(300);
+                      drive.followTrajectorySequence(score_pos1R);
+                      sleep(300);
+                      drive.followTrajectorySequence(stackR);
+                      sleep(500);
+                      drive.followTrajectorySequence(score_pos2R);
+                      sleep(1000);
+                      drive.followTrajectorySequence(parkR);
                       break;
               }
 
