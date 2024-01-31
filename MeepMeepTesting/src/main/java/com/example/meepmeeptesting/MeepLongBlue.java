@@ -21,9 +21,14 @@ public class MeepLongBlue{
                         .lineToLinearHeading(new Pose2d(-60,25,Math.toRadians(0)))
                         .lineToLinearHeading(new Pose2d(-60,7, Math.toRadians(0)))
                         .lineToLinearHeading(new Pose2d(42,7, Math.toRadians(0)))
+                        .lineToLinearHeading(new Pose2d(42,35, Math.toRadians(0)))
+                        .lineToLinearHeading(new Pose2d(46, 35, Math.toRadians(0)))
+                        .lineToLinearHeading(new Pose2d(42,35,Math.toRadians(0)))
+                        .lineToLinearHeading(new Pose2d(42,10,Math.toRadians(0)))
+                        .lineToLinearHeading(new Pose2d(60,10, Math.toRadians(0)))
                         .build()
-
                 );
+
 
         meepMeep.setBackground(MeepMeep.Background.FIELD_CENTERSTAGE_JUICE_DARK)
                 .setDarkMode(true)
