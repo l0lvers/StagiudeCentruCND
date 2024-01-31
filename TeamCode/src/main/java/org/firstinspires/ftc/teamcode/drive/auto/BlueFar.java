@@ -62,9 +62,42 @@ public class BlueFar extends LinearOpMode {
 
             }
         });
-        Pose2d startPos = new Pose2d(-36, 61, Math.toRadians(90));
+        Pose2d startPos = new Pose2d(-36, 61, Math.toRadians(0));
         drive.setPoseEstimate(startPos);
+<<<<<<< Updated upstream
         // de aici incepi sa scrii trajectory equences
+=======
+        TrajectorySequence pune_preload_stanga = drive.trajectorySequenceBuilder(startPos)
+                .lineToLinearHeading(new Pose2d(-24,35,Math.toRadians(0)))
+                .waitSeconds(0.2)
+                .lineToLinearHeading(new Pose2d(-24, 50))
+                .build();
+        TrajectorySequence pune_preload_mijloc = drive.trajectorySequenceBuilder((startPos))
+                .lineToLinearHeading(new Pose2d(-36, 25, Math.toRadians(0) ))
+                .lineToLinearHeading(new Pose2d(-36,50,Math.toRadians(0)))
+                .build();
+        TrajectorySequence pune_preload_dreapta = drive.trajectorySequenceBuilder(startPos)
+                .lineToLinearHeading(new Pose2d(46, 35, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(46,50,Math.toRadians(0)))
+                .build();
+        switch(zoneFinal){
+            case LEFT:
+                drive.followTrajectorySequence(pune_preload_stanga);
+
+
+                break;
+            case CENTER:
+                drive.followTrajectorySequence(pune_preload_mijloc);
+
+                break;
+            case RIGHT:
+                drive.followTrajectorySequence();
+                break;
+        }
+//46 35
+        //-36 25
+        // de aici incepi sa scrii trajectory sequences
+>>>>>>> Stashed changes
 
 
         while (!isStarted() && !isStopRequested()) {
