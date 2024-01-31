@@ -64,7 +64,7 @@ public class BlueFar extends LinearOpMode {
         });
         Pose2d startPos = new Pose2d(-36, 61, Math.toRadians(90));
         drive.setPoseEstimate(startPos);
-        // de aici incepi sa scrii trajectory sequences
+        // de aici incepi sa scrii trajectory equences
 
 
         while (!isStarted() && !isStopRequested()) {
