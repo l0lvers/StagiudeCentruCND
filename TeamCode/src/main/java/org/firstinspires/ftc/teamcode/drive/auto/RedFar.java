@@ -76,25 +76,25 @@ public class RedFar extends LinearOpMode {
                 .lineToLinearHeading(new Pose2d(-46, -45,Math.toRadians(-90)))
                 .splineToSplineHeading(new Pose2d(-23,-61, Math.toRadians(0)), Math.toRadians(0))
                 .splineToSplineHeading(new Pose2d(47,-28, Math.toRadians(0)),Math.toRadians(0))
-                .addTemporalMarker(0.2,()-> {
-                    robot.go_sliders_mid_auto();
+              //  .addTemporalMarker(0.2,()-> {
+                //    robot.go_sliders_mid_auto();
 
-                })
-                .addTemporalMarker(0.2,()-> {
-                    robot.PosCuvaScore();
-                })
+               // })
+               // .addTemporalMarker(0.2,()-> {
+               //     robot.PosCuvaScore();
+               // })
                 .build();
 
         TrajectorySequence stackR = drive.trajectorySequenceBuilder(score_pos1R.end())
                 .lineToLinearHeading(new Pose2d(43,-32,Math.toRadians(0)))
-                .addTemporalMarker(0.2,()-> {
-                    robot.PosCuvaInit();
+               // .addTemporalMarker(0.2,()-> {
+               //     robot.PosCuvaInit();
 
-                })
-                .addTemporalMarker(0.2,()-> {
-                    robot.go_slider_low_auto();
+                //})
+                //.addTemporalMarker(0.2,()-> {
+                 //   robot.go_slider_low_auto();
 
-                })
+                //})
                 .lineToLinearHeading(new Pose2d(-32,-37,Math.toRadians(0)))
                 .splineToSplineHeading(new Pose2d(-50,-35.5, Math.toRadians(0)), Math.toRadians(-10))
                 .lineToLinearHeading(new Pose2d(-60, -35.5, Math.toRadians(0)))
