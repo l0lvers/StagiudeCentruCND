@@ -109,11 +109,10 @@ public class Drive extends LinearOpMode {
             if(gamepad1.dpad_up) robot.DroneLaunch();
             if(gamepad1.dpad_down) robot.DroneInit();
             if(gamepad1.square) robot.IntakeReverse();
-            if(gamepad1.circle) robot.IntakeStop();
-            if(gamepad1.cross) robot.IntakeOn();
-            if(gamepad2.triangle) robot.OpritoareClose();
-            if(gamepad2.square) robot.OpritoareOpen();
+            if(gamepad1.circle) {robot.IntakeStop(); robot.OpritoareClose();}
+            if(gamepad1.cross) {robot.IntakeOn(); robot.OpritoareOpen();}
             if(gamepad2.cross) robot.PosCuvaScore();
+            if(gamepad2.square) robot.opritoateOut();
             if(gamepad2.circle) robot.PosCuvaInit();
 
             switch (sliderState){

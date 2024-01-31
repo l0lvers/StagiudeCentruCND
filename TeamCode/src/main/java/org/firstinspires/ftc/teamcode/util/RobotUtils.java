@@ -37,8 +37,10 @@ public class RobotUtils {
     public static double cuvaScorePos = 0;
     public static double bCuvaScorePos = 0.7;
     public static double cuvaInitPos = 0;
-    public static double bCuvaInitPos=0.897;
+    public static double bCuvaInitPos=0.868;
+
     public static double opritoareOpenPos=0.3;
+    public static double opritoateOutPos = -0.8;
     public static double opritoareClosePos=0.5
             ;
     public static double dronaLaunchPos=0.02;
@@ -145,6 +147,10 @@ public class RobotUtils {
     public void OpritoareOpen() //deschide opritoarea cuvei ca sa ia pixeli si sa scoreze
     {
         opritoare.setPosition(opritoareOpenPos);
+    }
+    public void opritoateOut()
+    {
+        opritoare.setPosition(opritoareClosePos);
     }
 
     //-----------------------------------INTAKE------------------------------------
