@@ -63,74 +63,102 @@ public class RedFar extends LinearOpMode {
 
             }
         });
-        Pose2d startPos = new Pose2d(-36, -61, Math.toRadians(90));
+        Pose2d startPos = new Pose2d(-36, -61, Math.toRadians(-90));
         drive.setPoseEstimate(startPos);
         // de aici incepi sa scrii trajectory sequences
         TrajectorySequence pune_preload_dreaptaR = drive.trajectorySequenceBuilder(startPos)
-                .lineToLinearHeading(new Pose2d(-46, -39, Math.toRadians(-90)))
-
+                .lineToLinearHeading(new Pose2d(-36, -39, Math.toRadians(-90)))
+                .waitSeconds(1)
+                .lineToLinearHeading(new Pose2d(-36,-60,Math.toRadians(-90)))
                 .build();
 
         TrajectorySequence pune_preload_stangaL = drive.trajectorySequenceBuilder(startPos)
-                .lineToLinearHeading(new Pose2d(-46, -39, Math.toRadians(-90)))
+                .lineToLinearHeading(new Pose2d(-36, -39, Math.toRadians(-90)))
+                .waitSeconds(1)
+                .lineToLinearHeading(new Pose2d(-36,-60,Math.toRadians(-90)))
                 .build();
 
         TrajectorySequence pune_preload_center = drive.trajectorySequenceBuilder(startPos)
                 .lineToLinearHeading(new Pose2d(-36,-35,Math.toRadians(-90)))
-
+                .lineToLinearHeading(new Pose2d(-36,-60,Math.toRadians(-90)))
                 .build();
         ///dasd/a/d/d/asd/asdasfa
-        TrajectorySequence stanck1 = drive.trajectorySequenceBuilder(pune_preload_dreaptaR.end())
-                .lineToLinearHeading(new Pose2d(-36,-60,Math.toRadians(-90)))
-
+        TrajectorySequence stack1 = drive.trajectorySequenceBuilder(pune_preload_dreaptaR.end())
+                .lineToLinearHeading(new Pose2d(-60,-7,Math.toRadians(0)))
                 .build();
 
         TrajectorySequence stack2 = drive.trajectorySequenceBuilder(pune_preload_stangaL.end())
-                .lineToLinearHeading(new Pose2d(43,-32,Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(-60,-7,Math.toRadians(0)))
                 .build();
 
 
         TrajectorySequence stack3 = drive.trajectorySequenceBuilder(pune_preload_center.end())
-                .lineToLinearHeading(new Pose2d(43,-32,Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(-60,-7,Math.toRadians(0)))
                 .build();
 //as/fa/fa/fa/sfa/sf/af/
-        TrajectorySequence score_pos =drive.trajectorySequenceBuilder(stanck1.end())
-                .lineToLinearHeading(new Pose2d(-60,-7, Math.toRadians(0)))
+        TrajectorySequence drive_score = drive.trajectorySequenceBuilder(stack1.end())
                 .lineToLinearHeading(new Pose2d(42,-7, Math.toRadians(0)))
+                .waitSeconds(0.5)
                 .lineToLinearHeading(new Pose2d(42,-35, Math.toRadians(0)))
                 .build();
 
-        TrajectorySequence score_pos1 =drive.trajectorySequenceBuilder(stack2.end())
-                .lineToLinearHeading(new Pose2d(-60,-7, Math.toRadians(0)))
+        TrajectorySequence drive_score1 = drive.trajectorySequenceBuilder(stack2.end())
                 .lineToLinearHeading(new Pose2d(42,-7, Math.toRadians(0)))
+                .waitSeconds(0.5)
                 .lineToLinearHeading(new Pose2d(42,-35, Math.toRadians(0)))
                 .build();
 
-        TrajectorySequence score_pos2 =drive.trajectorySequenceBuilder(stack2.end())
-                .lineToLinearHeading(new Pose2d(-60,-7, Math.toRadians(0)))
+        TrajectorySequence drive_score2 = drive.trajectorySequenceBuilder(stack2.end())
                 .lineToLinearHeading(new Pose2d(42,-7, Math.toRadians(0)))
+                .waitSeconds(0.5)
                 .lineToLinearHeading(new Pose2d(42,-35, Math.toRadians(0)))
+                .build();
+       //fafggshsshbs bhf bvahy bvas va h hjbshbg
+
+        TrajectorySequence score_pos =drive.trajectorySequenceBuilder(drive_score.end())
+
+                .lineToLinearHeading(new Pose2d(46, -35, Math.toRadians(0)))
+                .waitSeconds(0.5)
+                .build();
+
+        TrajectorySequence score_pos1 =drive.trajectorySequenceBuilder(drive_score1.end())
+                .lineToLinearHeading(new Pose2d(46, -35, Math.toRadians(0)))
+                .waitSeconds(0.5)
+                .build();
+
+        TrajectorySequence score_pos2 =drive.trajectorySequenceBuilder(drive_score2.end())
+
+                .lineToLinearHeading(new Pose2d(46, -35, Math.toRadians(0)))
+                .waitSeconds(0.5)
                 .build();
 
 //dasfagagashah
         TrajectorySequence park =drive.trajectorySequenceBuilder(score_pos.end())
-                .lineToLinearHeading(new Pose2d(46, -35, Math.toRadians(0)))
                 .lineToLinearHeading(new Pose2d(42,-35,Math.toRadians(0)))
+                .waitSeconds(0.5)
                 .lineToLinearHeading(new Pose2d(42,-10,Math.toRadians(0)))
+                .waitSeconds(0.5)
                 .lineToLinearHeading(new Pose2d(60,-10, Math.toRadians(0)))
+                .waitSeconds(0.5)
                 .build();
 
         TrajectorySequence park1 =drive.trajectorySequenceBuilder(score_pos1.end())
-                .lineToLinearHeading(new Pose2d(46, -35, Math.toRadians(0)))
+
                 .lineToLinearHeading(new Pose2d(42,-35,Math.toRadians(0)))
+                .waitSeconds(0.5)
                 .lineToLinearHeading(new Pose2d(42,-10,Math.toRadians(0)))
+                .waitSeconds(0.5)
                 .lineToLinearHeading(new Pose2d(60,-10, Math.toRadians(0)))
                 .build();
+
         TrajectorySequence park2 =drive.trajectorySequenceBuilder(score_pos2.end())
-                .lineToLinearHeading(new Pose2d(46, -35, Math.toRadians(0)))
+
                 .lineToLinearHeading(new Pose2d(42,-35,Math.toRadians(0)))
+                .waitSeconds(0.5)
                 .lineToLinearHeading(new Pose2d(42,-10,Math.toRadians(0)))
+                .waitSeconds(0.5)
                 .lineToLinearHeading(new Pose2d(60,-10, Math.toRadians(0)))
+                .waitSeconds(0.5)
                 .build();
 
 
@@ -158,7 +186,9 @@ public class RedFar extends LinearOpMode {
                   case RIGHT:
                       drive.followTrajectorySequence(pune_preload_dreaptaR);
                       sleep(300);
-                      drive.followTrajectorySequence(stanck1);
+                      drive.followTrajectorySequence(stack1);
+                      sleep(300);
+                      drive.followTrajectorySequence(drive_score);
                       sleep(300);
                       drive.followTrajectorySequence(score_pos);
                       sleep(500);
@@ -170,6 +200,8 @@ public class RedFar extends LinearOpMode {
                       drive.followTrajectorySequence(pune_preload_dreaptaR);
                       sleep(300);
                       drive.followTrajectorySequence(stack2);
+                      sleep(300);
+                      drive.followTrajectorySequence(drive_score1);
                       sleep(300);
                       drive.followTrajectorySequence(score_pos1);
                       sleep(500);
@@ -183,6 +215,8 @@ public class RedFar extends LinearOpMode {
                       drive.followTrajectorySequence(pune_preload_center);
                       sleep(300);
                       drive.followTrajectorySequence(stack3);
+                      sleep(300);
+                      drive.followTrajectorySequence(drive_score2);
                       sleep(300);
                       drive.followTrajectorySequence(score_pos2);
                       sleep(500);
