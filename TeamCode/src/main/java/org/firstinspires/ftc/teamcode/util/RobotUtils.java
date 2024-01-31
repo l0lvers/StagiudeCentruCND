@@ -39,8 +39,7 @@ public class RobotUtils {
     public static double cuvaInitPos = 0;
     public static double bCuvaInitPos=0.897;
     public static double opritoareOpenPos=0.3;
-    public static double opritoareClosePos=0.5
-            ;
+    public static double opritoareClosePos=0.5;
     public static double dronaLaunchPos=0.02;
     public static double dronaInitPos=0.17;
 

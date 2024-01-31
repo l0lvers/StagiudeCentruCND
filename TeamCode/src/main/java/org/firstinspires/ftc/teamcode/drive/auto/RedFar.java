@@ -69,9 +69,9 @@ public class RedFar extends LinearOpMode {
         // de aici incepi sa scrii trajectory sequences
         //pune pixeli la centru
         TrajectorySequence pune_preload_dreaptaR = drive.trajectorySequenceBuilder(startPos)
-                .lineToLinearHeading(new Pose2d(-35, -30, Math.toRadians(-90)))
+                .lineToLinearHeading(new Pose2d(-24, -38, Math.toRadians(-90)))
                 .waitSeconds(0.5)
-                .lineToLinearHeading(new Pose2d(-36,-50,Math.toRadians(-90)))
+                .lineToLinearHeading(new Pose2d(-24,-45,Math.toRadians(-90)))
                 .build();
 
         TrajectorySequence pune_preload_stangaL = drive.trajectorySequenceBuilder(startPos)
@@ -87,7 +87,9 @@ public class RedFar extends LinearOpMode {
                 .build();
         ///se aseaza in fata stack-ului
         TrajectorySequence stack1 = drive.trajectorySequenceBuilder(pune_preload_dreaptaR.end())
-                .lineToLinearHeading(new Pose2d(-57,-12,Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(-53,-45,Math.toRadians(0)))
+                .waitSeconds(0.3)
+                .lineToLinearHeading(new Pose2d(-53,-12,Math.toRadians(0)))
                 .build();
 
         TrajectorySequence stack2 = drive.trajectorySequenceBuilder(pune_preload_stangaL.end())
@@ -129,6 +131,9 @@ public class RedFar extends LinearOpMode {
                 .addTemporalMarker(0.4,()->{
                     robot.PosCuvaScore();
                 })
+                .addTemporalMarker(0.6,()->{
+                    robot.OpritoareOpen();
+                })
                 .addTemporalMarker(1,()->{
                     robot.PosCuvaInit();
                 })
@@ -142,6 +147,9 @@ public class RedFar extends LinearOpMode {
                 })
                 .addTemporalMarker(0.4,()->{
                     robot.PosCuvaScore();
+                })
+                .addTemporalMarker(0.6,()->{
+                    robot.OpritoareOpen();
                 })
                 .addTemporalMarker(1,()->{
                     robot.PosCuvaInit();
@@ -157,6 +165,9 @@ public class RedFar extends LinearOpMode {
                 })
                 .addTemporalMarker(0.4,()->{
                     robot.PosCuvaScore();
+                })
+                .addTemporalMarker(0.6,()->{
+                    robot.OpritoareOpen();
                 })
                 .addTemporalMarker(1,()->{
                     robot.PosCuvaInit();
