@@ -113,6 +113,21 @@ public class RedFar extends LinearOpMode {
                 .lineToLinearHeading(new Pose2d(60, -12,Math.toRadians(0)))
                 .build();
 
+        switch(zoneFinal) {
+            case RIGHT:
+                drive.followTrajectorySequence(pune_preload_dreaptaR);
+                sleep(300);
+                drive.followTrajectorySequence(score_pos1R);
+                sleep(300);
+                drive.followTrajectorySequence(stackR);
+                sleep(500);
+                drive.followTrajectorySequence(score_pos2R);
+                sleep(1000);
+                drive.followTrajectorySequence(parkR);
+
+                break;
+            case LEFT:
+        }
 
 
         while (!isStarted() && !isStopRequested()) {
@@ -140,22 +155,5 @@ public class RedFar extends LinearOpMode {
               nu_stiu_sa_codez2 = false;
           }
 */
-            switch(zoneFinal){
-                case RIGHT:
-                    drive.followTrajectorySequence(pune_preload_dreaptaR);
-                    sleep(300);
-                    drive.followTrajectorySequence(score_pos1R);
-                    sleep(300);
-                    drive.followTrajectorySequence(stackR);
-                    sleep(500);
-                    drive.followTrajectorySequence(score_pos2R);
-                    sleep(1000);
-                    drive.followTrajectorySequence(parkR);
-
-             break;
-                case LEFT:
-
-            }
-          if (!opModeIsActive()) return;
     }
 }
