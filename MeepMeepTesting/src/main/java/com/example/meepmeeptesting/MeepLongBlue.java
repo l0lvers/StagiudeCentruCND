@@ -7,7 +7,6 @@ import com.noahbres.meepmeep.roadrunner.DefaultBotBuilder;
 import com.noahbres.meepmeep.roadrunner.entity.RoadRunnerBotEntity;
 
 import jdk.tools.jlink.internal.plugins.VendorVersionPlugin;
-
 public class MeepLongBlue{
     public static void main(String[] args) {
         MeepMeep meepMeep = new MeepMeep(700);
