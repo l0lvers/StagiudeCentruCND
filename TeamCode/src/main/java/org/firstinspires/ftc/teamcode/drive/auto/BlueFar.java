@@ -97,16 +97,23 @@ public class BlueFar extends LinearOpMode {
 
         while (!isStarted() && !isStopRequested()) {
 
-            double zoneleft = detectionPipeline.getZoneLuminosity(4);
-            double zonemid = Math.min(Math.min(Math.min(detectionPipeline.getZoneLuminosity(64)
-                                    , detectionPipeline.getZoneLuminosity(54))
-                            , detectionPipeline.getZoneLuminosity(74))
-                    , detectionPipeline.getZoneLuminosity(44));
+            double zoneleft = Math.min(Math.min(Math.min(detectionPipeline.getZoneLuminosity(74)
+                                    , detectionPipeline.getZoneLuminosity(75))
+                            , detectionPipeline.getZoneLuminosity(76))
+                    , detectionPipeline.getZoneLuminosity(84))
+                    , detectionPipeline.getZoneLuminosity(85))
+                    ,detectionPipeline.getZoneLuminosity(86));
+            double zonemid = Math.min(Math.min(Math.min(detectionPipeline.getZoneLuminosity(14)
+                                    , detectionPipeline.getZoneLuminosity(15))
+                            , detectionPipeline.getZoneLuminosity(24))
+                    , detectionPipeline.getZoneLuminosity(25))
+                    , detectionPipeline.getZoneLuminosity(34))
+                    ,detectionPipeline.getZoneLuminosity(35));
 
 
-            if (zoneleft < zonemid && zoneleft < 80) zone = Zone.LEFT;
+            if (zoneleft < zonemid && zoneleft < 80) zone = Zone.RIGHT;
             else if (zonemid < zoneleft && zonemid < 80) zone = Zone.CENTER;
-            else zone = Zone.RIGHT;
+            else zone = Zone.LEFT ;
 
 
             telemetry.addData("zone = ", zone.toString());
