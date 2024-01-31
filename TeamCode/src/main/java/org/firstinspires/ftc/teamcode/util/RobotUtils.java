@@ -29,6 +29,7 @@ public class RobotUtils {
     //-----------------------------VARIABILE------------------------
 
     public static int sliderInitPos=-3;
+    public static int slider_init_pos_auto=3;
     public static int sliderLowPos=-1200;
     public static int sliderMidPos=-1750;
     public static int slider_mid_pos_auto=1750;
@@ -125,10 +126,14 @@ public class RobotUtils {
     public void go_sliders_mid_auto(){
         PutSliderToPosition(slider_mid_pos_auto,slider_power);
     }
+
     public void go_slider_low_auto(){
         PutSliderToPosition(slider_low_pos_auto,slider_power);
     }
 
+    public void go_slider_init_auto() {
+        PutSliderToPosition(slider_init_pos_auto, slider_power);
+    }
     //---------------------------------CUVA SI SCORING-----------------------------
 
     public void PosCuvaInit() //pune cuva in pos initiala, aproap paralela cu terenu

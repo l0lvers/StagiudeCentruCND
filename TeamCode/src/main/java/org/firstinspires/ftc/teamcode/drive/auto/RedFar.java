@@ -42,6 +42,11 @@ public class RedFar extends LinearOpMode {
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
 
+        waitForStart();
+
+        robot.PosCuvaInit();
+        robot.PutSlidersInit();
+
         detectionPipeline = new DetectionPipelineMatei();
         webcam.setPipeline(detectionPipeline);
         detectionPipeline.setGridSize(10);
@@ -118,11 +123,17 @@ public class RedFar extends LinearOpMode {
         TrajectorySequence score_pos =drive.trajectorySequenceBuilder(drive_score.end())
 
                 .lineToLinearHeading(new Pose2d(52, -35, Math.toRadians(0)))
-                .waitSeconds(0.5)
+                .addTemporalMarker(0.2,()->{
+                   robot.go_sliders_mid_auto();
+                })
+
                 .build();
 
         TrajectorySequence score_pos1 =drive.trajectorySequenceBuilder(drive_score1.end())
                 .lineToLinearHeading(new Pose2d(52, -35, Math.toRadians(0)))
+                .addTemporalMarker(0.2,()->{
+                    robot.go_sliders_mid_auto();
+                })
                 
 
                 .build();
@@ -130,13 +141,22 @@ public class RedFar extends LinearOpMode {
         TrajectorySequence score_pos2 =drive.trajectorySequenceBuilder(drive_score2.end())
 
                 .lineToLinearHeading(new Pose2d(52, -35, Math.toRadians(0)))
+                .addTemporalMarker(0.2,()->{
+                    robot.go_sliders_mid_auto();
+                })
+
                 .waitSeconds(0.5)
                 .build();
 
 //dasfagagashah
         TrajectorySequence park =drive.trajectorySequenceBuilder(score_pos.end())
                 .lineToLinearHeading(new Pose2d(42,-35,Math.toRadians(0)))
+                .addTemporalMarker(0.2,()->{
+                    robot.go_slider_init_auto();
+                })
                 .waitSeconds(0.5)
+
+
                 .lineToLinearHeading(new Pose2d(42,-10,Math.toRadians(0)))
                 .waitSeconds(0.5)
                 .lineToLinearHeading(new Pose2d(60,-10, Math.toRadians(0)))
@@ -146,6 +166,9 @@ public class RedFar extends LinearOpMode {
         TrajectorySequence park1 =drive.trajectorySequenceBuilder(score_pos1.end())
 
                 .lineToLinearHeading(new Pose2d(42,-35,Math.toRadians(0)))
+                .addTemporalMarker(0.2,()->{
+                    robot.go_slider_init_auto();
+                })
                 .waitSeconds(0.5)
                 .lineToLinearHeading(new Pose2d(42,-10,Math.toRadians(0)))
                 .waitSeconds(0.5)
@@ -155,7 +178,9 @@ public class RedFar extends LinearOpMode {
         TrajectorySequence park2 =drive.trajectorySequenceBuilder(score_pos2.end())
 
                 .lineToLinearHeading(new Pose2d(42,-35,Math.toRadians(0)))
-                .waitSeconds(0.5)
+                .addTemporalMarker(0.2,()->{
+                    robot.go_slider_init_auto();
+                })
                 .lineToLinearHeading(new Pose2d(42,-10,Math.toRadians(0)))
                 .waitSeconds(0.5)
                 .lineToLinearHeading(new Pose2d(60,-10, Math.toRadians(0)))
@@ -163,7 +188,10 @@ public class RedFar extends LinearOpMode {
                 .build();
 
 
+
         while (!isStarted() && !isStopRequested()) {
+
+
 
             double zoneleft = detectionPipeline.getZoneLuminosity(4);
             double zonemid = Math.min(Math.min(Math.min(detectionPipeline.getZoneLuminosity(64)
