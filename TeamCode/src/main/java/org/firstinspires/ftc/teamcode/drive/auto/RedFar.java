@@ -67,19 +67,19 @@ public class RedFar extends LinearOpMode {
         drive.setPoseEstimate(startPos);
         // de aici incepi sa scrii trajectory sequences
         TrajectorySequence pune_preload_dreaptaR = drive.trajectorySequenceBuilder(startPos)
-                .lineToLinearHeading(new Pose2d(-36, -28, Math.toRadians(-90)))
+                .lineToLinearHeading(new Pose2d(-36, -30, Math.toRadians(-90)))
                 .waitSeconds(1)
                 .lineToLinearHeading(new Pose2d(-36,-50,Math.toRadians(-90)))
                 .build();
 
         TrajectorySequence pune_preload_stangaL = drive.trajectorySequenceBuilder(startPos)
-                .lineToLinearHeading(new Pose2d(-36, -28, Math.toRadians(-90)))
+                .lineToLinearHeading(new Pose2d(-36, -30, Math.toRadians(-90)))
                 .waitSeconds(1)
                 .lineToLinearHeading(new Pose2d(-36,-50,Math.toRadians(-90)))
                 .build();
 
         TrajectorySequence pune_preload_center = drive.trajectorySequenceBuilder(startPos)
-                .lineToLinearHeading(new Pose2d(-36,-28,Math.toRadians(-90)))
+                .lineToLinearHeading(new Pose2d(-36,-30,Math.toRadians(-90)))
                 .lineToLinearHeading(new Pose2d(-36,-50,Math.toRadians(-90)))
                 .build();
         ///dasd/a/d/d/asd/asdasfa
