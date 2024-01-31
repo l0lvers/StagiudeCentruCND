@@ -71,6 +71,13 @@ public class RedFar extends LinearOpMode {
 
                 .build();
 
+        TrajectorySequence pune_preload_stangaL = drive.trajectorySequenceBuilder(startPos)
+                .lineToLinearHeading(new Pose2d(-46, -39, Math.toRadians(-90)))
+
+        TrajectorySequence pune_preload_center = drive.trajectorySequenceBuilder(startPos)
+                .lineToLinearHeading(new Pose2d(-46, -39, Math.toRadians(-90)))
+
+
         TrajectorySequence score_pos1R = drive.trajectorySequenceBuilder(pune_preload_dreaptaR.end())
                 .lineToLinearHeading(new Pose2d(-46, -45,Math.toRadians(-90)))
                 .splineToSplineHeading(new Pose2d(-23,-61, Math.toRadians(0)), Math.toRadians(0))
@@ -125,9 +132,9 @@ public class RedFar extends LinearOpMode {
                     , detectionPipeline.getZoneLuminosity(44));
 
 
-            if (zoneleft < zonemid && zoneleft < 80) zone = Zone.LEFT;
+            if (zoneleft < zonemid && zoneleft < 80) zone = Zone.RIGHT;
             else if (zonemid < zoneleft && zonemid < 80) zone = Zone.CENTER;
-            else zone = Zone.RIGHT;
+            else zone = Zone.LEFT;
 
 
             telemetry.addData("zone = ", zone.toString());
@@ -135,12 +142,7 @@ public class RedFar extends LinearOpMode {
             telemetry.addData("luminosity zone mid", zonemid);
             telemetry.update();
         }
-            /*  bCameraOpened = false;
-            if(nu_stiu_sa_codez2) {
-              zoneFinal = zone;
-              nu_stiu_sa_codez2 = false;
-          }
-*/
+
               switch (zoneFinal) {
                   case RIGHT:
                       drive.followTrajectorySequence(pune_preload_dreaptaR);
