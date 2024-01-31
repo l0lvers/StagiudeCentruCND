@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode.util;
 
 import com.acmerobotics.dashboard.config.Config;
-import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -25,18 +24,15 @@ public class RobotUtils {
     //public Servo cuvaRight;
     public ServoImplEx bratCuvaLeft;
     public ServoImplEx bratCuvaRight;
-    public CRServo opritoare;
+    public Servo opritoare;
     public Servo droneLauncher;
     //-----------------------------VARIABILE------------------------
 
     public static int sliderInitPos=-3;
-    public static int slider_init_pos_auto=3;
     public static int sliderLowPos=-1200;
     public static int sliderMidPos=-1750;
-    public static int slider_mid_pos_auto=1750;
     public static int sliderHighPos=-2250;
     public static double sliderPow=0.7;
-    public static int slider_low_pos_auto=1200;
     public static double intakePow=1;
     public static double cuvaScorePos = 0;
     public static double bCuvaScorePos = 0.7;
@@ -47,7 +43,7 @@ public class RobotUtils {
             ;
     public static double dronaLaunchPos=0.02;
     public static double dronaInitPos=0.17;
-    public static double slider_power=0.8;
+
 
     public RobotUtils(HardwareMap hardwareMap) {
         //gasire elemente din cod in viata reala
@@ -59,7 +55,7 @@ public class RobotUtils {
         intakeRight = hardwareMap.get(DcMotorEx.class, "intakeRight");
         //cuvaLeft = hardwareMap.get(Servo.class, "cuvaLeft");
         //cuvaRight = hardwareMap.get(Servo.class, "cuvaRight");
-        opritoare = hardwareMap.get(CRServo.class, "opritoare");
+        opritoare = hardwareMap.get(Servo.class, "opritoare");
         bratCuvaLeft = hardwareMap.get(ServoImplEx.class, "bratCuvaLeft");
         bratCuvaRight = hardwareMap.get(ServoImplEx.class, "bratCuvaRight");
         droneLauncher = hardwareMap.get(Servo.class, "droneLauncher");
@@ -104,8 +100,8 @@ public class RobotUtils {
             sliderLeft.setPower(absPower);
             sliderRight.setPower(-absPower);
         }//explicatie pt prostii ca mine la ifuri si elseuri:
-         //daca positia curenta e mai mare decat cea dorita mere mai jos altfel mere mai sus
-         //am vzt asta la adi si mi s-a parut genial asa ca dc nu
+        //daca positia curenta e mai mare decat cea dorita mere mai jos altfel mere mai sus
+        //am vzt asta la adi si mi s-a parut genial asa ca dc nu
     }
     public void PutSlidersInit()//pune sliderele la pozitia initiala, de intake
     {
@@ -125,8 +121,6 @@ public class RobotUtils {
         PutSliderToPosition(sliderHighPos, sliderPow);
     }
 
-
-  //  public void go_slider_init_auto() { PutSliderToPosition(slider_init_pos_auto, slider_power);}
     //---------------------------------CUVA SI SCORING-----------------------------
 
     public void PosCuvaInit() //pune cuva in pos initiala, aproap paralela cu terenu
@@ -144,41 +138,39 @@ public class RobotUtils {
         bratCuvaLeft.setPosition(bCuvaScorePos);
         bratCuvaRight.setPosition(bCuvaScorePos);
     }
-    //public void OpritoareClose() //inchide opritoarea cuvei sa nu pice pixeli
-    //{
-      //
+    public void OpritoareClose() //inchide opritoarea cuvei sa nu pice pixeli
+    {
+        opritoare.setPosition(opritoareClosePos);
+    }
+    public void OpritoareOpen() //deschide opritoarea cuvei ca sa ia pixeli si sa scoreze
+    {
+        opritoare.setPosition(opritoareOpenPos);
+    }
 
-        //opritoare.setPosition(opritoareClosePos);
-    //}
-   // public void OpritoareOpen() //deschide opritoarea cuvei ca sa ia pixeli si sa scoreze
-  // {
-       ///     opritoare.setPosition(opritoareOpenPos);
-       //}
+    //-----------------------------------INTAKE------------------------------------
+    public void IntakeOn() //porneste intakeu
+    {
+        intakeLeft.setPower(-intakePow);
+        intakeRight.setPower(intakePow);
+    }
+    public void IntakeReverse() //scuipa in caz de orice
+    {
+        intakeLeft.setPower(intakePow);
+        intakeRight.setPower(-intakePow);
+    }
+    public void IntakeStop() // opreste intakeu
+    {
+        intakeLeft.setPower(0);
+        intakeRight.setPower(0);
+    }
 
-       //-----------------------------------INTAKE------------------------------------
-       public void IntakeOn () //porneste intakeu
-       {
-           intakeLeft.setPower(-intakePow);
-           intakeRight.setPower(intakePow);
-       }
-       public void IntakeReverse () //scuipa in caz de orice
-       {
-           intakeLeft.setPower(intakePow);
-           intakeRight.setPower(-intakePow);
-       }
-       public void IntakeStop () // opreste intakeu
-       {
-           intakeLeft.setPower(0);
-           intakeRight.setPower(0);
-       }
-
-       //--------------------------------DRONA------------------------------------
-       public void DroneLaunch () //Lanseaza avionu de hartie
-       {
-           droneLauncher.setPosition(dronaLaunchPos);
-       }
-       public void DroneInit () ////aduce servou la pozitia initiala in caz de orice
-       {
-           droneLauncher.setPosition(dronaInitPos);
-       }
-   }
+    //--------------------------------DRONA------------------------------------
+    public void DroneLaunch() //Lanseaza avionu de hartie
+    {
+        droneLauncher.setPosition(dronaLaunchPos);
+    }
+    public void DroneInit() ////aduce servou la pozitia initiala in caz de orice
+    {
+        droneLauncher.setPosition(dronaInitPos);
+    }
+}
