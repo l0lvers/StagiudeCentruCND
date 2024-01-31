@@ -16,9 +16,10 @@ public class MeepLongBlue{
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(new Pose2d(-36,61,Math.toRadians(0)))
                         //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                        .lineToLinearHeading(new Pose2d(-36,25,Math.toRadians(0)))
-                        .lineToLinearHeading(new Pose2d(-60,25,Math.toRadians(0)))
-                        .lineToLinearHeading(new Pose2d(-60,7, Math.toRadians(0)))
+                        .lineToLinearHeading(new Pose2d(-36,35,Math.toRadians(90)))
+                        .lineToLinearHeading(new Pose2d(-36,60,Math.toRadians(90)))
+                        .lineToLinearHeading(new Pose2d(-53,60, Math.toRadians(0)))
+                        .lineToLinearHeading(new Pose2d(-53,7, Math.toRadians(0)))
                         .lineToLinearHeading(new Pose2d(42,7, Math.toRadians(0)))
                         .lineToLinearHeading(new Pose2d(42,35, Math.toRadians(0)))
                         .lineToLinearHeading(new Pose2d(46, 35, Math.toRadians(0)))
