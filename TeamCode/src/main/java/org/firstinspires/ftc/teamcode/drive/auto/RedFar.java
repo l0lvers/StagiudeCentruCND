@@ -262,7 +262,7 @@ public class RedFar extends LinearOpMode {
                       break;
 
                   case LEFT:
-                      drive.followTrajectorySequence(pune_preload_dreaptaR);
+                      drive.followTrajectorySequence(pune_preload_stangaL);
                       sleep(300);
                       drive.followTrajectorySequence(stack2);
                       sleep(300);
