@@ -104,19 +104,19 @@ public class RedFar extends LinearOpMode {
                 .build();
 //merge aprope de pozitia de scoring
         TrajectorySequence drive_score = drive.trajectorySequenceBuilder(stack1.end())
-                .lineToLinearHeading(new Pose2d(42,-11, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(42,-10, Math.toRadians(0)))
                 .waitSeconds(0.5)
                 .lineToLinearHeading(new Pose2d(42,-35, Math.toRadians(0)))
                 .build();
 
         TrajectorySequence drive_score1 = drive.trajectorySequenceBuilder(stack2.end())
-                .lineToLinearHeading(new Pose2d(42,-11, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(42,-10, Math.toRadians(0)))
                 .waitSeconds(0.5)
                 .lineToLinearHeading(new Pose2d(42,-35, Math.toRadians(0)))
                 .build();
 
         TrajectorySequence drive_score2 = drive.trajectorySequenceBuilder(stack2.end())
-                .lineToLinearHeading(new Pose2d(42,-11, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(42,-10, Math.toRadians(0)))
                 .waitSeconds(0.5)
                 .lineToLinearHeading(new Pose2d(42,-35, Math.toRadians(0)))
                 .build();
@@ -136,9 +136,10 @@ public class RedFar extends LinearOpMode {
                     robot.OpritoareOpen();
                 })
                 .waitSeconds(1)
-                .addTemporalMarker(1.2,()->{
+                .addTemporalMarker(1.5,()->{
                     robot.PosCuvaInit();
                 })
+                .waitSeconds(1)
 
                 .build();
 
@@ -155,10 +156,10 @@ public class RedFar extends LinearOpMode {
                     robot.OpritoareOpen();
                 })
                 .waitSeconds(1)
-                .addTemporalMarker(1.2,()->{
+                .addTemporalMarker(1.5,()->{
                     robot.PosCuvaInit();
                 })
-
+                .waitSeconds(1)
                 .build();
 
         TrajectorySequence score_pos2 =drive.trajectorySequenceBuilder(drive_score2.end())
@@ -171,14 +172,14 @@ public class RedFar extends LinearOpMode {
                     robot.PosCuvaScore();
                 })
                 .waitSeconds(1)
-                .addTemporalMarker(0.6,()->{
-                    robot.OpritoareOpen();
+                .addTemporalMarker(0.8,()->{
+                    robot.opritoateOut();
                 })
-                .waitSeconds(1)
-                .addTemporalMarker(1.2,()->{
+                .waitSeconds(2)
+                .addTemporalMarker(1.5,()->{
                     robot.PosCuvaInit();
                 })
-
+                .waitSeconds(1)
                 .waitSeconds(0.5)
                 .build();
 
