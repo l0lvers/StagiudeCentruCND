@@ -226,25 +226,27 @@ public class RedFar extends LinearOpMode {
 
         while (!isStarted() && !isStopRequested()) {
 
-
-            robot.PosCuvaInit();
-
             double zoneleft = detectionPipeline.getZoneLuminosity(4);
-            double zonemid = Math.min(Math.min(Math.min(detectionPipeline.getZoneLuminosity(64)
-                                    , detectionPipeline.getZoneLuminosity(54))
-                            , detectionPipeline.getZoneLuminosity(74))
-                    , detectionPipeline.getZoneLuminosity(44));
+            double zonemid = Math.min(Math.min(Math.min( detectionPipeline.getZoneLuminosity(64)
+                                    ,detectionPipeline.getZoneLuminosity(54))
+                            ,detectionPipeline.getZoneLuminosity(74))
+                    ,detectionPipeline.getZoneLuminosity(44));
 
 
-            if (zoneleft < zonemid && zoneleft < 80) zone = Zone.RIGHT;
+            if (zoneleft < zonemid && zoneleft < 80) zone = Zone.LEFT;
             else if (zonemid < zoneleft && zonemid < 80) zone = Zone.CENTER;
-            else zone = Zone.LEFT;
+            else zone = Zone.RIGHT;
 
 
-            telemetry.addData("zone = ", zone.toString());
-            telemetry.addData("luminosity zone left", zoneleft);
-            telemetry.addData("luminosity zone mid", zonemid);
+            telemetry.addData("zone = ",zone.toString());
+            telemetry.addData("luminosity zone left",zoneleft);
+            telemetry.addData("luminosity zone mid",zonemid);
+
+
             telemetry.update();
+
+
+
         }
 
               switch (zoneFinal) {
