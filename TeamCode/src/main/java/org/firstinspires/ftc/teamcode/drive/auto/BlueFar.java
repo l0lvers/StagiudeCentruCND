@@ -73,9 +73,10 @@ public class BlueFar extends LinearOpMode {
                 .build();
 
         TrajectorySequence stack1 = drive.trajectorySequenceBuilder(pune_preload_dreaptaR.end())
-                .lineToLinearHeading(new Pose2d(-53,45,Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(-53,46,Math.toRadians(0)))
                 .waitSeconds(0.3)
-                .lineToLinearHeading(new Pose2d(-53,11,Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(-53,9,Math.toRadians(0)))
+                .waitSeconds(1)
                 .build();
 
         TrajectorySequence drive_score = drive.trajectorySequenceBuilder(stack1.end())
@@ -130,7 +131,8 @@ public class BlueFar extends LinearOpMode {
         TrajectorySequence stack2 = drive.trajectorySequenceBuilder(pune_preload_stangaL.end())
                 .lineToLinearHeading(new Pose2d(-33,46, Math.toRadians(-90)))
                 .waitSeconds(0.3)
-                .lineToLinearHeading(new Pose2d(-33,11, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(-33,9, Math.toRadians(0)))
+                .waitSeconds(1)
                 .build();
 
 
@@ -180,7 +182,8 @@ public class BlueFar extends LinearOpMode {
                 .build();
 
         TrajectorySequence stack3 = drive.trajectorySequenceBuilder(pune_preload_center.end())
-                .lineToLinearHeading(new Pose2d(-57,11,Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(-57,9,Math.toRadians(0)))
+                .waitSeconds(1)
                 .build();
 
         TrajectorySequence drive_score2 = drive.trajectorySequenceBuilder(stack2.end())
