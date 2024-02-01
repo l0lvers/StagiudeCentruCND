@@ -14,14 +14,8 @@ public class ShortBlueR {
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(90), 15)
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(new Pose2d(11,61,Math.toRadians(90)))
                         //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                        .lineToLinearHeading(new Pose2d(23,61,Math.toRadians(90)))
-                        .lineToLinearHeading(new Pose2d(23,35,Math.toRadians(90)))
-                        .lineToLinearHeading(new Pose2d(23,43,Math.toRadians(90)))
-                        .lineToLinearHeading(new Pose2d(50,43, Math.toRadians(0)))
-                        .lineToLinearHeading(new Pose2d(40,43, Math.toRadians(0)))
-                        .lineToLinearHeading(new Pose2d(40,11, Math.toRadians(0)))
-                        .lineToLinearHeading(new Pose2d(52,11,Math.toRadians(0)))
-                        .lineToLinearHeading(new Pose2d(60,11, Math.toRadians(0)))
+                        //work in progress mi don no
+
                         .build()
                 );
 
