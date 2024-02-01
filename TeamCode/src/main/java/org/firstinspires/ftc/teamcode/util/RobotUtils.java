@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.util;
 
 import com.acmerobotics.dashboard.config.Config;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -24,7 +25,7 @@ public class RobotUtils {
     //public Servo cuvaRight;
     public ServoImplEx bratCuvaLeft;
     public ServoImplEx bratCuvaRight;
-    public Servo opritoare;
+    public CRServo opritoare;
     public Servo droneLauncher;
     //-----------------------------VARIABILE------------------------
 
@@ -35,11 +36,14 @@ public class RobotUtils {
     public static double sliderPow=0.7;
     public static double intakePow=1;
     public static double cuvaScorePos = 0;
-    public static double bCuvaScorePos = 0.7;
+    public static double bCuvaScorePos = 0.66;
     public static double cuvaInitPos = 0;
-    public static double bCuvaInitPos=0.897;
-    public static double opritoareOpenPos=0.3;
-    public static double opritoareClosePos=0.5;
+    public static double bCuvaInitPos=0.868;
+
+    public static double opritoareOpenPos=1;
+    public static double opritoateOutPos = -1;
+    public static double opritoareClosePos=0;
+    ;
     public static double dronaLaunchPos=0.02;
     public static double dronaInitPos=0.17;
 
@@ -54,7 +58,7 @@ public class RobotUtils {
         intakeRight = hardwareMap.get(DcMotorEx.class, "intakeRight");
         //cuvaLeft = hardwareMap.get(Servo.class, "cuvaLeft");
         //cuvaRight = hardwareMap.get(Servo.class, "cuvaRight");
-        opritoare = hardwareMap.get(Servo.class, "opritoare");
+        opritoare = hardwareMap.get(CRServo.class, "opritoare");
         bratCuvaLeft = hardwareMap.get(ServoImplEx.class, "bratCuvaLeft");
         bratCuvaRight = hardwareMap.get(ServoImplEx.class, "bratCuvaRight");
         droneLauncher = hardwareMap.get(Servo.class, "droneLauncher");
@@ -139,11 +143,15 @@ public class RobotUtils {
     }
     public void OpritoareClose() //inchide opritoarea cuvei sa nu pice pixeli
     {
-        opritoare.setPosition(opritoareClosePos);
+        opritoare.setPower(0);
     }
     public void OpritoareOpen() //deschide opritoarea cuvei ca sa ia pixeli si sa scoreze
     {
-        opritoare.setPosition(opritoareOpenPos);
+        opritoare.setPower(opritoareOpenPos);
+    }
+    public void opritoateOut()
+    {
+        opritoare.setPower(opritoateOutPos);
     }
 
     //-----------------------------------INTAKE------------------------------------
@@ -172,5 +180,4 @@ public class RobotUtils {
     {
         droneLauncher.setPosition(dronaInitPos);
     }
-
 }
