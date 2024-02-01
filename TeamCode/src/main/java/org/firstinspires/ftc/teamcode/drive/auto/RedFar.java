@@ -132,7 +132,7 @@ public class RedFar extends LinearOpMode {
                     robot.PosCuvaScore();
                 })
                 .waitSeconds(1)
-                .addTemporalMarker(0.5,()->{
+                .addTemporalMarker(1,()->{
                     robot.OpritoareOpen();
                 })
                 .waitSeconds(1)
@@ -152,7 +152,7 @@ public class RedFar extends LinearOpMode {
                     robot.PosCuvaScore();
                 })
                 .waitSeconds(1)
-                .addTemporalMarker(0.6,()->{
+                .addTemporalMarker(1,()->{
                     robot.OpritoareOpen();
                 })
                 .waitSeconds(1)
@@ -172,7 +172,7 @@ public class RedFar extends LinearOpMode {
                     robot.PosCuvaScore();
                 })
                 .waitSeconds(1)
-                .addTemporalMarker(0.8,()->{
+                .addTemporalMarker(1,()->{
                     robot.opritoateOut();
                 })
                 .waitSeconds(2)
@@ -227,6 +227,7 @@ public class RedFar extends LinearOpMode {
 
         while (!isStarted() && !isStopRequested()) {
 
+            robot.PosCuvaInit();
             double zoneleft = detectionPipeline.getZoneLuminosity(4);
             double zonemid = Math.min(Math.min(Math.min( detectionPipeline.getZoneLuminosity(64)
                                     ,detectionPipeline.getZoneLuminosity(54))
