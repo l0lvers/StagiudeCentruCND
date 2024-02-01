@@ -81,7 +81,7 @@ public class RedFar extends LinearOpMode {
                 .build();
 
         TrajectorySequence pune_preload_center = drive.trajectorySequenceBuilder(startPos)
-                .lineToLinearHeading(new Pose2d(-35,-30,Math.toRadians(-90)))
+                .lineToLinearHeading(new Pose2d(-35,-31,Math.toRadians(-90)))
                 .waitSeconds(0.5)
                 .lineToLinearHeading(new Pose2d(-36,-50,Math.toRadians(-90)))
                 .build();
@@ -89,34 +89,34 @@ public class RedFar extends LinearOpMode {
         TrajectorySequence stack1 = drive.trajectorySequenceBuilder(pune_preload_dreaptaR.end())
                 .lineToLinearHeading(new Pose2d(-53,-45,Math.toRadians(0)))
                 .waitSeconds(0.3)
-                .lineToLinearHeading(new Pose2d(-53,-12,Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(-53,-11,Math.toRadians(0)))
                 .build();
 
         TrajectorySequence stack2 = drive.trajectorySequenceBuilder(pune_preload_stangaL.end())
                 .lineToLinearHeading(new Pose2d(-33,-46, Math.toRadians(-90)))
                 .waitSeconds(0.3)
-                .lineToLinearHeading(new Pose2d(-33,-12, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(-33,-11, Math.toRadians(0)))
                 .build();
 
 
         TrajectorySequence stack3 = drive.trajectorySequenceBuilder(pune_preload_center.end())
-                .lineToLinearHeading(new Pose2d(-57,-12,Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(-57,-11,Math.toRadians(0)))
                 .build();
 //merge aprope de pozitia de scoring
         TrajectorySequence drive_score = drive.trajectorySequenceBuilder(stack1.end())
-                .lineToLinearHeading(new Pose2d(42,-12, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(42,-11, Math.toRadians(0)))
                 .waitSeconds(0.5)
                 .lineToLinearHeading(new Pose2d(42,-35, Math.toRadians(0)))
                 .build();
 
         TrajectorySequence drive_score1 = drive.trajectorySequenceBuilder(stack2.end())
-                .lineToLinearHeading(new Pose2d(42,-12, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(42,-11, Math.toRadians(0)))
                 .waitSeconds(0.5)
                 .lineToLinearHeading(new Pose2d(42,-35, Math.toRadians(0)))
                 .build();
 
         TrajectorySequence drive_score2 = drive.trajectorySequenceBuilder(stack2.end())
-                .lineToLinearHeading(new Pose2d(42,-12, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(42,-11, Math.toRadians(0)))
                 .waitSeconds(0.5)
                 .lineToLinearHeading(new Pose2d(42,-35, Math.toRadians(0)))
                 .build();
@@ -124,34 +124,38 @@ public class RedFar extends LinearOpMode {
 
         TrajectorySequence score_pos =drive.trajectorySequenceBuilder(drive_score.end())
 
-                .lineToLinearHeading(new Pose2d(50, -35, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(52, -35, Math.toRadians(0)))
                 .addTemporalMarker(0.2,()->{
                    robot.PutSliderLow();
                 })
                 .addTemporalMarker(0.4,()->{
                     robot.PosCuvaScore();
                 })
-                .addTemporalMarker(0.6,()->{
+                .waitSeconds(1)
+                .addTemporalMarker(0.5,()->{
                     robot.OpritoareOpen();
                 })
-                .addTemporalMarker(1,()->{
+                .waitSeconds(1)
+                .addTemporalMarker(1.2,()->{
                     robot.PosCuvaInit();
                 })
 
                 .build();
 
         TrajectorySequence score_pos1 =drive.trajectorySequenceBuilder(drive_score1.end())
-                .lineToLinearHeading(new Pose2d(50, -35, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(52, -35, Math.toRadians(0)))
                 .addTemporalMarker(0.2,()->{
                     robot.PutSliderLow();
                 })
                 .addTemporalMarker(0.4,()->{
                     robot.PosCuvaScore();
                 })
+                .waitSeconds(1)
                 .addTemporalMarker(0.6,()->{
                     robot.OpritoareOpen();
                 })
-                .addTemporalMarker(1,()->{
+                .waitSeconds(1)
+                .addTemporalMarker(1.2,()->{
                     robot.PosCuvaInit();
                 })
 
@@ -159,17 +163,19 @@ public class RedFar extends LinearOpMode {
 
         TrajectorySequence score_pos2 =drive.trajectorySequenceBuilder(drive_score2.end())
 
-                .lineToLinearHeading(new Pose2d(50, -35, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(52, -35, Math.toRadians(0)))
                 .addTemporalMarker(0.2,()->{
                     robot.PutSliderLow();
                 })
                 .addTemporalMarker(0.4,()->{
                     robot.PosCuvaScore();
                 })
+                .waitSeconds(1)
                 .addTemporalMarker(0.6,()->{
                     robot.OpritoareOpen();
                 })
-                .addTemporalMarker(1,()->{
+                .waitSeconds(1)
+                .addTemporalMarker(1.2,()->{
                     robot.PosCuvaInit();
                 })
 
@@ -222,6 +228,7 @@ public class RedFar extends LinearOpMode {
 
 
             robot.PosCuvaInit();
+
             double zoneleft = detectionPipeline.getZoneLuminosity(4);
             double zonemid = Math.min(Math.min(Math.min(detectionPipeline.getZoneLuminosity(64)
                                     , detectionPipeline.getZoneLuminosity(54))
