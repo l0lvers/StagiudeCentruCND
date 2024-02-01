@@ -125,13 +125,13 @@ public class BlueFar extends LinearOpMode {
         //stanga
 
         TrajectorySequence pune_preload_stangaL = drive.trajectorySequenceBuilder(startPos)
-                .lineToLinearHeading(new Pose2d(-47, 37, Math.toRadians(-90)))
+                .lineToLinearHeading(new Pose2d(-47, 37, Math.toRadians(90)))
                 .waitSeconds(1)
-                .lineToLinearHeading(new Pose2d(-47,46,Math.toRadians(-90)))
+                .lineToLinearHeading(new Pose2d(-47,46,Math.toRadians(90)))
                 .build();
 
         TrajectorySequence stack2 = drive.trajectorySequenceBuilder(pune_preload_stangaL.end())
-                .lineToLinearHeading(new Pose2d(-33,46, Math.toRadians(-90)))
+                .lineToLinearHeading(new Pose2d(-33,46, Math.toRadians(90)))
                 .waitSeconds(0.3)
                 .lineToLinearHeading(new Pose2d(-33,9, Math.toRadians(0)))
                 .waitSeconds(1)
@@ -178,18 +178,19 @@ public class BlueFar extends LinearOpMode {
         //centru
 
         TrajectorySequence pune_preload_center = drive.trajectorySequenceBuilder(startPos)
-                .lineToLinearHeading(new Pose2d(-35,31,Math.toRadians(-90)))
+                .lineToLinearHeading(new Pose2d(-35,31,Math.toRadians(90)))
                 .waitSeconds(1)
-                .lineToLinearHeading(new Pose2d(-36,50,Math.toRadians(-90)))
+                .lineToLinearHeading(new Pose2d(-36,50,Math.toRadians(90)))
+                .lineToLinearHeading(new Pose2d(-45,50,Math.toRadians(90)))
                 .build();
 
         TrajectorySequence stack3 = drive.trajectorySequenceBuilder(pune_preload_center.end())
-                .lineToLinearHeading(new Pose2d(-57,9,Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(-57,0,Math.toRadians(0)))
                 .waitSeconds(1)
                 .build();
 
         TrajectorySequence drive_score2 = drive.trajectorySequenceBuilder(stack2.end())
-                .lineToLinearHeading(new Pose2d(42,11, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(42,0, Math.toRadians(0)))
                 .waitSeconds(0.5)
                 .lineToLinearHeading(new Pose2d(42,35, Math.toRadians(0)))
                 .build();
@@ -212,6 +213,9 @@ public class BlueFar extends LinearOpMode {
                     robot.PosCuvaInit();
                 })
                 .waitSeconds(1)
+                .addTemporalMarker(2,()->{
+                    robot.OpritoareClose();
+                })
                 .waitSeconds(0.5)
                 .build();
 
