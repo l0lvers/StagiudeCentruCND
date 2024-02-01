@@ -26,7 +26,7 @@ public class RedFar extends LinearOpMode {
     DetectionPipelineMatei detectionPipeline;
     boolean bCameraOpened = false;
     private SampleMecanumDrive drive;
-    private  boolean nu_stiu_sa_codez2 = true;
+
 
     enum Zone {
         RIGHT,
