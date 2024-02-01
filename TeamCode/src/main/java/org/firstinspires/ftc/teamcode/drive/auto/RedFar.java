@@ -104,19 +104,19 @@ public class RedFar extends LinearOpMode {
                 .build();
 //merge aprope de pozitia de scoring
         TrajectorySequence drive_score = drive.trajectorySequenceBuilder(stack1.end())
-                .lineToLinearHeading(new Pose2d(42,-10, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(42,-11, Math.toRadians(0)))
                 .waitSeconds(0.5)
                 .lineToLinearHeading(new Pose2d(42,-35, Math.toRadians(0)))
                 .build();
 
         TrajectorySequence drive_score1 = drive.trajectorySequenceBuilder(stack2.end())
-                .lineToLinearHeading(new Pose2d(42,-10, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(42,-11, Math.toRadians(0)))
                 .waitSeconds(0.5)
                 .lineToLinearHeading(new Pose2d(42,-35, Math.toRadians(0)))
                 .build();
 
         TrajectorySequence drive_score2 = drive.trajectorySequenceBuilder(stack2.end())
-                .lineToLinearHeading(new Pose2d(42,-10, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(42,-11, Math.toRadians(0)))
                 .waitSeconds(0.5)
                 .lineToLinearHeading(new Pose2d(42,-35, Math.toRadians(0)))
                 .build();
@@ -228,6 +228,7 @@ public class RedFar extends LinearOpMode {
         while (!isStarted() && !isStopRequested()) {
 
             robot.PosCuvaInit();
+            robot.PutSlidersInit();
             double zoneleft = detectionPipeline.getZoneLuminosity(4);
             double zonemid = Math.min(Math.min(Math.min( detectionPipeline.getZoneLuminosity(64)
                                     ,detectionPipeline.getZoneLuminosity(54))
