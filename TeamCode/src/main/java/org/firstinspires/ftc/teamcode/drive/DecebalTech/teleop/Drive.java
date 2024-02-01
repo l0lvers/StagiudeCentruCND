@@ -35,7 +35,7 @@ public class Drive extends LinearOpMode {
     private ChasisState chasisState = ChasisState.DRIVE;
     private SliderState sliderState = SliderState.MANUAL;
     private SampleMecanumDrive drive;
-
+    private double loopTime=0;
 
 
     @Override
@@ -157,6 +157,9 @@ public class Drive extends LinearOpMode {
 
             telemetry.addData("mod sasiu: ", chasisState.toString());
             telemetry.addData("mod slidere: ", sliderState.toString());
+            double loop = System.nanoTime();
+            telemetry.addData("hz ", 1000000000 / (loop - loopTime));
+            loopTime = loop;
             telemetry.update();
 
             drive.update();
