@@ -190,14 +190,14 @@ public class BlueFar extends LinearOpMode {
                 .build();
 
         TrajectorySequence drive_score2 = drive.trajectorySequenceBuilder(stack2.end())
-                .lineToLinearHeading(new Pose2d(42,0, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(42,15, Math.toRadians(0)))
                 .waitSeconds(0.5)
                 .lineToLinearHeading(new Pose2d(42,35, Math.toRadians(0)))
                 .build();
 
         TrajectorySequence score_pos2 =drive.trajectorySequenceBuilder(drive_score2.end())
 
-                .lineToLinearHeading(new Pose2d(52, 35, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(52, 40, Math.toRadians(0)))
                 .addTemporalMarker(0.2,()->{
                     robot.PutSliderLow();
                 })
@@ -208,15 +208,15 @@ public class BlueFar extends LinearOpMode {
                 .addTemporalMarker(1,()->{
                     robot.opritoateOut();
                 })
-                .waitSeconds(2)
+                .waitSeconds(1)
                 .addTemporalMarker(1.5,()->{
                     robot.PosCuvaInit();
                 })
-                .waitSeconds(1)
+                .waitSeconds(0.5)
                 .addTemporalMarker(2,()->{
                     robot.OpritoareClose();
                 })
-                .waitSeconds(0.5)
+
                 .build();
 
         TrajectorySequence park2 =drive.trajectorySequenceBuilder(score_pos2.end())
@@ -225,9 +225,9 @@ public class BlueFar extends LinearOpMode {
                 .addTemporalMarker(0.2,()->{
                     robot.PutSlidersInit();
                 })
-                .lineToLinearHeading(new Pose2d(42,12,Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(42,15,Math.toRadians(0)))
                 .waitSeconds(0.5)
-                .lineToLinearHeading(new Pose2d(60,12, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(60,15, Math.toRadians(0)))
                 .waitSeconds(0.5)
                 .build();
 
