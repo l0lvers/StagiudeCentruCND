@@ -70,19 +70,19 @@ public class RedFar extends LinearOpMode {
         //pune pixeli la centru
         TrajectorySequence pune_preload_dreaptaR = drive.trajectorySequenceBuilder(startPos)
                 .lineToLinearHeading(new Pose2d(-24, -38, Math.toRadians(-90)))
-                .waitSeconds(0.5)
+                .waitSeconds(1)
                 .lineToLinearHeading(new Pose2d(-24,-45,Math.toRadians(-90)))
                 .build();
 
         TrajectorySequence pune_preload_stangaL = drive.trajectorySequenceBuilder(startPos)
                 .lineToLinearHeading(new Pose2d(-47, -37, Math.toRadians(-90)))
-                .waitSeconds(0.5)
+                .waitSeconds(1)
                 .lineToLinearHeading(new Pose2d(-47,-46,Math.toRadians(-90)))
                 .build();
 
         TrajectorySequence pune_preload_center = drive.trajectorySequenceBuilder(startPos)
                 .lineToLinearHeading(new Pose2d(-35,-31,Math.toRadians(-90)))
-                .waitSeconds(0.5)
+                .waitSeconds(1)
                 .lineToLinearHeading(new Pose2d(-36,-50,Math.toRadians(-90)))
                 .build();
         ///se aseaza in fata stack-ului
@@ -246,12 +246,11 @@ public class RedFar extends LinearOpMode {
             telemetry.addData("luminosity zone mid",zonemid);
 
 
-            telemetry.update();
+        telemetry.update();
 
 
 
         }
-
               switch (zoneFinal) {
                   case RIGHT:
                       drive.followTrajectorySequence(pune_preload_dreaptaR);
@@ -278,8 +277,6 @@ public class RedFar extends LinearOpMode {
                       drive.followTrajectorySequence(park1);
 
                       break;
-
-
 
                   case CENTER:
                       drive.followTrajectorySequence(pune_preload_center);
