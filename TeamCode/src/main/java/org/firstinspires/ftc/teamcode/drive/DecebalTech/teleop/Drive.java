@@ -133,13 +133,13 @@ public class Drive extends LinearOpMode {
                 case MANUAL:
                     if(gamepad2.right_trigger > 0.5)
                     {
-                        robot.sliderLeft.setPower(0.3);
-                        robot.sliderRight.setPower(-0.3);
+                        robot.sliderLeft.setPower(0.7);
+                        robot.sliderRight.setPower(-0.7);
                     }
                     else if(gamepad2.left_trigger >0.5)
                     {
-                        robot.sliderLeft.setPower(-0.3);
-                        robot.sliderRight.setPower(0.3);
+                        robot.sliderLeft.setPower(-0.7);
+                        robot.sliderRight.setPower(0.7);
                     }
                     else {robot.sliderLeft.setPower(0); robot.sliderRight.setPower(0);}
                     if(gamepad2.right_bumper)
