@@ -67,27 +67,29 @@ public class BlueFar extends LinearOpMode {
         // de aici incepi sa scrii trajectory sequences
 
         TrajectorySequence pune_preload_dreaptaR = drive.trajectorySequenceBuilder(startPos)
-                .lineToLinearHeading(new Pose2d(-24, 38, Math.toRadians(90)))
+                .lineToLinearHeading(new Pose2d(-45, 61, Math.toRadians(90)))
                 .waitSeconds(1)
-                .lineToLinearHeading(new Pose2d(-24,45,Math.toRadians(90)))
+                .lineToLinearHeading(new Pose2d(-45,35,Math.toRadians(90)))
                 .build();
 
         TrajectorySequence stack1 = drive.trajectorySequenceBuilder(pune_preload_dreaptaR.end())
-                .lineToLinearHeading(new Pose2d(-53,46,Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(-45,47,Math.toRadians(0)))
                 .waitSeconds(0.3)
-                .lineToLinearHeading(new Pose2d(-53,9,Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(-33,47,Math.toRadians(0)))
                 .waitSeconds(1)
                 .build();
 
         TrajectorySequence drive_score = drive.trajectorySequenceBuilder(stack1.end())
-                .lineToLinearHeading(new Pose2d(42,11, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(-33,10, Math.toRadians(0)))
                 .waitSeconds(0.5)
-                .lineToLinearHeading(new Pose2d(42,35, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(42,10, Math.toRadians(0)))
+                .waitSeconds(0.5)
+                .lineToLinearHeading(new Pose2d(42,40, Math.toRadians(0)))
                 .build();
 
         TrajectorySequence score_pos =drive.trajectorySequenceBuilder(drive_score.end())
 
-                .lineToLinearHeading(new Pose2d(52, 35, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(51, 40, Math.toRadians(0)))
                 .addTemporalMarker(0.2,()->{
                     robot.PutSliderLow();
                 })
@@ -107,7 +109,7 @@ public class BlueFar extends LinearOpMode {
                 .build();
 
         TrajectorySequence park =drive.trajectorySequenceBuilder(score_pos.end())
-                .lineToLinearHeading(new Pose2d(42,35,Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(42,40,Math.toRadians(0)))
                 .addTemporalMarker(0.2,()->{
                     robot.PutSlidersInit();
                 })
@@ -115,9 +117,9 @@ public class BlueFar extends LinearOpMode {
                 .waitSeconds(0.5)
 
 
-                .lineToLinearHeading(new Pose2d(42,12,Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(42,10,Math.toRadians(0)))
                 .waitSeconds(0.5)
-                .lineToLinearHeading(new Pose2d(60,12, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(60,10, Math.toRadians(0)))
                 .waitSeconds(0.5)
                 .build();
         //stanga

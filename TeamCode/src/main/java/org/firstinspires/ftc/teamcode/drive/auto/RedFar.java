@@ -88,7 +88,7 @@ public class RedFar extends LinearOpMode {
 
         TrajectorySequence score_pos =drive.trajectorySequenceBuilder(drive_score.end())
 
-                .lineToLinearHeading(new Pose2d(52, -35, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(53, -35, Math.toRadians(0)))
                 .addTemporalMarker(0.2,()->{
                     robot.PutSliderLow();
                 })
