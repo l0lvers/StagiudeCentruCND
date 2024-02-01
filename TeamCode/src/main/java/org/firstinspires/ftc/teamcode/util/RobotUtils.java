@@ -30,10 +30,13 @@ public class RobotUtils {
     //-----------------------------VARIABILE------------------------
 
     public static int sliderInitPos=-3;
+
+    public static int sliderInitPosAuto=-10;
+
     public static int sliderLowPos=-1200;
     public static int sliderMidPos=-1750;
     public static int sliderHighPos=-2250;
-    public static double sliderPow=0.7;
+    public static double sliderPow=0.8;
     public static double intakePow=1;
     public static double cuvaScorePos = 0;
     public static double bCuvaScorePos = 0.66;
@@ -91,7 +94,7 @@ public class RobotUtils {
         sliderLeft.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
         sliderRight.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
 
-        int curentPosition = sliderRight.getCurrentPosition();
+        int curentPosition = sliderLeft.getCurrentPosition();
 
         SetSliderPos(position);
 
@@ -109,6 +112,10 @@ public class RobotUtils {
     public void PutSlidersInit()//pune sliderele la pozitia initiala, de intake
     {
         PutSliderToPosition(sliderInitPos,sliderPow);
+    }
+    public void PutSlidersInitAuto()//pune sliderele la pozitia initiala, de intake
+    {
+        PutSliderToPosition(sliderInitPosAuto,sliderPow);
     }
     public void PutSliderLow() //pune sliderele la pozitie joasa
     {
