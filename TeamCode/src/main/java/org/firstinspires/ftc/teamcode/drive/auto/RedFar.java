@@ -136,10 +136,10 @@ public class RedFar extends LinearOpMode {
                     robot.OpritoareOpen();
                 })
                 .waitSeconds(1)
-                .addTemporalMarker(1.5,()->{
+                .addTemporalMarker(2,()->{
                     robot.PosCuvaInit();
                 })
-                .waitSeconds(1)
+                .waitSeconds(2)
 
                 .build();
 
