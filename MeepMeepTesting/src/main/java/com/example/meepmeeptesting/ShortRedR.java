@@ -1,4 +1,4 @@
-//DO NOT IMPLEMENT !!! NOT DONE DO NOT TEST
+
 package com.example.meepmeeptesting;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
@@ -14,8 +14,7 @@ public class ShortRedR {
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(90), 15)
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(new Pose2d(11,-61,Math.toRadians(90)))
-                        //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                        //NU E GATA !!! do not test do not impliment!!!
+                        //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
                         .lineToLinearHeading(new Pose2d(11,-44,Math.toRadians(90)))
                         .lineToLinearHeading(new Pose2d(22,-44,Math.toRadians(90)))
                         .lineToLinearHeading(new Pose2d(22,-34,Math.toRadians(90)))
