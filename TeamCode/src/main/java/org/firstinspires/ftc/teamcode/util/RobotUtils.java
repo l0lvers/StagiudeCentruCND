@@ -33,17 +33,17 @@ public class RobotUtils {
 
     public static int sliderInitPosAuto=-10;
 
-    public static int sliderLowPos=-1300;
+    public static int sliderLowPos=-1400;
     public static int sliderMidPos=-1750;
     public static int sliderHighPos=-2250;
-    public static double sliderPow=0.7;
+    public static double sliderPow=0.65;
     public static double intakePow=0.5;
     public static double intakeRevPow=1;
     public static double cuvaScorePos = 0;
-    public static double bCuvaScorePos = 0.66;
+    public static double bCuvaScorePos = 0.68;
     public static double cuvaInitPos = 0;
-    public static double bCuvaInitPos=0.868;
-
+    public static double bCuvaInitPos=0.884;
+    public static double compensation = 1.01 ;
     public static double outtake_cuva_inPos=1;
     public static double outtake_cuva_outPos = -1;
     public static double outtake_cuva_offPos=0;
@@ -82,10 +82,10 @@ public class RobotUtils {
     //----------------------------SLIDERE---------------------------
     public void setSliderPos(int pos) //am pus o sa fie mai clean codu
     {
-        double correctedPos = pos*0.965;
+        double correctedPos = pos*compensation;
         int integer_correctedPos = (int)correctedPos;
-        sliderLeft.setTargetPosition(integer_correctedPos);
-        sliderRight.setTargetPosition(-pos);
+        sliderLeft.setTargetPosition(pos);
+        sliderRight.setTargetPosition(-integer_correctedPos);
     }
     public void putSliderToPosition(int position, double power) //generalizare pentru pozitia sliderelor
     {

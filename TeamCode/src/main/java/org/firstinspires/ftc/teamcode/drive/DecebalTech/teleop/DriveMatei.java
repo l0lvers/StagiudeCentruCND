@@ -124,8 +124,8 @@ public class DriveMatei extends LinearOpMode {
                     if(gamepad2.square) robot.outtake_cuva_out();
                     if(gamepad2.triangle) robot.outtake_cuva_in();
                     if(gamepad2.right_stick_button) robot.outtake_cuva_off();
-                   if(robot.sliderRight.getCurrentPosition()>0 &&robot.sliderRight.getCurrentPosition()<1250) robot.posCuvaInit();
-                   if(robot.sliderRight.getCurrentPosition()>1250 &&robot.sliderRight.getCurrentPosition()<2400) robot.posCuvaScore();
+                   if(robot.sliderRight.getCurrentPosition()>0 &&robot.sliderRight.getCurrentPosition()<1350) robot.posCuvaInit();
+                   if(robot.sliderRight.getCurrentPosition()>1350 &&robot.sliderRight.getCurrentPosition()<2400) robot.posCuvaScore();
 
                     break;
                 case MANUAL:
