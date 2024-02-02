@@ -34,6 +34,8 @@ public class RobotUtils {
     public static int sliderInitPosAuto=-10;
 
     public static int sliderLowPos=-1400;
+    public static int sliderLowPosAuto=-1150;
+
     public static int sliderMidPos=-1750;
     public static int sliderHighPos=-2250;
     public static double sliderPow=0.65;
@@ -123,6 +125,10 @@ public class RobotUtils {
     public void putSliderLow() //pune sliderele la pozitie joasa
     {
         putSliderToPosition(sliderLowPos, sliderPow);
+    }
+    public void putSliderLowAuto() //pune sliderele la pozitie joasa
+    {
+        putSliderToPosition(sliderLowPosAuto, sliderPow);
     }
 
     public void putSliderMid() //pune sliderele la pozitie medie

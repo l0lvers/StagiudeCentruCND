@@ -7,7 +7,7 @@ import com.noahbres.meepmeep.roadrunner.DefaultBotBuilder;
 import com.noahbres.meepmeep.roadrunner.entity.RoadRunnerBotEntity;
 
 import jdk.tools.jlink.internal.plugins.VendorVersionPlugin;
-public class MeepLongBlue{
+public class centerblueclose{
     public static void main(String[] args) {
         MeepMeep meepMeep = new MeepMeep(700);
 
@@ -17,14 +17,13 @@ public class MeepLongBlue{
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(new Pose2d(11,60,Math.toRadians(90)))
                         //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
                         .setReversed(true)
-                        .splineToLinearHeading(new Pose2d(9,39,Math.toRadians(50)),Math.toRadians(50))
-                        .lineToLinearHeading(new Pose2d(20,55,Math.toRadians(-15)))
-                        .lineToLinearHeading(new Pose2d(30,55,Math.toRadians(0)))
-                        .lineToLinearHeading(new Pose2d(50,33,Math.toRadians(1)))
+
+
                         .lineToLinearHeading(new Pose2d(36,50,Math.toRadians(0)))
                         .lineToLinearHeading(new Pose2d(52,59,Math.toRadians(0)))
                         .build()
                 );
+
 
 
         meepMeep.setBackground(MeepMeep.Background.FIELD_CENTERSTAGE_JUICE_DARK)
