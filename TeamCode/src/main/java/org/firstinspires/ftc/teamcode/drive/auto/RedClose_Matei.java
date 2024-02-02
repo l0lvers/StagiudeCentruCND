@@ -69,12 +69,12 @@ public class RedClose_Matei extends LinearOpMode {
         drive.setPoseEstimate(startPose);
         TrajectorySequence pune_preload_stanga = drive.trajectorySequenceBuilder(startPose)
                 .setReversed(true)
-                .splineToLinearHeading(new Pose2d(9,-35,Math.toRadians(-55)),Math.toRadians(-50))
+                .splineToLinearHeading(new Pose2d(6,-38,Math.toRadians(-55)),Math.toRadians(-50))
                 .build();
         TrajectorySequence pune_preload_dreapta = drive.trajectorySequenceBuilder(startPose)
                 .setReversed(true)
-                .splineToLinearHeading(new Pose2d(17.5,-35,Math.toRadians(-130)),Math.toRadians(110))
-                .lineToLinearHeading(new Pose2d(8,-37,Math.toRadians(-130)))
+                .splineToLinearHeading(new Pose2d(15,-38,Math.toRadians(-130)),Math.toRadians(110))
+                .lineToLinearHeading(new Pose2d(8,-40,Math.toRadians(-130)))
                 .build();
         TrajectorySequence pune_preload_mijloc = drive.trajectorySequenceBuilder(startPose)
                 .setReversed(true)
@@ -108,7 +108,7 @@ public class RedClose_Matei extends LinearOpMode {
 
                 .build();
         TrajectorySequence score_preload_zone_left_u = drive.trajectorySequenceBuilder(align3.end())
-                .lineToLinearHeading(new Pose2d(50,-27.5,Math.toRadians(-1)),
+                .lineToLinearHeading(new Pose2d(49,-23.5,Math.toRadians(-1)),
                         SampleMecanumDrive.getVelocityConstraint(30,Math.toRadians(180),DriveConstants.TRACK_WIDTH)
                         ,SampleMecanumDrive.getAccelerationConstraint(30)
                 )
@@ -118,7 +118,7 @@ public class RedClose_Matei extends LinearOpMode {
 
                 .build();
         TrajectorySequence score_preload_zone_mid_m = drive.trajectorySequenceBuilder(align2.end())
-                .lineToLinearHeading(new Pose2d(50,-35,Math.toRadians(0)),
+                .lineToLinearHeading(new Pose2d(49,-30,Math.toRadians(0)),
                         SampleMecanumDrive.getVelocityConstraint(30,Math.toRadians(180),DriveConstants.TRACK_WIDTH)
                         ,SampleMecanumDrive.getAccelerationConstraint(30)
                 )
@@ -129,7 +129,7 @@ public class RedClose_Matei extends LinearOpMode {
 
                 .build();
         TrajectorySequence score_preload_zone_right_d = drive.trajectorySequenceBuilder(alignst.end())
-                .lineToLinearHeading(new Pose2d(50,-38.5,Math.toRadians(0)),
+                .lineToLinearHeading(new Pose2d(49,-37.5,Math.toRadians(0)),
                         SampleMecanumDrive.getVelocityConstraint(30,Math.toRadians(180),DriveConstants.TRACK_WIDTH)
                         ,SampleMecanumDrive.getAccelerationConstraint(30)
                 )

@@ -146,7 +146,7 @@ public class BlueFar_Matei extends LinearOpMode {
                 )
                 .build();
         TrajectorySequence park = drive.trajectorySequenceBuilder(prepark.end())
-                .lineToLinearHeading(new Pose2d(50,9,Math.toRadians(0)),
+                .lineToLinearHeading(new Pose2d(50,10,Math.toRadians(0)),
                         SampleMecanumDrive.getVelocityConstraint(30,30,DriveConstants.TRACK_WIDTH)
                         ,SampleMecanumDrive.getAccelerationConstraint(30)
                 )

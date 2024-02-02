@@ -38,7 +38,7 @@ public class RobotUtils {
 
     public static int sliderMidPos=-1750;
     public static int sliderHighPos=-2250;
-    public static double sliderPow=0.65;
+    public static double sliderPow=0.75;
     public static double intakePow=0.5;
     public static double intakeRevPow=1;
     public static double cuvaScorePos = 0;
