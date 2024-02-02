@@ -16,11 +16,11 @@ import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 
-@Autonomous(name="RedFar_Matei", group="AUTINOMOUSGOOD")
+@Autonomous(name="BlueClose_Matei", group="AUTINOMOUSGOOD")
 @Config
 
 
-public class RedFar_Matei extends LinearOpMode {
+public class BlueClose_Matei extends LinearOpMode {
     private RobotUtils robot;
     OpenCvCamera webcam;
     DetectionPipelineMatei detectionPipeline;
@@ -65,90 +65,84 @@ public class RedFar_Matei extends LinearOpMode {
             }
         });
 //        sleep(2000);
-        Pose2d startPose = new Pose2d(-35,-60,Math.toRadians(-90));
+        Pose2d startPose = new Pose2d(11,60,Math.toRadians(90));
         drive.setPoseEstimate(startPose);
         TrajectorySequence pune_preload_stanga = drive.trajectorySequenceBuilder(startPose)
                 .setReversed(true)
-                .splineToLinearHeading(new Pose2d(-38,-33,Math.toRadians(-25)),Math.toRadians(110))
+                .splineToLinearHeading(new Pose2d(7,31,Math.toRadians(-155)),Math.toRadians(-110))
                 .build();
-
         TrajectorySequence pune_preload_dreapta = drive.trajectorySequenceBuilder(startPose)
-                .setReversed(true)
-                .splineToLinearHeading(new Pose2d(-33.5 ,-33,Math.toRadians(-155)),Math.toRadians(75))
+                .splineToLinearHeading(new Pose2d(12,28,Math.toRadians(-155)),Math.toRadians(-110))
+                .lineToLinearHeading(new Pose2d(10,28,Math.toRadians(-155)))
                 .build();
-
         TrajectorySequence pune_preload_mijloc = drive.trajectorySequenceBuilder(startPose)
-                .setReversed(true)
-                .splineToLinearHeading(new Pose2d(-35,-35,Math.toRadians(-90)),Math.toRadians(-90))
+                .lineToLinearHeading(new Pose2d(11,34,Math.toRadians(90)))
                 .build();
 
-        TrajectorySequence alignst = drive.trajectorySequenceBuilder(pune_preload_stanga.end())
-                .lineToLinearHeading(new Pose2d(-50,-53,Math.toRadians(-135)))
-                .lineToLinearHeading(new Pose2d(-45,-56,Math.toRadians(0)))
-                .build();
+        TrajectorySequence align3 = drive.trajectorySequenceBuilder(pune_preload_stanga.end())
+                .lineToLinearHeading(new Pose2d(20,55,Math.toRadians(-15)))
+                .lineToLinearHeading(new Pose2d(30,55,Math.toRadians(0)))
+                .addTemporalMarker(0.3,()->{
+                    robot.putSliderLow();
+                })
 
-        TrajectorySequence align3 = drive.trajectorySequenceBuilder(pune_preload_dreapta.end())
-                .lineToLinearHeading(new Pose2d(-50,-53,Math.toRadians(-15)))
-                .lineToLinearHeading(new Pose2d(-45,-56,Math.toRadians(0)))
                 .build();
+        TrajectorySequence alignst = drive.trajectorySequenceBuilder(pune_preload_dreapta.end())
+                .lineToLinearHeading(new Pose2d(11  ,55,Math.toRadians(-135)))
+                .lineToLinearHeading(new Pose2d(30,55,Math.toRadians(0)))
+                .addTemporalMarker(0.3,()->{
+                    robot.putSliderLow();
+                })
 
+                .build();
         TrajectorySequence align2 = drive.trajectorySequenceBuilder(pune_preload_mijloc.end())
-                .lineToLinearHeading(new Pose2d(-50,-53,Math.toRadians(-90)))
-                .lineToLinearHeading(new Pose2d(-45,-56,Math.toRadians(0)))
-                .build();
-
-        TrajectorySequence score_preload_zone_right_d = drive.trajectorySequenceBuilder(align3.end())
-                .setReversed(false)
-                .lineToSplineHeading(new Pose2d(12,-54,Math.toRadians(0)))
-                .splineToSplineHeading(new Pose2d(53.5,-30,Math.toRadians(0)),Math.toRadians(15))
-
-                .addTemporalMarker(1.8,()->{
+                .lineToLinearHeading(new Pose2d(20,55,Math.toRadians(-90)))
+                .lineToLinearHeading(new Pose2d(30,55,Math.toRadians(0)))
+                .addTemporalMarker(0.3,()->{
                     robot.putSliderLow();
                 })
-                .addTemporalMarker(2.3,()->{
-                    robot.posCuvaScore();
-                })
-
-                .build();
-
-        TrajectorySequence score_preload_zone_mid_m = drive.trajectorySequenceBuilder(alignst.end())
-                .setReversed(false)
-
-                .lineToSplineHeading(new Pose2d(12,-54,Math.toRadians(0)))
-                .splineToSplineHeading(new Pose2d(53.5,-33,Math.toRadians(0)),Math.toRadians(15))
-
-                .addTemporalMarker(1.8,()->{
-                    robot.putSliderLow();
-                })
-                .addTemporalMarker(2.3,()->{
-                    robot.posCuvaScore();
-                })
 
 
                 .build();
-
         TrajectorySequence score_preload_zone_left_u = drive.trajectorySequenceBuilder(align3.end())
-
-                .setReversed(false)
-                .lineToSplineHeading(new Pose2d(12,-54,Math.toRadians(0)))
-                .splineToSplineHeading(new Pose2d(53.5,-36.5,Math.toRadians(0)),Math.toRadians(15))
-                .addTemporalMarker(1.8,()->{
-                    robot.putSliderLow();
-                })
-                .addTemporalMarker(2.3,()->{
+                .lineToLinearHeading(new Pose2d(50,37.5,Math.toRadians(1)),
+                        SampleMecanumDrive.getVelocityConstraint(30,Math.toRadians(180),DriveConstants.TRACK_WIDTH)
+                        ,SampleMecanumDrive.getAccelerationConstraint(30)
+                )
+                .addTemporalMarker(0.1,()->{
                     robot.posCuvaScore();
                 })
 
                 .build();
+        TrajectorySequence score_preload_zone_mid_m = drive.trajectorySequenceBuilder(align2.end())
+                .lineToLinearHeading(new Pose2d(50,32,Math.toRadians(0)),
+                        SampleMecanumDrive.getVelocityConstraint(30,Math.toRadians(180),DriveConstants.TRACK_WIDTH)
+                        ,SampleMecanumDrive.getAccelerationConstraint(30)
+                )
+                .addTemporalMarker(0.1,()->{
+                    robot.posCuvaScore();
+                })
 
+
+                .build();
+        TrajectorySequence score_preload_zone_right_d = drive.trajectorySequenceBuilder(alignst.end())
+                .lineToLinearHeading(new Pose2d(50,25,Math.toRadians(0)),
+                        SampleMecanumDrive.getVelocityConstraint(30,Math.toRadians(180),DriveConstants.TRACK_WIDTH)
+                        ,SampleMecanumDrive.getAccelerationConstraint(30)
+                )
+                .addTemporalMarker(0.1,()->{
+                    robot.posCuvaScore();
+                })
+
+                .build();
         TrajectorySequence prepark = drive.trajectorySequenceBuilder(score_preload_zone_mid_m.end())
-                .lineToLinearHeading(new Pose2d(36,-30,Math.toRadians(0)),
+                .lineToLinearHeading(new Pose2d(36,50,Math.toRadians(0)),
                         SampleMecanumDrive.getVelocityConstraint(30,30,DriveConstants.TRACK_WIDTH)
                         ,SampleMecanumDrive.getAccelerationConstraint(30)
                 )
                 .build();
         TrajectorySequence park = drive.trajectorySequenceBuilder(prepark.end())
-                .lineToLinearHeading(new Pose2d(50,-10,Math.toRadians(0)),
+                .lineToLinearHeading(new Pose2d(52,59,Math.toRadians(0)),
                         SampleMecanumDrive.getVelocityConstraint(30,30,DriveConstants.TRACK_WIDTH)
                         ,SampleMecanumDrive.getAccelerationConstraint(30)
                 )
@@ -202,10 +196,8 @@ public class RedFar_Matei extends LinearOpMode {
             case LEFT:
                 drive.followTrajectorySequence(pune_preload_stanga);
                 sleep(300);
-
                 drive.followTrajectorySequence(align3);
                 sleep(700);
-
                 drive.followTrajectorySequence(score_preload_zone_left_u);
                 sleep(300);
                 robot.outtake_cuva_out();
@@ -222,10 +214,8 @@ public class RedFar_Matei extends LinearOpMode {
             case CENTER:
                 drive.followTrajectorySequence(pune_preload_mijloc);
                 sleep(300);
-
                 drive.followTrajectorySequence(align2);
                 sleep(700);
-
                 drive.followTrajectorySequence(score_preload_zone_mid_m);
                 sleep(300);
                 robot.outtake_cuva_out();
