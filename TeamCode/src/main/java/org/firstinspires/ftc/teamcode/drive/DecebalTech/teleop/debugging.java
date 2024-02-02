@@ -55,9 +55,9 @@ public class debugging extends LinearOpMode {
 //                robot.sliderLeft.setPower(0);
 //            }
 
-            if(gamepad1.square) robot.PutSliderToPosition(positie,0.5);
-            if(gamepad1.dpad_up) robot.PosCuvaScore();
-            if(gamepad1.dpad_down) robot.PosCuvaInit();
+            if(gamepad1.square) robot.putSliderToPosition(positie,0.5);
+            if(gamepad1.dpad_up) robot.posCuvaScore();
+            if(gamepad1.dpad_down) robot.posCuvaInit();
 
             telemetry.addData("Slider Stanga: ", robot.sliderLeft.getCurrentPosition());
             telemetry.addData("Slider Dreapta: ", robot.sliderRight.getCurrentPosition());

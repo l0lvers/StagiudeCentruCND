@@ -104,10 +104,10 @@ public class BlueFar_Matei extends LinearOpMode {
                 .splineToSplineHeading(new Pose2d(53.5,30,Math.toRadians(0)),Math.toRadians(-15))
 
                 .addTemporalMarker(1.8,()->{
-                    robot.PutSliderLow();
+                    robot.putSliderLow();
                 })
                 .addTemporalMarker(2.3,()->{
-                    robot.PosCuvaScore();
+                    robot.posCuvaScore();
                 })
 
                 .build();
@@ -118,10 +118,10 @@ public class BlueFar_Matei extends LinearOpMode {
                 .splineToSplineHeading(new Pose2d(53.5,33,Math.toRadians(0)),Math.toRadians(-15))
 
                 .addTemporalMarker(1.8,()->{
-                    robot.PutSliderLow();
+                    robot.putSliderLow();
                 })
                 .addTemporalMarker(2.3,()->{
-                    robot.PosCuvaScore();
+                    robot.posCuvaScore();
                 })
 
 
@@ -132,10 +132,10 @@ public class BlueFar_Matei extends LinearOpMode {
                 .lineToSplineHeading(new Pose2d(12,54,Math.toRadians(0)))
                 .splineToSplineHeading(new Pose2d(53.5,36.5,Math.toRadians(0)),Math.toRadians(-15))
                 .addTemporalMarker(1.8,()->{
-                    robot.PutSliderLow();
+                    robot.putSliderLow();
                 })
                 .addTemporalMarker(2.3,()->{
-                    robot.PosCuvaScore();
+                    robot.posCuvaScore();
                 })
 
                 .build();
@@ -156,45 +156,45 @@ public class BlueFar_Matei extends LinearOpMode {
 
         while (!isStarted() && !isStopRequested()) {
 
-////            double zoneright = Math.min(Math.min(Math.min( detectionPipeline.getZoneLuminosity(85)
-////                                    ,detectionPipeline.getZoneLuminosity(95))
-////                            ,detectionPipeline.getZoneLuminosity(96))
-////                    ,detectionPipeline.getZoneLuminosity(86));
-////            double zonemid = Math.min(Math.min(Math.min(Math.min(Math.min(detectionPipeline.getZoneLuminosity(65)
-////                    ,detectionPipeline.getZoneLuminosity(55))
-////                    ,detectionPipeline.getZoneLuminosity(45))
-////                    ,detectionPipeline.getZoneLuminosity(35))
-////                    ,detectionPipeline.getZoneLuminosity(25))
-////                    ,detectionPipeline.getZoneLuminosity(15));
-//
-//
-//            if ( zoneright<zonemid &&  zoneright<80) zone = ZoneType.RIGHT;
-//            else if (zonemid <  zoneright && zonemid<80)zone = ZoneType.CENTER;
-//            else zone = ZoneType.LEFT;
-//
-//
-//            telemetry.addData("zone = ",zone.toString());
-//            telemetry.addData("luminosity zone right", zoneright);
-//            telemetry.addData("luminosity zone mid",zonemid);
-//            loop = System.nanoTime();
-//            telemetry.addData("hz ", 1000000000 / (loop - loopTime));
-//            loopTime = loop;
-////            telemetry.addData("luminosity zone 6",detectionPipeline.getZoneLuminosity(8));
-//
-//            telemetry.update();
+            double zoneright = Math.min(Math.min(Math.min( detectionPipeline.getZoneLuminosity(85)
+                                    ,detectionPipeline.getZoneLuminosity(95))
+                            ,detectionPipeline.getZoneLuminosity(96))
+                    ,detectionPipeline.getZoneLuminosity(86));
+            double zonemid = Math.min(Math.min(Math.min(Math.min(Math.min(detectionPipeline.getZoneLuminosity(65)
+                    ,detectionPipeline.getZoneLuminosity(55))
+                    ,detectionPipeline.getZoneLuminosity(45))
+                    ,detectionPipeline.getZoneLuminosity(35))
+                    ,detectionPipeline.getZoneLuminosity(25))
+                    ,detectionPipeline.getZoneLuminosity(15));
 
-            robot.PosCuvaInit();
+
+            if ( zoneright<zonemid &&  zoneright<80) zone = ZoneType.RIGHT;
+            else if (zonemid <  zoneright && zonemid<80)zone = ZoneType.CENTER;
+            else zone = ZoneType.LEFT;
+
+
+            telemetry.addData("zone = ",zone.toString());
+            telemetry.addData("luminosity zone right", zoneright);
+            telemetry.addData("luminosity zone mid",zonemid);
+            loop = System.nanoTime();
+            telemetry.addData("hz ", 1000000000 / (loop - loopTime));
+            loopTime = loop;
+            telemetry.addData("luminosity zone 6",detectionPipeline.getZoneLuminosity(8));
+
+            telemetry.update();
+
+            robot.posCuvaInit();
 
 
         }
-//        bCameraOpened = false;
-//        if(nu_stiu_sa_codez2) {
-//            zoneFinal = zone;
-//            nu_stiu_sa_codez2 = false;
-//            robot.PosCuvaInit();
-//            sleep(100);
-//            robot.PutSlidersInitAuto();
-//        }
+        bCameraOpened = false;
+        if(nu_stiu_sa_codez2) {
+            zoneFinal = zone;
+            nu_stiu_sa_codez2 = false;
+            robot.posCuvaInit();
+            sleep(100);
+            robot.putSliderInitAuto();
+        }
         sleep(100);
         switch(zoneFinal){
             case LEFT:
@@ -206,15 +206,15 @@ public class BlueFar_Matei extends LinearOpMode {
 
                 drive.followTrajectorySequence(score_preload_zone_left_u);
                 sleep(300);
-                robot.opritoateOut();
+                robot.outtake_cuva_out();
                 sleep(1000);
                 drive.followTrajectorySequence(prepark);
                 sleep(300);
-                robot.PosCuvaInit();
+                robot.posCuvaInit();
                 sleep(1000);
-                robot. PutSlidersInitAuto();
+                robot. putSliderInitAuto();
                 sleep(300);
-                robot.OpritoareClose();
+                robot.outtake_cuva_off();
                 drive.followTrajectorySequence(park);
                 break;
             case CENTER:
@@ -226,15 +226,15 @@ public class BlueFar_Matei extends LinearOpMode {
 
                 drive.followTrajectorySequence(score_preload_zone_mid_m);
                 sleep(300);
-                robot.opritoateOut();
+                robot.outtake_cuva_out();
                 sleep(1000);
                 drive.followTrajectorySequence(prepark);
                 sleep(300);
-                robot.PosCuvaInit();
+                robot.posCuvaInit();
                 sleep(1000);
-                robot. PutSlidersInitAuto();
+                robot. putSliderInitAuto();
                 sleep(300);
-                robot.OpritoareClose();
+                robot.outtake_cuva_off();
                 drive.followTrajectorySequence(park);
 
                 break;
@@ -245,15 +245,15 @@ public class BlueFar_Matei extends LinearOpMode {
                 sleep(700);
                 drive.followTrajectorySequence(score_preload_zone_right_d);
                 sleep(300);
-                robot.opritoateOut();
+                robot.outtake_cuva_out();
                 sleep(1000);
                 drive.followTrajectorySequence(prepark);
                 sleep(300);
-                robot.PosCuvaInit();
+                robot.posCuvaInit();
                 sleep(1000);
-                robot. PutSlidersInitAuto();
+                robot. putSliderInitAuto();
                 sleep(300);
-                robot.OpritoareClose();
+                robot.outtake_cuva_off();
                 drive.followTrajectorySequence(park);
 
                 break;

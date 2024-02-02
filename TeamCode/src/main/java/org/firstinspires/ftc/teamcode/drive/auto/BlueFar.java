@@ -87,17 +87,17 @@ public class BlueFar extends LinearOpMode {
 
                 .lineToLinearHeading(new Pose2d(51, 40, Math.toRadians(0)))
                 .addTemporalMarker(0.2,()->{
-                    robot.PutSliderLow();
+                    robot.putSliderLow();
                 })
                 .addTemporalMarker(0.4,()->{
-                    robot.PosCuvaScore();
+                    robot.posCuvaScore();
                 })
                 .addTemporalMarker(1,()->{
-                    robot.OpritoareOpen();
+                    robot.outtake_cuva_in();
                 })
                 
                 .addTemporalMarker(2,()->{
-                    robot.PosCuvaInit();
+                    robot.posCuvaInit();
                 })
 
                 .build();
@@ -105,7 +105,7 @@ public class BlueFar extends LinearOpMode {
         TrajectorySequence park =drive.trajectorySequenceBuilder(score_pos.end())
                 .lineToLinearHeading(new Pose2d(42,40,Math.toRadians(0)))
                 .addTemporalMarker(0.2,()->{
-                    robot.PutSlidersInit();
+                    robot.putSliderInit();
                 })
 
 
@@ -134,18 +134,18 @@ public class BlueFar extends LinearOpMode {
         TrajectorySequence score_pos1 =drive.trajectorySequenceBuilder(drive_score1.end())
                 .lineToLinearHeading(new Pose2d(52, 35, Math.toRadians(0)))
                 .addTemporalMarker(0.2,()->{
-                    robot.PutSliderLow();
+                    robot.putSliderLow();
                 })
                 .addTemporalMarker(0.4,()->{
-                    robot.PosCuvaScore();
+                    robot.posCuvaScore();
                 })
                  
                 .addTemporalMarker(1,()->{
-                    robot.OpritoareOpen();
+                    robot.outtake_cuva_in();
                 })
                  
                 .addTemporalMarker(1.5,()->{
-                    robot.PosCuvaInit();
+                    robot.posCuvaInit();
                 })
                  
                 .build();
@@ -154,7 +154,7 @@ public class BlueFar extends LinearOpMode {
 
                 .lineToLinearHeading(new Pose2d(42,35,Math.toRadians(0)))
                 .addTemporalMarker(0.2,()->{
-                    robot.PutSlidersInit();
+                    robot.putSliderInit();
                 })
                 .lineToLinearHeading(new Pose2d(42,12,Math.toRadians(0)))
                 .lineToLinearHeading(new Pose2d(60,12, Math.toRadians(0)))
@@ -183,21 +183,21 @@ public class BlueFar extends LinearOpMode {
 
                 .lineToLinearHeading(new Pose2d(52, 40, Math.toRadians(0)))
                 .addTemporalMarker(0.2,()->{
-                    robot.PutSliderLow();
+                    robot.putSliderLow();
                 })
                 .addTemporalMarker(0.4,()->{
-                    robot.PosCuvaScore();
+                    robot.posCuvaScore();
                 })
                  
                 .addTemporalMarker(1,()->{
-                    robot.opritoateOut();
+                    robot.outtake_cuva_out();
                 })
                  
                 .addTemporalMarker(1.5,()->{
-                    robot.PosCuvaInit();
+                    robot.posCuvaInit();
                 })
                 .addTemporalMarker(2,()->{
-                    robot.OpritoareClose();
+                    robot.outtake_cuva_off();
                 })
 
                 .build();
@@ -206,7 +206,7 @@ public class BlueFar extends LinearOpMode {
 
                 .lineToLinearHeading(new Pose2d(42,35,Math.toRadians(0)))
                 .addTemporalMarker(0.2,()->{
-                    robot.PutSlidersInit();
+                    robot.putSliderInit();
                 })
                 .lineToLinearHeading(new Pose2d(42,15,Math.toRadians(0)))
                 .lineToLinearHeading(new Pose2d(60,15, Math.toRadians(0)))
@@ -216,7 +216,7 @@ public class BlueFar extends LinearOpMode {
         while (!isStarted() && !isStopRequested()) {
 
 
-            robot.PosCuvaInit();
+            robot.posCuvaInit();
 
             double zoneleft = detectionPipeline.getZoneLuminosity(4);
             double zonemid = Math.min(Math.min(Math.min(detectionPipeline.getZoneLuminosity(64)
