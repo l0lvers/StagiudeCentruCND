@@ -66,7 +66,7 @@ public class BlueFar extends LinearOpMode {
         drive.setPoseEstimate(startPos);
         // de aici incepi sa scrii trajectory sequences
 
-        TrajectorySequence pune_preload_dreaptaR = drive.trajectorySequenceBuilder(startPos)
+       /* TrajectorySequence pune_preload_dreaptaR = drive.trajectorySequenceBuilder(startPos)
                 .lineToLinearHeading(new Pose2d(-45, 61, Math.toRadians(90)))
                 .waitSeconds(1)
                 .lineToLinearHeading(new Pose2d(-45,35,Math.toRadians(90)))
@@ -91,7 +91,7 @@ public class BlueFar extends LinearOpMode {
 
                 .lineToLinearHeading(new Pose2d(51, 40, Math.toRadians(0)))
                 .addTemporalMarker(0.2,()->{
-                    robot.PutSliderLow();
+                //    robot.PutSliderLow();
                 })
                 .addTemporalMarker(0.4,()->{
                     robot.PosCuvaScore();
@@ -292,7 +292,10 @@ public class BlueFar extends LinearOpMode {
                 sleep(1000);
                 drive.followTrajectorySequence(park2);
                 break;
+
         }
+
+        */
     }
 
 }
