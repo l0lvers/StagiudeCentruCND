@@ -48,8 +48,8 @@ public class RobotUtils {
     public static double outtake_cuva_outPos = -1;
     public static double outtake_cuva_offPos=0;
             ;
-    public static double dronaLaunchPos=0.02;
-    public static double dronaInitPos=0.17;
+    public static double dronaLaunchPos=0.26;
+    public static double dronaInitPos=0.5;
 
 
     public RobotUtils(HardwareMap hardwareMap) {
