@@ -82,7 +82,7 @@ public class RobotUtils {
     //----------------------------SLIDERE---------------------------
     public void setSliderPos(int pos) //am pus o sa fie mai clean codu
     {
-        double correctedPos = pos*0.965;
+        double correctedPos = pos;
         int integer_correctedPos = (int)correctedPos;
         sliderLeft.setTargetPosition(integer_correctedPos);
         sliderRight.setTargetPosition(-pos);
