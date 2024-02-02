@@ -65,43 +65,43 @@ public class RedFar_Matei extends LinearOpMode {
             }
         });
 //        sleep(2000);
-        Pose2d startPose = new Pose2d(-35,60,Math.toRadians(90));
+        Pose2d startPose = new Pose2d(-35,-60,Math.toRadians(-90));
         drive.setPoseEstimate(startPose);
-        TrajectorySequence pune_preload_dreapta = drive.trajectorySequenceBuilder(startPose)
-                .setReversed(true)
-                .splineToLinearHeading(new Pose2d(-38,33,Math.toRadians(25)),Math.toRadians(-110))
-
-                .build();
         TrajectorySequence pune_preload_stanga = drive.trajectorySequenceBuilder(startPose)
                 .setReversed(true)
-                .splineToLinearHeading(new Pose2d(-33.5 ,33,Math.toRadians(155)),Math.toRadians(-75))
+                .splineToLinearHeading(new Pose2d(-38,-33,Math.toRadians(-25)),Math.toRadians(110))
+
+                .build();
+        TrajectorySequence pune_preload_dreapta = drive.trajectorySequenceBuilder(startPose)
+                .setReversed(true)
+                .splineToLinearHeading(new Pose2d(-33.5 ,-33,Math.toRadians(-155)),Math.toRadians(75))
                 .build();
         TrajectorySequence pune_preload_mijloc = drive.trajectorySequenceBuilder(startPose)
                 .setReversed(true)
-                .splineToLinearHeading(new Pose2d(-35,35,Math.toRadians(90)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(-35,-35,Math.toRadians(-90)),Math.toRadians(-90))
                 .build();
 
-        TrajectorySequence align3 = drive.trajectorySequenceBuilder(pune_preload_dreapta.end())
-                .lineToLinearHeading(new Pose2d(-50,53,Math.toRadians(135)))
-                .lineToLinearHeading(new Pose2d(-45,56,Math.toRadians(0)))
+        TrajectorySequence align3 = drive.trajectorySequenceBuilder(pune_preload_stanga.end())
+                .lineToLinearHeading(new Pose2d(-50,-53,Math.toRadians(-135)))
+                .lineToLinearHeading(new Pose2d(-45,-56,Math.toRadians(0)))
 
                 .build();
-        TrajectorySequence alignst = drive.trajectorySequenceBuilder(pune_preload_stanga.end())
-                .lineToLinearHeading(new Pose2d(-50,53,Math.toRadians(15)))
-                .lineToLinearHeading(new Pose2d(-45,56,Math.toRadians(0)))
+        TrajectorySequence alignst = drive.trajectorySequenceBuilder(pune_preload_dreapta.end())
+                .lineToLinearHeading(new Pose2d(-50,-53,Math.toRadians(-15)))
+                .lineToLinearHeading(new Pose2d(-45,-56,Math.toRadians(0)))
 
                 .build();
         TrajectorySequence align2 = drive.trajectorySequenceBuilder(pune_preload_mijloc.end())
-                .lineToLinearHeading(new Pose2d(-50,53,Math.toRadians(90)))
-                .lineToLinearHeading(new Pose2d(-45,56,Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(-50,-53,Math.toRadians(-90)))
+                .lineToLinearHeading(new Pose2d(-45,-56,Math.toRadians(0)))
 
 
                 .build();
-        TrajectorySequence score_preload_zone_right_d = drive.trajectorySequenceBuilder(align3.end())
+        TrajectorySequence score_preload_zone_right_d = drive.trajectorySequenceBuilder(alignst.end())
                 .setReversed(false)
 
-                .lineToSplineHeading(new Pose2d(12,54,Math.toRadians(0)))
-                .splineToSplineHeading(new Pose2d(53.5,30,Math.toRadians(0)),Math.toRadians(-15))
+                .lineToSplineHeading(new Pose2d(12,-54,Math.toRadians(0)))
+                .splineToSplineHeading(new Pose2d(53.5,-30,Math.toRadians(0)),Math.toRadians(15))
 
                 .addTemporalMarker(1.8,()->{
                     robot.putSliderLow();
@@ -114,8 +114,8 @@ public class RedFar_Matei extends LinearOpMode {
         TrajectorySequence score_preload_zone_mid_m = drive.trajectorySequenceBuilder(align2.end())
                 .setReversed(false)
 
-                .lineToSplineHeading(new Pose2d(12,54,Math.toRadians(0)))
-                .splineToSplineHeading(new Pose2d(53.5,33,Math.toRadians(0)),Math.toRadians(-15))
+                .lineToSplineHeading(new Pose2d(12,-54,Math.toRadians(0)))
+                .splineToSplineHeading(new Pose2d(53.5,-33,Math.toRadians(0)),Math.toRadians(15))
 
                 .addTemporalMarker(1.8,()->{
                     robot.putSliderLow();
@@ -126,11 +126,11 @@ public class RedFar_Matei extends LinearOpMode {
 
 
                 .build();
-        TrajectorySequence score_preload_zone_left_u = drive.trajectorySequenceBuilder(alignst.end())
+        TrajectorySequence score_preload_zone_left_u = drive.trajectorySequenceBuilder(align3.end())
 
                 .setReversed(false)
-                .lineToSplineHeading(new Pose2d(12,54,Math.toRadians(0)))
-                .splineToSplineHeading(new Pose2d(53.5,36.5,Math.toRadians(0)),Math.toRadians(-15))
+                .lineToSplineHeading(new Pose2d(12,-54,Math.toRadians(0)))
+                .splineToSplineHeading(new Pose2d(53.5,-36.5,Math.toRadians(0)),Math.toRadians(15))
                 .addTemporalMarker(1.8,()->{
                     robot.putSliderLow();
                 })
@@ -140,13 +140,13 @@ public class RedFar_Matei extends LinearOpMode {
 
                 .build();
         TrajectorySequence prepark = drive.trajectorySequenceBuilder(score_preload_zone_mid_m.end())
-                .lineToLinearHeading(new Pose2d(36,30,Math.toRadians(0)),
+                .lineToLinearHeading(new Pose2d(36,-30,Math.toRadians(0)),
                         SampleMecanumDrive.getVelocityConstraint(30,30,DriveConstants.TRACK_WIDTH)
                         ,SampleMecanumDrive.getAccelerationConstraint(30)
                 )
                 .build();
         TrajectorySequence park = drive.trajectorySequenceBuilder(prepark.end())
-                .lineToLinearHeading(new Pose2d(50,10,Math.toRadians(0)),
+                .lineToLinearHeading(new Pose2d(50,-10,Math.toRadians(0)),
                         SampleMecanumDrive.getVelocityConstraint(30,30,DriveConstants.TRACK_WIDTH)
                         ,SampleMecanumDrive.getAccelerationConstraint(30)
                 )
