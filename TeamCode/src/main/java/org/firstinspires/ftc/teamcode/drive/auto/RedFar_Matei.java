@@ -82,12 +82,12 @@ public class RedFar_Matei extends LinearOpMode {
                 .splineToLinearHeading(new Pose2d(-35,-35,Math.toRadians(-90)),Math.toRadians(-90))
                 .build();
 
-        TrajectorySequence align3 = drive.trajectorySequenceBuilder(pune_preload_stanga.end())
+        TrajectorySequence alignst = drive.trajectorySequenceBuilder(pune_preload_stanga.end())
                 .lineToLinearHeading(new Pose2d(-50,-53,Math.toRadians(-135)))
                 .lineToLinearHeading(new Pose2d(-45,-56,Math.toRadians(0)))
                 .build();
 
-        TrajectorySequence alignst = drive.trajectorySequenceBuilder(pune_preload_dreapta.end())
+        TrajectorySequence align3 = drive.trajectorySequenceBuilder(pune_preload_dreapta.end())
                 .lineToLinearHeading(new Pose2d(-50,-53,Math.toRadians(-15)))
                 .lineToLinearHeading(new Pose2d(-45,-56,Math.toRadians(0)))
                 .build();
@@ -97,7 +97,7 @@ public class RedFar_Matei extends LinearOpMode {
                 .lineToLinearHeading(new Pose2d(-45,-56,Math.toRadians(0)))
                 .build();
 
-        TrajectorySequence score_preload_zone_right_d = drive.trajectorySequenceBuilder(alignst.end())
+        TrajectorySequence score_preload_zone_left_u = drive.trajectorySequenceBuilder(alignst.end())
                 .setReversed(false)
                 .lineToSplineHeading(new Pose2d(12,-54,Math.toRadians(0)))
                 .splineToSplineHeading(new Pose2d(53.5,-30,Math.toRadians(0)),Math.toRadians(15))
@@ -127,7 +127,7 @@ public class RedFar_Matei extends LinearOpMode {
 
                 .build();
 
-        TrajectorySequence score_preload_zone_left_u = drive.trajectorySequenceBuilder(align3.end())
+        TrajectorySequence score_preload_zone_right_d = drive.trajectorySequenceBuilder(align3.end())
 
                 .setReversed(false)
                 .lineToSplineHeading(new Pose2d(12,-54,Math.toRadians(0)))
@@ -203,7 +203,7 @@ public class RedFar_Matei extends LinearOpMode {
                 drive.followTrajectorySequence(pune_preload_stanga);
                 sleep(300);
 
-                drive.followTrajectorySequence(alignst);
+                drive.followTrajectorySequence(align3);
                 sleep(700);
 
                 drive.followTrajectorySequence(score_preload_zone_left_u);
@@ -243,7 +243,7 @@ public class RedFar_Matei extends LinearOpMode {
             case RIGHT:
                 drive.followTrajectorySequence(pune_preload_dreapta);
                 sleep(300);
-                drive.followTrajectorySequence(align3);
+                drive.followTrajectorySequence(alignst);
                 sleep(700);
                 drive.followTrajectorySequence(score_preload_zone_right_d);
                 sleep(300);
