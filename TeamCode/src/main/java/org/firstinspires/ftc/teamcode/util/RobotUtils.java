@@ -30,19 +30,23 @@ public class RobotUtils {
     //-----------------------------VARIABILE------------------------
 
     public static int sliderInitPos=-3;
-    public static int sliderLowPos=-1200;
+
+    public static int sliderInitPosAuto=-10;
+
+    public static int sliderLowPos=-1300;
     public static int sliderMidPos=-1750;
     public static int sliderHighPos=-2250;
     public static double sliderPow=0.7;
-    public static double intakePow=1;
+    public static double intakePow=0.5;
+    public static double intakeRevPow=1;
     public static double cuvaScorePos = 0;
     public static double bCuvaScorePos = 0.66;
     public static double cuvaInitPos = 0;
     public static double bCuvaInitPos=0.868;
 
-    public static double opritoareOpenPos=1;
-    public static double opritoateOutPos = -1;
-    public static double opritoareClosePos=0;
+    public static double outtake_cuva_inPos=1;
+    public static double outtake_cuva_outPos = -1;
+    public static double outtake_cuva_offPos=0;
     ;
     public static double dronaLaunchPos=0.02;
     public static double dronaInitPos=0.17;
@@ -76,12 +80,14 @@ public class RobotUtils {
     }
 
     //----------------------------SLIDERE---------------------------
-    public void SetSliderPos(int pos) //am pus o sa fie mai clean codu
+    public void setSliderPos(int pos) //am pus o sa fie mai clean codu
     {
-        sliderLeft.setTargetPosition(pos);
+        double correctedPos = pos*0.965;
+        int integer_correctedPos = (int)correctedPos;
+        sliderLeft.setTargetPosition(integer_correctedPos);
         sliderRight.setTargetPosition(-pos);
     }
-    public void PutSliderToPosition(int position, double power) //generalizare pentru pozitia sliderelor
+    public void putSliderToPosition(int position, double power) //generalizare pentru pozitia sliderelor
     {
         double absPower = Math.abs(power);
 
@@ -91,9 +97,9 @@ public class RobotUtils {
         sliderLeft.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
         sliderRight.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
 
-        int curentPosition = sliderRight.getCurrentPosition();
+        int curentPosition = sliderLeft.getCurrentPosition();
 
-        SetSliderPos(position);
+        setSliderPos(position);
 
         if (curentPosition > position){
             sliderLeft.setPower(-absPower);
@@ -106,27 +112,31 @@ public class RobotUtils {
         //daca positia curenta e mai mare decat cea dorita mere mai jos altfel mere mai sus
         //am vzt asta la adi si mi s-a parut genial asa ca dc nu
     }
-    public void PutSlidersInit()//pune sliderele la pozitia initiala, de intake
+    public void putSliderInit()//pune sliderele la pozitia initiala, de intake
     {
-        PutSliderToPosition(sliderInitPos,sliderPow);
+        putSliderToPosition(sliderInitPos,sliderPow);
     }
-    public void PutSliderLow() //pune sliderele la pozitie joasa
+    public void putSliderInitAuto()//pune sliderele la pozitia initiala, de intake
     {
-        PutSliderToPosition(sliderLowPos, sliderPow);
+        putSliderToPosition(sliderInitPosAuto,sliderPow);
+    }
+    public void putSliderLow() //pune sliderele la pozitie joasa
+    {
+        putSliderToPosition(sliderLowPos, sliderPow);
     }
 
-    public void PutSliderMid() //pune sliderele la pozitie medie
+    public void putSliderMid() //pune sliderele la pozitie medie
     {
-        PutSliderToPosition(sliderMidPos, sliderPow);
+        putSliderToPosition(sliderMidPos, sliderPow);
     }
-    public void PutSliderHigh() //pune sliderele la pozitie mare
+    public void putSliderHigh() //pune sliderele la pozitie mare
     {
-        PutSliderToPosition(sliderHighPos, sliderPow);
+        putSliderToPosition(sliderHighPos, sliderPow);
     }
 
     //---------------------------------CUVA SI SCORING-----------------------------
 
-    public void PosCuvaInit() //pune cuva in pos initiala, aproap paralela cu terenu
+    public void posCuvaInit() //pune cuva in pos initiala, aproap paralela cu terenu
     {
         //cuvaLeft.setPosition(cuvaInitPos);
         //cuvaRight.setPosition(cuvaInitPos);
@@ -134,24 +144,24 @@ public class RobotUtils {
         bratCuvaRight.setPosition(bCuvaInitPos);
     }
 
-    public void PosCuvaScore() //pune cuva in pozitia de scoring, aproape paralela cu tabla
+    public void posCuvaScore() //pune cuva in pozitia de scoring, aproape paralela cu tabla
     {
         //cuvaLeft.setPosition(cuvaScorePos);
         //cuvaRight.setPosition(cuvaScorePos);
         bratCuvaLeft.setPosition(bCuvaScorePos);
         bratCuvaRight.setPosition(bCuvaScorePos);
     }
-    public void OpritoareClose() //inchide opritoarea cuvei sa nu pice pixeli
+    public void outtake_cuva_off() //inchide opritoarea cuvei sa nu pice pixeli
     {
         opritoare.setPower(0);
     }
-    public void OpritoareOpen() //deschide opritoarea cuvei ca sa ia pixeli si sa scoreze
+    public void outtake_cuva_in() //deschide opritoarea cuvei ca sa ia pixeli si sa scoreze
     {
-        opritoare.setPower(opritoareOpenPos);
+        opritoare.setPower(outtake_cuva_inPos);
     }
-    public void opritoateOut()
+    public void outtake_cuva_out()
     {
-        opritoare.setPower(opritoateOutPos);
+        opritoare.setPower(outtake_cuva_outPos);
     }
 
     //-----------------------------------INTAKE------------------------------------
@@ -162,8 +172,8 @@ public class RobotUtils {
     }
     public void IntakeReverse() //scuipa in caz de orice
     {
-        intakeLeft.setPower(intakePow);
-        intakeRight.setPower(-intakePow);
+        intakeLeft.setPower(intakeRevPow);
+        intakeRight.setPower(-intakeRevPow);
     }
     public void IntakeStop() // opreste intakeu
     {
