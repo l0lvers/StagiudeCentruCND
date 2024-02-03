@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.drive.auto;
 
+import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -167,9 +168,13 @@ public class RedClose_Matei extends LinearOpMode {
                     ,detectionPipeline.getZoneLuminosity(15));
 
 
-            if ( zoneright<zonemid &&  zoneright<80) zone = ZoneType.RIGHT;
-            else if (zonemid <  zoneright && zonemid<80)zone = ZoneType.CENTER;
+            if ( zoneright<zonemid &&  zoneright<92) zone = ZoneType.RIGHT;
+            else if (zonemid <  zoneright && zonemid<92)zone = ZoneType.CENTER;
             else zone = ZoneType.LEFT;
+
+            FtcDashboard.getInstance().getTelemetry().addData("luminosity zone mid",zonemid);
+            FtcDashboard.getInstance().getTelemetry().addData("luminosity zone right",zoneright);
+            FtcDashboard.getInstance().getTelemetry();
 
 
             telemetry.addData("zone = ",zone.toString());

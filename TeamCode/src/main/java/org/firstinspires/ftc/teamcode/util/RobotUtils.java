@@ -44,7 +44,7 @@ public class RobotUtils {
     public static double cuvaScorePos = 0;
     public static double bCuvaScorePos = 0.68;
     public static double cuvaInitPos = 0;
-    public static double bCuvaInitPos=0.884;
+    public static double bCuvaInitPos=0.89;
     public static double compensation = 1.01 ;
     public static double outtake_cuva_inPos=1;
     public static double outtake_cuva_outPos = -1;
@@ -52,6 +52,7 @@ public class RobotUtils {
             ;
     public static double dronaLaunchPos=0.26;
     public static double dronaInitPos=0.5;
+    public static double intakeCuvaPos;
 
 
     public RobotUtils(HardwareMap hardwareMap) {
@@ -156,6 +157,10 @@ public class RobotUtils {
         //cuvaRight.setPosition(cuvaScorePos);
         bratCuvaLeft.setPosition(bCuvaScorePos);
         bratCuvaRight.setPosition(bCuvaScorePos);
+    }
+    public void IntakeCuva(){
+        bratCuvaLeft.setPosition(intakeCuvaPos);
+        bratCuvaRight.setPosition(intakeCuvaPos);
     }
     public void outtake_cuva_off() //inchide opritoarea cuvei sa nu pice pixeli
     {

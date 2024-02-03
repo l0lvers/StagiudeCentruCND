@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.drive.auto;
 
+import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -57,6 +58,7 @@ public class BlueFar_Matei extends LinearOpMode {
             public void onOpened() {
                 bCameraOpened = true;
                 webcam.startStreaming(640, 480, OpenCvCameraRotation.UPRIGHT);
+                FtcDashboard.getInstance().startCameraStream(webcam,5);
             }
 
             @Override
@@ -106,7 +108,7 @@ public class BlueFar_Matei extends LinearOpMode {
                 .splineToSplineHeading(new Pose2d(55,30,Math.toRadians(0)),Math.toRadians(-15))
 
                 .addTemporalMarker(1.8,()->{
-                    robot.putSliderLow();
+                    robot.putSliderLowAuto();
                 })
                 .addTemporalMarker(2.3,()->{
                     robot.posCuvaScore();
@@ -120,7 +122,7 @@ public class BlueFar_Matei extends LinearOpMode {
                 .splineToSplineHeading(new Pose2d(54.5,35,Math.toRadians(0)),Math.toRadians(-15))
 
                 .addTemporalMarker(1.8,()->{
-                    robot.putSliderLow();
+                    robot.putSliderLowAuto();
                 })
                 .addTemporalMarker(2.3,()->{
                     robot.posCuvaScore();
@@ -131,10 +133,10 @@ public class BlueFar_Matei extends LinearOpMode {
         TrajectorySequence score_preload_zone_left_u = drive.trajectorySequenceBuilder(alignst.end())
 
                 .setReversed(false)
-                .lineToSplineHeading(new Pose2d(12,63,Math.toRadians(0)))
-                .splineToSplineHeading(new Pose2d(54.5,41,Math.toRadians(0)),Math.toRadians(-15))
+                .lineToSplineHeading(new Pose2d(12,57,Math.toRadians(0)))
+                .splineToSplineHeading(new Pose2d(54.5,45.5,Math.toRadians(0)),Math.toRadians(-15))
                 .addTemporalMarker(1.8,()->{
-                    robot.putSliderLow();
+                    robot.putSliderLowAuto();
                 })
                 .addTemporalMarker(2.3,()->{
                     robot.posCuvaScore();
@@ -179,11 +181,13 @@ public class BlueFar_Matei extends LinearOpMode {
                     ,detectionPipeline.getZoneLuminosity(15));
 
 
-            if ( zoneright<zonemid &&  zoneright<80) zone = ZoneType.RIGHT;
-            else if (zonemid <  zoneright && zonemid<80)zone = ZoneType.CENTER;
+            if ( zoneright<zonemid &&  zoneright<92) zone = ZoneType.RIGHT;
+            else if (zonemid <  zoneright && zonemid<92)zone = ZoneType.CENTER;
             else zone = ZoneType.LEFT;
 
-
+            FtcDashboard.getInstance().getTelemetry().addData("luminosity zone mid",zonemid);
+            FtcDashboard.getInstance().getTelemetry().addData("luminosity zone right", zoneright);
+FtcDashboard.getInstance().getTelemetry();
             telemetry.addData("zone = ",zone.toString());
             telemetry.addData("luminosity zone right", zoneright);
             telemetry.addData("luminosity zone mid",zonemid);
@@ -214,7 +218,7 @@ public class BlueFar_Matei extends LinearOpMode {
 
                 drive.followTrajectorySequence(alignst);
                 sleep(700);
-
+                sleep(7000);
                 drive.followTrajectorySequence(score_preload_zone_left_u);
                 sleep(300);
                 robot.outtake_cuva_out();
@@ -234,7 +238,7 @@ public class BlueFar_Matei extends LinearOpMode {
 
                 drive.followTrajectorySequence(align2);
                 sleep(700);
-
+                sleep(7000);
                 drive.followTrajectorySequence(score_preload_zone_mid_m);
                 sleep(300);
                 robot.outtake_cuva_out();
@@ -254,6 +258,7 @@ public class BlueFar_Matei extends LinearOpMode {
                 sleep(300);
                 drive.followTrajectorySequence(align3);
                 sleep(700);
+                sleep(7000);
                 drive.followTrajectorySequence(score_preload_zone_right_d);
                 sleep(300);
                 robot.outtake_cuva_out();

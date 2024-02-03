@@ -36,7 +36,7 @@ public class DriveMatei extends LinearOpMode {
     private SliderState sliderState = SliderState.MANUAL;
     private SampleMecanumDrive drive;
     private double loopTime=0;
-
+    private boolean sliderLow = false;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -99,15 +99,31 @@ public class DriveMatei extends LinearOpMode {
             if(gamepad1.dpad_up) robot.DroneLaunch();
             if(gamepad1.dpad_down) robot.DroneInit();
             if(gamepad1.square) robot.IntakeReverse();
-            if(gamepad1.circle) {robot.IntakeStop(); robot.outtake_cuva_off();}
-            if(gamepad1.cross) {robot.IntakeOn(); robot.outtake_cuva_in();}
+            if(gamepad1.circle) {robot.IntakeStop(); robot.outtake_cuva_off(); robot.posCuvaInit();}
+            if(gamepad1.cross) {robot.IntakeOn(); robot.outtake_cuva_in(); robot.IntakeCuva();}
 
             switch (sliderState){
                 case AUTO:
-                    if(gamepad2.dpad_down) robot.putSliderInit();
-                    if(gamepad2.dpad_up) robot.putSliderHigh();
-                    if(gamepad2.dpad_left) robot.putSliderMid();
-                    if(gamepad2.dpad_right) robot.putSliderLow();
+                    if(gamepad2.dpad_down)
+                    {
+                        robot.putSliderInit();
+                        sliderLow = false;
+                    }
+                    if(gamepad2.dpad_up)
+                    {
+                        robot.putSliderHigh();
+                        sliderLow = false;
+                    }
+                    if(gamepad2.dpad_left)
+                    {
+                        robot.putSliderMid();
+                        sliderLow = false;
+                    }
+                    if(gamepad2.dpad_right)
+                    {
+                        robot.putSliderLow();
+                        sliderLow = true;
+                    }
                     if(gamepad2.right_bumper){
                         robot.sliderRight.setPower(0);
                         robot.sliderLeft.setPower(0);
@@ -121,7 +137,10 @@ public class DriveMatei extends LinearOpMode {
                     if(gamepad2.cross){
                         robot.posCuvaScore();
                     }
-                    if(gamepad2.square) robot.outtake_cuva_out();
+                    if(gamepad2.square)
+                    {
+                        robot.outtake_cuva_out();
+                    }
                     if(gamepad2.triangle) robot.outtake_cuva_in();
                     if(gamepad2.right_stick_button) robot.outtake_cuva_off();
                    if(robot.sliderRight.getCurrentPosition()>0 &&robot.sliderRight.getCurrentPosition()<1350) robot.posCuvaInit();

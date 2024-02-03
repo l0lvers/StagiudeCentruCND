@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.drive.auto;
 
 
+import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -76,9 +77,11 @@ public class RedClose extends LinearOpMode {
                     , detectionPipeline.getZoneLuminosity(44));
 
 
-            if (zoneleft < zonemid && zoneleft < 80) zone = Zone.LEFT;
-            else if (zonemid < zoneleft && zonemid < 80) zone = Zone.CENTER;
+            if (zoneleft < zonemid && zoneleft < 92) zone = Zone.LEFT;
+            else if (zonemid < zoneleft && zonemid < 92) zone = Zone.CENTER;
             else zone = Zone.RIGHT;
+
+
 
 
             telemetry.addData("zone = ", zone.toString());

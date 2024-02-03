@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.drive.auto;
 
+import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -103,7 +104,7 @@ public class RedFar_Matei extends LinearOpMode {
                 .lineToSplineHeading(new Pose2d(12,-54,Math.toRadians(0)))
                 .splineToSplineHeading(new Pose2d(51,-20,Math.toRadians(0)),Math.toRadians(15))
                 .addTemporalMarker(1.8,()->{
-                    robot.putSliderLow();
+                    robot.putSliderLowAuto();
                 })
                 .addTemporalMarker(2.3,()->{
                     robot.posCuvaScore();
@@ -118,7 +119,7 @@ public class RedFar_Matei extends LinearOpMode {
                 .splineToSplineHeading(new Pose2d(51,-25,Math.toRadians(0)),Math.toRadians(15))
 
                 .addTemporalMarker(1.8,()->{
-                    robot.putSliderLow();
+                    robot.putSliderLowAuto();
                 })
                 .addTemporalMarker(2.3,()->{
                     robot.posCuvaScore();
@@ -134,7 +135,7 @@ public class RedFar_Matei extends LinearOpMode {
                 .splineToSplineHeading(new Pose2d(51,-33.5,Math.toRadians(0)),Math.toRadians(15))
 
                 .addTemporalMarker(1.8,()->{
-                    robot.putSliderLow();
+                    robot.putSliderLowAuto();
                 })
                 .addTemporalMarker(2.3,()->{
                     robot.posCuvaScore();
@@ -171,10 +172,13 @@ public class RedFar_Matei extends LinearOpMode {
                     ,detectionPipeline.getZoneLuminosity(15));
 
 
-            if ( zoneright<zonemid &&  zoneright<80) zone = ZoneType.RIGHT;
-            else if (zonemid <  zoneright && zonemid<80)zone = ZoneType.CENTER;
+            if ( zoneright<zonemid &&  zoneright<92) zone = ZoneType.RIGHT;
+            else if (zonemid <  zoneright && zonemid<92)zone = ZoneType.CENTER;
             else zone = ZoneType.LEFT;
 
+            FtcDashboard.getInstance().getTelemetry().addData("luminosity zone mid",zonemid);
+            FtcDashboard.getInstance().getTelemetry().addData("luminosity zone right", zoneright);
+            FtcDashboard.getInstance().getTelemetry();
 
             telemetry.addData("zone = ",zone.toString());
             telemetry.addData("luminosity zone right", zoneright);
