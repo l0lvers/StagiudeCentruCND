@@ -70,11 +70,13 @@ public class BlueFar_Matei extends LinearOpMode {
         TrajectorySequence pune_preload_dreapta = drive.trajectorySequenceBuilder(startPose)
                 .setReversed(true)
                 .splineToLinearHeading(new Pose2d(-38,33,Math.toRadians(25)),Math.toRadians(-110))
+                .lineToLinearHeading(new Pose2d(-34,33,Math.toRadians(25)))
 
                 .build();
         TrajectorySequence pune_preload_stanga = drive.trajectorySequenceBuilder(startPose)
                 .setReversed(true)
                 .splineToLinearHeading(new Pose2d(-33.5 ,33,Math.toRadians(155)),Math.toRadians(-75))
+                .lineToLinearHeading(new Pose2d(-37.5,33,Math.toRadians(155)))
                 .build();
         TrajectorySequence pune_preload_mijloc = drive.trajectorySequenceBuilder(startPose)
                 .setReversed(true)
@@ -82,13 +84,13 @@ public class BlueFar_Matei extends LinearOpMode {
                 .build();
 
         TrajectorySequence align3 = drive.trajectorySequenceBuilder(pune_preload_dreapta.end())
-                .lineToLinearHeading(new Pose2d(-50,53,Math.toRadians(135)))
+                .lineToLinearHeading(new Pose2d(-50,53,Math.toRadians(35)))
                 .lineToLinearHeading(new Pose2d(-45,56,Math.toRadians(0)))
 
                 .build();
         TrajectorySequence alignst = drive.trajectorySequenceBuilder(pune_preload_stanga.end())
                 .lineToLinearHeading(new Pose2d(-50,53,Math.toRadians(15)))
-                .lineToLinearHeading(new Pose2d(-45,56,Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(-45,59,Math.toRadians(0)))
 
                 .build();
         TrajectorySequence align2 = drive.trajectorySequenceBuilder(pune_preload_mijloc.end())
@@ -129,7 +131,7 @@ public class BlueFar_Matei extends LinearOpMode {
         TrajectorySequence score_preload_zone_left_u = drive.trajectorySequenceBuilder(alignst.end())
 
                 .setReversed(false)
-                .lineToSplineHeading(new Pose2d(12,54,Math.toRadians(0)))
+                .lineToSplineHeading(new Pose2d(12,59,Math.toRadians(0)))
                 .splineToSplineHeading(new Pose2d(53.5,36.5,Math.toRadians(0)),Math.toRadians(-15))
                 .addTemporalMarker(1.8,()->{
                     robot.putSliderLow();

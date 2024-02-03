@@ -14,15 +14,17 @@ public class MeepLongBlue{
         RoadRunnerBotEntity myBot = new DefaultBotBuilder(meepMeep)
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
-                .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(new Pose2d(11,60,Math.toRadians(90)))
+                .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(new Pose2d(-35,60,Math.toRadians(90)))
                         //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
                         .setReversed(true)
-                        .splineToLinearHeading(new Pose2d(9,39,Math.toRadians(50)),Math.toRadians(50))
-                        .lineToLinearHeading(new Pose2d(20,55,Math.toRadians(-15)))
-                        .lineToLinearHeading(new Pose2d(30,55,Math.toRadians(0)))
-                        .lineToLinearHeading(new Pose2d(50,33,Math.toRadians(1)))
-                        .lineToLinearHeading(new Pose2d(36,50,Math.toRadians(0)))
-                        .lineToLinearHeading(new Pose2d(52,59,Math.toRadians(0)))
+                        .splineToLinearHeading(new Pose2d(-33.5 ,33,Math.toRadians(155)),Math.toRadians(-75))
+                        .lineToLinearHeading(new Pose2d(-37.5,33,Math.toRadians(155)))
+                        .lineToLinearHeading(new Pose2d(-50,53,Math.toRadians(15)))
+                        .lineToLinearHeading(new Pose2d(-45,59,Math.toRadians(0)))
+                        .lineToSplineHeading(new Pose2d(12,59,Math.toRadians(0)))
+                        .splineToSplineHeading(new Pose2d(53,36.5,Math.toRadians(0)),Math.toRadians(-15))
+                        .lineToLinearHeading(new Pose2d(36,30,Math.toRadians(0)))
+                        .lineToLinearHeading(new Pose2d(50,10,Math.toRadians(0)))
                         .build()
                 );
 
