@@ -14,17 +14,11 @@ public class closeblueL{
         RoadRunnerBotEntity myBot = new DefaultBotBuilder(meepMeep)
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
-                .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(new Pose2d(11,60,Math.toRadians(90)))
+                .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(new Pose2d(11,-61,Math.toRadians(-90)))
                         //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                        .lineToLinearHeading(new Pose2d(11,- 50, Math.toRadians(-90)))
                         .setReversed(true)
-
-                        .lineToLinearHeading(new Pose2d(11,34,Math.toRadians(90)))
-                        .lineToLinearHeading(new Pose2d(11,38,Math.toRadians(90)))
-                        .lineToLinearHeading(new Pose2d(20,55,Math.toRadians(-90)))
-                        .lineToLinearHeading(new Pose2d(30,55,Math.toRadians(0)))
-                        .lineToLinearHeading(new Pose2d(50,32,Math.toRadians(0)))
-                        .lineToLinearHeading(new Pose2d(36,50,Math.toRadians(0)))
-                        .lineToLinearHeading(new Pose2d(52,59,Math.toRadians(0)))
+                        .splineToLinearHeading(new Pose2d(6,-38,Math.toRadians(-55)),Math.toRadians(-75))
                         .build()
                 );
 
