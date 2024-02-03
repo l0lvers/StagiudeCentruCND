@@ -17,14 +17,16 @@ public class MeepLongBlue{
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(new Pose2d(-35,60,Math.toRadians(90)))
                         //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
                         .setReversed(true)
-                        .splineToLinearHeading(new Pose2d(-33.5 ,33,Math.toRadians(155)),Math.toRadians(-75))
+                        .splineToLinearHeading(new Pose2d(-31 ,33,Math.toRadians(160)),Math.toRadians(-75))
                         .lineToLinearHeading(new Pose2d(-37.5,33,Math.toRadians(155)))
                         .lineToLinearHeading(new Pose2d(-50,53,Math.toRadians(15)))
                         .lineToLinearHeading(new Pose2d(-45,59,Math.toRadians(0)))
                         .lineToSplineHeading(new Pose2d(12,59,Math.toRadians(0)))
-                        .splineToSplineHeading(new Pose2d(53,36.5,Math.toRadians(0)),Math.toRadians(-15))
+                        .splineToSplineHeading(new Pose2d(54.5,40.5,Math.toRadians(0)),Math.toRadians(-15))
                         .lineToLinearHeading(new Pose2d(36,30,Math.toRadians(0)))
-                        .lineToLinearHeading(new Pose2d(50,10,Math.toRadians(0)))
+                        .lineToLinearHeading(new Pose2d(50,12,Math.toRadians(0)))
+                        .lineToLinearHeading(new Pose2d(58,12,Math.toRadians(0)))
+                        .lineToLinearHeading(new Pose2d(58,14,Math.toRadians(0)))
                         .build()
                 );
 
