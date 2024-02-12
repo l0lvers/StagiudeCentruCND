@@ -15,7 +15,7 @@ public class MeepLongBlue{
         RoadRunnerBotEntity myBot = new DefaultBotBuilder(meepMeep)
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
-                .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(new Pose2d(-36,61,Math.toRadians(90)))
+                .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(new Pose2d(-36,-61,Math.toRadians(-90)))
                         .lineToLinearHeading(new Pose2d(-35,31,Math.toRadians(90)))
                         .waitSeconds(1)
                         .lineToLinearHeading(new Pose2d(-36,50,Math.toRadians(90)))
