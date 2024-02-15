@@ -24,7 +24,7 @@ public class MeepShortRedCenter
                         //stack 1
                         .lineToConstantHeading(new Vector2d(25, -59))
                         .lineToConstantHeading(new Vector2d(-14, -59))
-                        .lineToLinearHeading(new Pose2d(-16, -59, Math.toRadians(-23)))
+                        .lineToLinearHeading(new Pose2d(-20, -59, Math.toRadians(-23)))
                         .waitSeconds(1)
                         //score 2
                         .lineToLinearHeading(new Pose2d(-14, -59, Math.toRadians(0)))
@@ -33,7 +33,7 @@ public class MeepShortRedCenter
                         //stack 2
                         .lineToConstantHeading(new Vector2d(30, -59))
                         .lineToConstantHeading(new Vector2d(-14, -59))
-                        .lineToLinearHeading(new Pose2d(-16, -59, Math.toRadians(-23)))
+                        .lineToLinearHeading(new Pose2d(-20, -59, Math.toRadians(-23)))
                         .waitSeconds(1)
                         //score 2
                         .lineToLinearHeading(new Pose2d(-14, -59, Math.toRadians(0)))
