@@ -68,10 +68,10 @@ public class BlueClose extends LinearOpMode {
         drive.setPoseEstimate(startPose);
         // de aici incepi sa scrii trajectory sequences
         //middle case hihihihihihihi
-        TrajectorySequence preload = TrajectorySequenceBuilder(startPose)
-                // bam o traiecyotir daia cu .line
-                 // bam o traiecyotir daia cu .line
-                .build();
+
+
+
+
 
 
         while (!isStarted() && !isStopRequested()) {
