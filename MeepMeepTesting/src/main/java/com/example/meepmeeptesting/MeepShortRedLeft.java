@@ -27,7 +27,7 @@ public class MeepShortRedLeft
                         //score 2
                         .lineToLinearHeading(new Pose2d(-14, -59, Math.toRadians(0)))
                         .lineToConstantHeading(new Vector2d(30, -59))
-                        .lineToConstantHeading(new Vector2d(48, -29))
+                        .lineToConstantHeading(new Vector2d(48, -41))
                         //stack 2
                         .lineToConstantHeading(new Vector2d(30, -59))
                         .lineToConstantHeading(new Vector2d(-14, -59))
@@ -36,10 +36,10 @@ public class MeepShortRedLeft
                         //score 2
                         .lineToLinearHeading(new Pose2d(-14, -59, Math.toRadians(0)))
                         .lineToConstantHeading(new Vector2d(30, -59))
-                        .lineToConstantHeading(new Vector2d(48, -29))
-                        .lineToLinearHeading(new Pose2d(41, -35, Math.toRadians(0)))
+                        .lineToConstantHeading(new Vector2d(48, -41))
+                        .lineToLinearHeading(new Pose2d(45, -48, Math.toRadians(0)))
                         //park
-                        .lineToConstantHeading(new Vector2d(41, -59))
+                        .lineToConstantHeading(new Vector2d(45, -59))
                         .lineToConstantHeading(new Vector2d(57, -59))
                         .build()
                 );
