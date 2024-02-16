@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.drive.auto;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.acmerobotics.roadrunner.trajectory.TrajectoryBuilderKt;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -12,6 +13,7 @@ import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.drive.detection.DetectionPipelineMatei;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
+import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceBuilder;
 import org.firstinspires.ftc.teamcode.util.RobotUtils;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
@@ -62,9 +64,14 @@ public class BlueClose extends LinearOpMode {
 
             }
         });
-        Pose2d startPos = new Pose2d(-36, 61, Math.toRadians(90));
-        drive.setPoseEstimate(startPos);
+        Pose2d startPose = new Pose2d(-36, 61, Math.toRadians(90));
+        drive.setPoseEstimate(startPose);
         // de aici incepi sa scrii trajectory sequences
+        //middle case hihihihihihihi
+        TrajectorySequence preload = TrajectorySequenceBuilder(startPose)
+                // bam o traiecyotir daia cu .line
+                 // bam o traiecyotir daia cu .line
+                .build();
 
 
         while (!isStarted() && !isStopRequested()) {
@@ -88,5 +95,3 @@ public class BlueClose extends LinearOpMode {
         }
     }
 }
-
-
