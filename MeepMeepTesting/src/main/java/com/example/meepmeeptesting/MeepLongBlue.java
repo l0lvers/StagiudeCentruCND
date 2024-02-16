@@ -14,15 +14,14 @@ public class MeepLongBlue{
         RoadRunnerBotEntity myBot = new DefaultBotBuilder(meepMeep)
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
-                .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(new Pose2d(-36,61,Math.toRadians(0)))
-                        //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                        .lineToLinearHeading(new Pose2d(-36,35,Math.toRadians(90)))
-                        .lineToLinearHeading(new Pose2d(-36,60,Math.toRadians(90)))
-                        .lineToLinearHeading(new Pose2d(-53,60, Math.toRadians(0)))
-                        .lineToLinearHeading(new Pose2d(-53,7, Math.toRadians(0)))
-                        .lineToLinearHeading(new Pose2d(42,7, Math.toRadians(0)))
+                .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(new Pose2d(-36,61,Math.toRadians(90)))
+                        // remain on start poz and place the purple pixel
+                        .lineToLinearHeading(new Pose2d(-53,61, Math.toRadians(0)))
+                        .lineToLinearHeading(new Pose2d(-53,12, Math.toRadians(0)))
+                        .lineToLinearHeading(new Pose2d(42,12, Math.toRadians(0)))
                         .lineToLinearHeading(new Pose2d(42,35, Math.toRadians(0)))
-                        .lineToLinearHeading(new Pose2d(46, 35, Math.toRadians(0)))
+                        .lineToLinearHeading(new Pose2d(50, 35, Math.toRadians(0)))
+                        //place pixel
                         .lineToLinearHeading(new Pose2d(42,35,Math.toRadians(0)))
                         .lineToLinearHeading(new Pose2d(42,10,Math.toRadians(0)))
                         .lineToLinearHeading(new Pose2d(60,10, Math.toRadians(0)))

@@ -1,3 +1,4 @@
+//updated
 package com.example.meepmeeptesting;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
@@ -16,14 +17,13 @@ public class MeepLongRed{
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(new Pose2d(-36,-61,Math.toRadians(-90)))
-                        //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                        .lineToLinearHeading(new Pose2d(-36,-35,Math.toRadians(-90)))
-                        .lineToLinearHeading(new Pose2d(-36,-60,Math.toRadians(-90)))
-                        .lineToLinearHeading(new Pose2d(-53,-60, Math.toRadians(0)))
-                        .lineToLinearHeading(new Pose2d(-53,-7, Math.toRadians(0)))
-                        .lineToLinearHeading(new Pose2d(42,-7, Math.toRadians(0)))
+                        //remain on start poz, extend place and retract then this
+                        .lineToLinearHeading(new Pose2d(-53,-61, Math.toRadians(0)))
+                        .lineToLinearHeading(new Pose2d(-53,-12, Math.toRadians(0)))
+                        .lineToLinearHeading(new Pose2d(42,-12, Math.toRadians(0)))
                         .lineToLinearHeading(new Pose2d(42,-35, Math.toRadians(0)))
-                        .lineToLinearHeading(new Pose2d(46, -35, Math.toRadians(0)))
+                        .lineToLinearHeading(new Pose2d(50, -35, Math.toRadians(0)))
+                        //place pixel
                         .lineToLinearHeading(new Pose2d(42,-35,Math.toRadians(0)))
                         .lineToLinearHeading(new Pose2d(42,-10,Math.toRadians(0)))
                         .lineToLinearHeading(new Pose2d(60,-10, Math.toRadians(0)))
