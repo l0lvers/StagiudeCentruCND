@@ -62,10 +62,38 @@ public class RedClose extends LinearOpMode {
 
             }
         });
-        Pose2d startPos = new Pose2d(-36, 61, Math.toRadians(90));
-        drive.setPoseEstimate(startPos);
+        Pose2d startPose = new Pose2d(-36, 61, Math.toRadians(90));
+        drive.setPoseEstimate(startPose);
         // de aici incepi sa scrii trajectory sequences
+//-----------------------------------middle case--------------------------------------------
+        TrajectorySequence preload = drive.trajectorySequenceBuilder(startPose)
+        //aici plasam pixelul mov
+        TrajectorySequence pedrum = drive.trajectorySequenceBuilder(preload.end())
+                .lineToLinearHeading(new Pose2d(40,-61, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(50,-34, Math.toRadians(0)))
+                .build();
+        TrajectorySequence parcare = drive.trajectorySequenceBuilder(pedrum.end())
+                .lineToLinearHeading(new Pose2d(45,-34, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(45,-10,Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(60,-10, Math.toRadians(0)))
+                .build();
 
+//-----------------------------------right case--------------------------------------------------
+        TrajectorySequence pixelmov = drive.trajectorySequenceBuilder(startPose)
+                .lineToLinearHeading(new Pose2d(23,-61, Math.toRadians(90)))
+        //aici plasam pixelul mov
+        TrajectorySequence pedrum2 = drive.trajectorySequenceBuilder(pixelmov.end())
+                .lineToLinearHeading(new Pose2d(46,-46, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(51,-41, Math.toRadians(0)))
+                .build();
+        TrajectorySequence parcare2 = drive.trajectorySequenceBuilder(pedrum2.end())
+                .lineToLinearHeading(new Pose2d(46,-41,Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(46,-11, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(60,-11, Math.toRadians(0)))
+                .build();
+
+//-------------------------------------left case---------------------------------------------------
+        TrajectorySequence pixelulmov = drive.trajectorySequenceBuilder(startPose)
 
         while (!isStarted() && !isStopRequested()) {
 

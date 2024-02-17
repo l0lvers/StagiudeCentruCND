@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.drive.auto;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -65,12 +66,41 @@ public class BlueFar extends LinearOpMode {
         Pose2d startPose = new Pose2d(-36, 61, Math.toRadians(90));
         drive.setPoseEstimate(startPose);
         // de aici incepi sa scrii trajectory sequences
-
+//----------------------------middle case-------------------------------------------------------
         TrajectorySequence preload = drive.trajectorySequenceBuilder(startPose)
-                .lineToLinearHeading(new Pose2d(40,-61, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(36,-61, Math.toRadians(0)))
                 .build();
 
         TrajectorySequence pedrum = drive.trajectorySequenceBuilder(preload.end())
+                .lineToLinearHeading(new Pose2d(-53,61, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(-53,12, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(42,12, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(42,35, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(50, 35, Math.toRadians(0)))
+                .build();
+        TrajectorySequence parcare = drive.trajectorySequenceBuilder(pedrum.end())
+                .lineToLinearHeading(new Pose2d(42,35,Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(42,10,Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(60,10, Math.toRadians(0)))
+                .build();
+        //--------------------------------right case----------------------------------------------
+        TrajectorySequence pixelmov = drive.trajectorySequenceBuilder(startPose)
+                .lineToLinearHeading(new Pose2d(-45,61, Math.toRadians(90)))
+                .build();
+        TrajectorySequence pedrum2 = drive.trajectorySequenceBuilder(pixelmov.end())
+                .lineToLinearHeading(new Pose2d(-36,61,Math.toRadians(90)))
+                .lineToLinearHeading(new Pose2d(-33,10, Math.toRadians(90)))
+                .lineToLinearHeading(new Pose2d(42, 10, Math.toRadians(90)))
+                .lineToLinearHeading(new Pose2d(42,40,Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(51,40,Math.toRadians(0)))
+                .build();
+        TrajectorySequence parcare2 = drive.trajectorySequenceBuilder(pedrum2.end())
+                .lineToLinearHeading(new Pose2d(42,40,Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(42,10,Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(60,10, Math.toRadians(0)))
+                .build();
+        //--------------------------------left case------------------------------------------------
+
 
 
         while (!isStarted() && !isStopRequested()) {

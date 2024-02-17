@@ -3,6 +3,8 @@ package org.firstinspires.ftc.teamcode.drive.auto;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.acmerobotics.roadrunner.trajectory.Trajectory;
+import com.acmerobotics.roadrunner.trajectory.constraints.TrajectoryAccelerationConstraint;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -62,12 +64,43 @@ public class RedFar extends LinearOpMode {
 
             }
         });
-        Pose2d startPos = new Pose2d(-36, 61, Math.toRadians(90));
-        drive.setPoseEstimate(startPos);
+        Pose2d startPose = new Pose2d(-36, 61, Math.toRadians(90));
+        drive.setPoseEstimate(startPose);
         // de aici incepi sa scrii trajectory sequences
+//---------------------------middle case------------------------------------------------------------
+        TrajectorySequence preload = drive.trajectorySequenceBuilder(startPose)
 
+                .build();
+        TrajectorySequence pedrum = drive.trajectorySequenceBuilder(preload.end())
+                .lineToLinearHeading(new Pose2d(-53,-61, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(-53,-12, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(42,-12, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(42,-35, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(50, -35, Math.toRadians(0)))
+                .build();
+        TrajectorySequence parcare = drive.trajectorySequenceBuilder(pedrum.end())
+                .lineToLinearHeading(new Pose2d(42,-35,Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(42,-10,Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(60,-10, Math.toRadians(0)))
+                .build();
+//--------------------------------left case-------------------------------------------------------
+        TrajectorySequence pixelmov = drive.trajectorySequenceBuilder(startPose)
+                .lineToLinearHeading(new Pose2d(-46,-61,Math.toRadians(-90)))
+                .build();
+        TrajectorySequence pedrum2 = drive.trajectorySequenceBuilder(pixelmov.end())
+                .lineToLinearHeading(new Pose2d(-34,-46, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(-34,-10, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(42,-10, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(42,-30,Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(51,-30,Math.toRadians(0)))
+                .build();
+        TrajectorySequence parcare2 = drive.trajectorySequenceBuilder(pedrum2.end())
+                .lineToLinearHeading(new Pose2d(42,-30, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(42,-13, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(60,-13, Math.toRadians(0)))
+                .build();
 
-        while (!isStarted() && !isStopRequested()) {
+//------------------------------------right case---------------------------------------------------
 
             double zoneleft = detectionPipeline.getZoneLuminosity(4);
             double zonemid = Math.min(Math.min(Math.min(detectionPipeline.getZoneLuminosity(64)
