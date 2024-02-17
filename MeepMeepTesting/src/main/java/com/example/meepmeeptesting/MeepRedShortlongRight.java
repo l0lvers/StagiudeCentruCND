@@ -16,7 +16,7 @@ public class MeepRedShortlongRight
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(new Pose2d(11,-61,Math.toRadians(90)))
-                        .splineTo(new Vector2d(48, -41), Math.toRadians(0))
+                        .lineToSplineHeading(new Pose2d(48, -41, Math.toRadians(0)))
                         .lineToConstantHeading(new Vector2d(35, -29))
                         .waitSeconds(1)
                         //stack 1
@@ -24,11 +24,10 @@ public class MeepRedShortlongRight
                         .lineToConstantHeading(new Vector2d(3, -13))
                         .lineToConstantHeading(new Vector2d(35, -13))
                         //score 2
-                        .splineToConstantHeading(new Vector2d(48, -41), Math.toRadians(0))
+                        .lineToConstantHeading(new Vector2d(48, -41))
                         .waitSeconds(1)
                         //stack 2
-                        .setReversed(false)
-                        .splineToConstantHeading(new Vector2d(35, -13), Math.toRadians(0))
+                        .lineToConstantHeading(new Vector2d(35, -13))
                         .lineToConstantHeading(new Vector2d(3, -13))
                         //score 2
                         .lineToLinearHeading(new Pose2d(-14, -59, Math.toRadians(0)))
