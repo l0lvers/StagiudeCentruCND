@@ -8,9 +8,10 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.util.Logging;
 import org.firstinspires.ftc.teamcode.util.RobotUtils;
 
-@TeleOp
+@TeleOp(name="Debugging", group="Linear Opmode")
 @Config
 public class debugging extends LinearOpMode {
     private RobotUtils robot;
@@ -27,7 +28,7 @@ public class debugging extends LinearOpMode {
 
 //        robot.sliderRight.setDirection(DcMotorSimple.Direction.REVERSE);
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-
+        Logging.getInstance().init(telemetry);
         waitForStart();
 
 
