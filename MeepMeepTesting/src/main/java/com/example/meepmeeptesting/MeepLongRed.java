@@ -15,15 +15,20 @@ public class MeepLongRed{
         RoadRunnerBotEntity myBot = new DefaultBotBuilder(meepMeep)
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
-                .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(new Pose2d(-36,-61,Math.toRadians(-90)))
+                .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(new Pose2d(-30,-61,Math.toRadians(-90)))
                         //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                        .splineToLinearHeading(new Pose2d(-33.5 ,33,Math.toRadians(155)),Math.toRadians(-75))
-                        .lineToLinearHeading(new Pose2d(-50,53,Math.toRadians(15)))
-                        .lineToLinearHeading(new Pose2d(-45,56,Math.toRadians(0)))
-                        .lineToSplineHeading(new Pose2d(12,54,Math.toRadians(0)))
-                        .splineToSplineHeading(new Pose2d(53.5,36.5,Math.toRadians(0)),Math.toRadians(-15))
-                        .lineToLinearHeading(new Pose2d(42,-10,Math.toRadians(0)))
-                        .lineToLinearHeading(new Pose2d(60,-10, Math.toRadians(0)))
+                        . lineToLinearHeading(new Pose2d(-50,-51.5,Math.toRadians(-90)))
+                        .lineToLinearHeading(new Pose2d(-41,-40,Math.toRadians(-90)))
+                        .lineToLinearHeading(new Pose2d(-37,-55,Math.toRadians(-90)))
+                        .lineToLinearHeading(new Pose2d(-61,-55,Math.toRadians(-90)))
+                        .lineToLinearHeading(new Pose2d(-61,-16,Math.toRadians(-90)))
+
+                        .lineToLinearHeading(new Pose2d(-55,-11,Math.toRadians(0)))
+
+                        .lineToLinearHeading(new Pose2d(-40,-11,Math.toRadians(0)))
+
+                        .lineToSplineHeading(new Pose2d(12,-11,Math.toRadians(0)))
+                        .splineToSplineHeading(new Pose2d(51.5,-35,Math.toRadians(0)),Math.toRadians(-10))
                         .build()
                 );
 
