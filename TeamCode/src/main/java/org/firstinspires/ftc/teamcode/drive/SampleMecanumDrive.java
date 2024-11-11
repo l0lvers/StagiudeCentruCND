@@ -111,28 +111,28 @@ public class SampleMecanumDrive extends MecanumDrive {
 
         odo.setOffsets(-84.0, -168.0); //these are tuned for 3110-0002-0001 Product Insight #1
 
-//        leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
-//        leftRear = hardwareMap.get(DcMotorEx.class, "leftRear");
-//        rightRear = hardwareMap.get(DcMotorEx.class, "rightRear");
-//        rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
-//
-//        motors = Arrays.asList(leftFront, leftRear, rightRear, rightFront);
-//
-//        for (DcMotorEx motor : motors) {
-//            MotorConfigurationType motorConfigurationType = motor.getMotorType().clone();
-//            motorConfigurationType.setAchieveableMaxRPMFraction(1.0);
-//            motor.setMotorType(motorConfigurationType);
-//        }
-//
-//        if (RUN_USING_ENCODER) {
-//            setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//        }
-//
-//        setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-//
-//        if (RUN_USING_ENCODER && MOTOR_VELO_PID != null) {
-//            setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, MOTOR_VELO_PID);
-//        }
+        leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
+        leftRear = hardwareMap.get(DcMotorEx.class, "leftRear");
+        rightRear = hardwareMap.get(DcMotorEx.class, "rightRear");
+        rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
+
+        motors = Arrays.asList(leftFront, leftRear, rightRear, rightFront);
+
+        for (DcMotorEx motor : motors) {
+            MotorConfigurationType motorConfigurationType = motor.getMotorType().clone();
+            motorConfigurationType.setAchieveableMaxRPMFraction(1.0);
+            motor.setMotorType(motorConfigurationType);
+        }
+
+        if (RUN_USING_ENCODER) {
+            setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        }
+
+        setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        if (RUN_USING_ENCODER && MOTOR_VELO_PID != null) {
+            setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, MOTOR_VELO_PID);
+        }
 
         // TODO: reverse any motors using DcMotor.setDirection()
         leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
