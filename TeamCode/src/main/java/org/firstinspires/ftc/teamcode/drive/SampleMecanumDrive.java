@@ -39,6 +39,7 @@ import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigurationType;
 
+import org.firstinspires.ftc.teamcode.drive.DecebalTech.teleop.GoBildaPinpointDriver;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceBuilder;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceRunner;
@@ -53,6 +54,12 @@ import java.util.List;
  */
 @Config
 public class SampleMecanumDrive extends MecanumDrive {
+
+
+    private GoBildaPinpointDriver odo; // Declare OpMode member for the Odometry Computer
+
+    double oldTime = 0;
+
     public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(11, 0, 1);
     public static PIDCoefficients HEADING_PID = new PIDCoefficients(11, 0, 1);
 
@@ -63,6 +70,7 @@ public class SampleMecanumDrive extends MecanumDrive {
     public static double OMEGA_WEIGHT = 1;
 
     private TrajectorySequenceRunner trajectorySequenceRunner;
+
 
     private static final TrajectoryVelocityConstraint VEL_CONSTRAINT = getVelocityConstraint(MAX_VEL, MAX_ANG_VEL, TRACK_WIDTH);
     private static final TrajectoryAccelerationConstraint ACCEL_CONSTRAINT = getAccelerationConstraint(MAX_ACCEL);
@@ -92,34 +100,39 @@ public class SampleMecanumDrive extends MecanumDrive {
             module.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
         }
 
+
         // TODO: adjust the names of the following hardware devices to match your configuration
+        odo = hardwareMap.get(GoBildaPinpointDriver.class,"odo");
+
 //        imu = hardwareMap.get(IMU.class, "imu");
 //        IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
 //                DriveConstants.LOGO_FACING_DIR, DriveConstants.USB_FACING_DIR));
 //        imu.initialize(parameters);
 
-        leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
-        leftRear = hardwareMap.get(DcMotorEx.class, "leftRear");
-        rightRear = hardwareMap.get(DcMotorEx.class, "rightRear");
-        rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
+        odo.setOffsets(-84.0, -168.0); //these are tuned for 3110-0002-0001 Product Insight #1
 
-        motors = Arrays.asList(leftFront, leftRear, rightRear, rightFront);
-
-        for (DcMotorEx motor : motors) {
-            MotorConfigurationType motorConfigurationType = motor.getMotorType().clone();
-            motorConfigurationType.setAchieveableMaxRPMFraction(1.0);
-            motor.setMotorType(motorConfigurationType);
-        }
-
-        if (RUN_USING_ENCODER) {
-            setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        }
-
-        setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
-        if (RUN_USING_ENCODER && MOTOR_VELO_PID != null) {
-            setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, MOTOR_VELO_PID);
-        }
+//        leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
+//        leftRear = hardwareMap.get(DcMotorEx.class, "leftRear");
+//        rightRear = hardwareMap.get(DcMotorEx.class, "rightRear");
+//        rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
+//
+//        motors = Arrays.asList(leftFront, leftRear, rightRear, rightFront);
+//
+//        for (DcMotorEx motor : motors) {
+//            MotorConfigurationType motorConfigurationType = motor.getMotorType().clone();
+//            motorConfigurationType.setAchieveableMaxRPMFraction(1.0);
+//            motor.setMotorType(motorConfigurationType);
+//        }
+//
+//        if (RUN_USING_ENCODER) {
+//            setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        }
+//
+//        setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//
+//        if (RUN_USING_ENCODER && MOTOR_VELO_PID != null) {
+//            setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, MOTOR_VELO_PID);
+//        }
 
         // TODO: reverse any motors using DcMotor.setDirection()
         leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -211,29 +224,29 @@ public class SampleMecanumDrive extends MecanumDrive {
     public boolean isBusy() {
         return trajectorySequenceRunner.isBusy();
     }
-
-    public void setMode(DcMotor.RunMode runMode) {
-        for (DcMotorEx motor : motors) {
-            motor.setMode(runMode);
-        }
-    }
-
-    public void setZeroPowerBehavior(DcMotor.ZeroPowerBehavior zeroPowerBehavior) {
-        for (DcMotorEx motor : motors) {
-            motor.setZeroPowerBehavior(zeroPowerBehavior);
-        }
-    }
-
-    public void setPIDFCoefficients(DcMotor.RunMode runMode, PIDFCoefficients coefficients) {
-        PIDFCoefficients compensatedCoefficients = new PIDFCoefficients(
-                coefficients.p, coefficients.i, coefficients.d,
-                coefficients.f * 12 / batteryVoltageSensor.getVoltage()
-        );
-
-        for (DcMotorEx motor : motors) {
-            motor.setPIDFCoefficients(runMode, compensatedCoefficients);
-        }
-    }
+//
+//    public void setMode(DcMotor.RunMode runMode) {
+//        for (DcMotorEx motor : motors) {
+//            motor.setMode(runMode);
+//        }
+//    }
+//
+//    public void setZeroPowerBehavior(DcMotor.ZeroPowerBehavior zeroPowerBehavior) {
+//        for (DcMotorEx motor : motors) {
+//            motor.setZeroPowerBehavior(zeroPowerBehavior);
+//        }
+//    }
+//
+//    public void setPIDFCoefficients(DcMotor.RunMode runMode, PIDFCoefficients coefficients) {
+//        PIDFCoefficients compensatedCoefficients = new PIDFCoefficients(
+//                coefficients.p, coefficients.i, coefficients.d,
+//                coefficients.f * 12 / batteryVoltageSensor.getVoltage()
+//        );
+//
+//        for (DcMotorEx motor : motors) {
+//            motor.setPIDFCoefficients(runMode, compensatedCoefficients);
+//        }
+//    }
 
     public void setWeightedDrivePower(Pose2d drivePower) {
         Pose2d vel = drivePower;
