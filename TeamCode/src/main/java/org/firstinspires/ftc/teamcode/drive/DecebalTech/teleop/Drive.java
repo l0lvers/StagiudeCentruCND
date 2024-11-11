@@ -20,7 +20,6 @@ import org.firstinspires.ftc.teamcode.util.RobotUtils;
 
 public class Drive extends LinearOpMode {
 
-
     enum ChasisState{
         DRIVE,
         TURBO,
@@ -30,6 +29,7 @@ public class Drive extends LinearOpMode {
         AUTO,
         MANUAL
     }
+
 
     private RobotUtils robot;
     private ChasisState chasisState = ChasisState.DRIVE;
@@ -45,6 +45,7 @@ public class Drive extends LinearOpMode {
         robot = new RobotUtils(hardwareMap);
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
+        robot.sliderLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         waitForStart();
 

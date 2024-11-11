@@ -59,16 +59,16 @@ public class RobotUtils {
         //gasire elemente din cod in viata reala
         drive = new SampleMecanumDrive(hardwareMap);
 
-        sliderLeft = hardwareMap.get(DcMotorEx.class, "sliderLeft");
-        sliderRight = hardwareMap.get(DcMotorEx.class, "sliderRight");
-        intakeLeft = hardwareMap.get(DcMotorEx.class, "intakeLeft");
-        intakeRight = hardwareMap.get(DcMotorEx.class, "intakeRight");
+//        sliderLeft = hardwareMap.get(DcMotorEx.class, "sliderLeft");
+//        sliderRight = hardwareMap.get(DcMotorEx.class, "sliderRight");
+//        intakeLeft = hardwareMap.get(DcMotorEx.class, "intakeLeft");
+//        intakeRight = hardwareMap.get(DcMotorEx.class, "intakeRight");
         //cuvaLeft = hardwareMap.get(Servo.class, "cuvaLeft");
         //cuvaRight = hardwareMap.get(Servo.class, "cuvaRight");
-        opritoare = hardwareMap.get(CRServo.class, "opritoare");
-        bratCuvaLeft = hardwareMap.get(ServoImplEx.class, "bratCuvaLeft");
-        bratCuvaRight = hardwareMap.get(ServoImplEx.class, "bratCuvaRight");
-        droneLauncher = hardwareMap.get(Servo.class, "droneLauncher");
+//        opritoare = hardwareMap.get(CRServo.class, "opritoare");
+//        bratCuvaLeft = hardwareMap.get(ServoImplEx.class, "bratCuvaLeft");
+//        bratCuvaRight = hardwareMap.get(ServoImplEx.class, "bratCuvaRight");
+//        droneLauncher = hardwareMap.get(Servo.class, "droneLauncher");
 
         bratCuvaLeft.setPwmEnable();
         bratCuvaRight.setPwmEnable();
